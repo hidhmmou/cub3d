@@ -1,11 +1,4 @@
 #!/bin/bash
-
-# Set up the repository information
-username="your_username"
-repository="your_repository"
-branch="main"
-
-# Get the commit message from the user
 echo "Enter commit message: "
 read commit_message
 
@@ -19,7 +12,7 @@ if [ "$confirm" == "y" ]; then
     git commit -m "$commit_message"
     
     # Push the changes to the repository
-    git push https://github.com/$username/$repository.git $branch
+    git push https://github.com/hidhmmou/cub3d.git origin master
     
     echo "Changes pushed to GitHub."
 else
