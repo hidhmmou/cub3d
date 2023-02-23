@@ -1,8 +1,6 @@
 #!/bin/bash
 echo "Enter commit message: "
 read commit_message
-
-# Ask for confirmation before proceeding
 echo "Are you sure you want to push your changes to GitHub? (y/n) "
 read confirm
 
