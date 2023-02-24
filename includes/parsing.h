@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 16:31:31 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:11:31 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 # define BLUE "\033[1;34m"
 # define RESET "\033[0m"
 
+
+typedef struct t_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 typedef struct s_map
 {
 	char		**content;
@@ -33,6 +40,8 @@ typedef struct s_map
 	char		*we_texture;
 	char		*f_color;
 	char		*c_color;
+	t_color		*floor_color;
+	t_color		*ciel_color;
 }		t_map;
 typedef struct s_cub3d
 {

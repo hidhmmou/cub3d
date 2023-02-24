@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 16:35:02 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:13:29 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,37 +77,67 @@ char	*get_from_file(char **content, char *target)
 	char	*ret;
 
 	i = 0;
-	while(content[i])
+	while (content[i])
 	{
 		if (!ft_strncmp(content[i++], target, ft_strlen(target)))
 		{
-			ret = ft_strdup(content[i - 1] + ft_strlen(target));
+			ret = ft_substr(content[i - 1] + ft_strlen(target), 0, \
+				ft_strlen(content[i - 1] + ft_strlen(target)) - 1);
 			return (ret);
 		}
 	}
 	return (NULL);
 }
 
-void	get_textures_colors(t_cub3d *cub3d)
+int	get_rgb(int color)
+{
+	if (color >= 0 && color <= 255)
+		return (color);
+	else
+		ft_error("colors must be included in [0,255]", NULL);
+	return (0);
+}
+void	get_colors(t_cub3d *cub3d)
+{
+	char	**floor;
+	char	**ciel;
+
+	cub3d->map->c_color = get_from_file(cub3d->map->content, "C ");
+	cub3d->map->f_color = get_from_file(cub3d->map->content, "F ");
+	ciel = ft_split(cub3d->map->c_color, ',');
+	floor = ft_split(cub3d->map->f_color, ',');
+	cub3d->map->floor_color->r = get_rgb(ft_atoi(floor[0]));
+	cub3d->map->floor_color->g = get_rgb(ft_atoi(floor[1]));
+	cub3d->map->floor_color->b = get_rgb(ft_atoi(floor[2]));
+	cub3d->map->ciel_color->r = get_rgb(ft_atoi(ciel[0]));
+	cub3d->map->ciel_color->g = get_rgb(ft_atoi(ciel[1]));
+	cub3d->map->ciel_color->b = get_rgb(ft_atoi(ciel[2]));
+}
+
+void	get_textures(t_cub3d *cub3d)
 {
 	cub3d->map->ea_texture = get_from_file(cub3d->map->content, "EA ");
 	cub3d->map->no_texture = get_from_file(cub3d->map->content, "NO ");
 	cub3d->map->so_texture = get_from_file(cub3d->map->content, "SO ");
 	cub3d->map->we_texture = get_from_file(cub3d->map->content, "WE ");
-	cub3d->map->c_color = get_from_file(cub3d->map->content, "C ");
-	cub3d->map->f_color = get_from_file(cub3d->map->content, "F ");
+	if (open(cub3d->map->ea_texture, O_RDONLY) < 0
+		|| open(cub3d->map->so_texture, O_RDONLY) < 0
+		|| open(cub3d->map->we_texture, O_RDONLY) < 0
+		||open(cub3d->map->no_texture, O_RDONLY) < 0)
+		ft_error("couldn't open texture !", NULL);
 }
 
 void	check_content(t_cub3d *cub3d)
 {
 	check_textures(cub3d->map->content);
 	check_colors(cub3d->map->content);
-	get_textures_colors(cub3d);
+	get_textures(cub3d);
+	get_colors(cub3d);
 	printf("%svalid map !\n%s", GREEN, RESET);
-	printf("cub3d->map->ea_texture : %s", cub3d->map->ea_texture);
-	printf("cub3d->map->no_texture : %s", cub3d->map->no_texture);
-	printf("cub3d->map->we_texture : %s", cub3d->map->we_texture);
-	printf("cub3d->map->so_texture : %s", cub3d->map->so_texture);
-	printf("cub3d->map->f_color : %s", cub3d->map->f_color);
-	printf("cub3d->map->c_color : %s", cub3d->map->c_color);
+	//printf("ea_texture : %s", cub3d->map->ea_texture);
+	//printf("no_texture : %s", cub3d->map->no_texture);
+	//printf("we_texture : %s", cub3d->map->we_texture);
+	//printf("so_texture : %s", cub3d->map->so_texture);
+	//printf("f_color : %s", cub3d->map->f_color);
+	//printf("c_color : %s", cub3d->map->c_color);
 }
