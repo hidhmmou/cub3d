@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 17:23:31 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:25:55 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
+void	free_double(char **content);
 void	ft_free(t_cub3d *cub3d);
 char	*get_next_line(int fd);
 void	pre_check_map(char *file);

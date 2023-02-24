@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:18:51 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 17:24:34 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:23:58 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	get_colors(t_cub3d *cub3d)
 	cub3d->map->ciel_color->r = get_rgb(ft_atoi(ciel[0]));
 	cub3d->map->ciel_color->g = get_rgb(ft_atoi(ciel[1]));
 	cub3d->map->ciel_color->b = get_rgb(ft_atoi(ciel[2]));
+	free_double(ciel);
+	free_double(floor);
 }
 
 void	get_textures(t_cub3d *cub3d)

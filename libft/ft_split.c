@@ -6,13 +6,13 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:01:30 by hidhmmou          #+#    #+#             */
-/*   Updated: 2022/10/25 19:52:08 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:15:02 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**m_error(char	**arr)
+char	**m_error(char	**arr)
 {
 	unsigned int	i;
 
@@ -23,7 +23,7 @@ static char	**m_error(char	**arr)
 	return (NULL);
 }
 
-static int	ft_count_words(char const *str, char charset)
+int	ft_count_words(char const *str, char charset)
 {
 	int	i;
 	int	nbr_w;
@@ -42,7 +42,7 @@ static int	ft_count_words(char const *str, char charset)
 	return (nbr_w);
 }
 
-static int	ft_word_len(char const *str, char charset)
+int	ft_word_len(char const *str, char charset)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ static int	ft_word_len(char const *str, char charset)
 	return (i);
 }
 
-static char	*ft_word_grep(char const *str, char charset)
+char	*ft_word_grep(char const *str, char charset)
 {
 	int		len_w;
 	int		i;

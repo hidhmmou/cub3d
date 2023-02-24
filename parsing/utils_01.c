@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:20:45 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 17:24:41 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:47:31 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ int	find(char **content, char *target, int flag)
 	nb = 0;
 	while (content[i])
 	{
+		if (flag && (content[i][0] == '1'
+			|| content[i][0] == ' '
+			|| content[i][0] == '0'))
+			ft_error("the map must be the last !", NULL);
 		if (!ft_strncmp(content[i++], target, ft_strlen(target)))
 		{
 			nb++;
