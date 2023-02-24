@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:47:20 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/23 17:48:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:59:46 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int	check_empty(char *file)
 
 void	check_if_dir(char *f_name)
 {
-	if (open(f_name, O_DIRECTORY) != -1)
+	int	fd;
+
+	fd = open(f_name, O_DIRECTORY);
+	if (fd != -1)
+	{
+		close(fd);
 		ft_error("this is a directory !", NULL);
-	close(open(f_name, O_DIRECTORY));
+	}
 }
 
 int	check_extention(char *f_name)
@@ -58,12 +63,11 @@ int	check_extention(char *f_name)
 	return (1);
 }
 
-void	ft_check_map(char *file, t_cub3d *cub3d)
+void	pre_check_map(char *file)
 {
 	check_if_dir(file);
 	if (!check_extention(file))
 		ft_error("bad extention !", NULL);
 	if (!check_empty(file))
 		ft_error("empty file !", NULL);
-	fill_content(file, cub3d);
 }

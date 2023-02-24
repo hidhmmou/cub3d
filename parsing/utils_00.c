@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:03:01 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/23 17:49:53 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:48:06 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_free(t_cub3d *cub3d)
 
 void	ft_error(char *message, t_cub3d *cub3d)
 {
-	printf("%sError\n%s%s", RED, message, RESET);
+	printf("%sERROR : %s%s\n", RED, message, RESET);
 	if (cub3d)
 		ft_free(cub3d);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
