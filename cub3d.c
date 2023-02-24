@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 13:59:17 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:31:56 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	*cub3d = malloc(sizeof(t_cub3d));
 	(*cub3d)->map = malloc(sizeof(t_map));
 	fill_content(av[1], *cub3d);
+	check_content(*cub3d);
 }
 
 int	main(int ac, char *av[])

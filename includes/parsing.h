@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 13:59:30 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:31:31 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ typedef struct s_map
 {
 	char		**content;
 	char		**map;
-	char		*file_name;
+	char		*so_texture;
+	char		*no_texture;
+	char		*ea_texture;
+	char		*we_texture;
+	char		*f_color;
+	char		*c_color;
 }		t_map;
 typedef struct s_cub3d
 {
@@ -39,5 +44,6 @@ void	ft_free(t_cub3d *cub3d);
 char	*get_next_line(int fd);
 void	pre_check_map(char *file);
 void	fill_content(char *map_file, t_cub3d *cub3d);
+void	check_content(t_cub3d *cub3d);
 
 #endif
