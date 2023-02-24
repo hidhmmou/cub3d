@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 22:25:55 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:48:13 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	check_textures(char	**content);
 void	check_colors(char	**content);
 int		get_rgb(int color);
 void	get_colors(t_cub3d *cub3d);
+int		check_colors_format(char **tab);
 #endif
