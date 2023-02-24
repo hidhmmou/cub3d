@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:20:45 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 13:59:53 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:24:41 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,41 @@ void	fill_content(char *map_file, t_cub3d *cub3d)
 	while (i < rows && cub3d->map->content[i++])
 		cub3d->map->content[i] = get_next_line(fd);
 	close(fd);
+}
+
+char	*get_from_file(char **content, char *target)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	while (content[i])
+	{
+		if (!ft_strncmp(content[i++], target, ft_strlen(target)))
+		{
+			ret = ft_substr(content[i - 1] + ft_strlen(target), 0, \
+				ft_strlen(content[i - 1] + ft_strlen(target)) - 1);
+			return (ret);
+		}
+	}
+	return (NULL);
+}
+
+int	find(char **content, char *target, int flag)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	while (content[i])
+	{
+		if (!ft_strncmp(content[i++], target, ft_strlen(target)))
+		{
+			nb++;
+			if (flag)
+				break ;
+		}
+	}
+	return (nb);
 }

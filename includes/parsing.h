@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 17:11:31 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:23:31 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define YELLOW "\033[1;33m"
 # define BLUE "\033[1;34m"
 # define RESET "\033[0m"
-
 
 typedef struct t_color
 {
@@ -54,5 +53,12 @@ char	*get_next_line(int fd);
 void	pre_check_map(char *file);
 void	fill_content(char *map_file, t_cub3d *cub3d);
 void	check_content(t_cub3d *cub3d);
-
+char	*get_from_file(char **content, char *target);
+int		find(char **content, char *target, int flag);
+void	get_colors(t_cub3d *cub3d);
+void	get_textures(t_cub3d *cub3d);
+void	check_textures(char	**content);
+void	check_colors(char	**content);
+int		get_rgb(int color);
+void	get_colors(t_cub3d *cub3d);
 #endif
