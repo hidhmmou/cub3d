@@ -30307,6 +30307,28 @@
               "font": "serif",
               "textAlign": "start"
             }
+          },
+          "8c1ec54b-faa1-427c-00e4-48e17cf6db16": {
+            "id": "8c1ec54b-faa1-427c-00e4-48e17cf6db16",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 213,
+            "point": [
+              180.61255637068226,
+              8429.52683596718
+            ],
+            "rotation": 0,
+            "text": "9ad duplicate\njrr jnab bach twli rectangle\nhandli spaces ila kano f nss li lfoq",
+            "style": {
+              "color": "white",
+              "size": "medium",
+              "isFilled": true,
+              "dash": "solid",
+              "scale": 1,
+              "font": "serif",
+              "textAlign": "start"
+            }
           }
         },
         "bindings": {}

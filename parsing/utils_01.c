@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:20:45 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 20:47:31 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:32:15 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	fill_content(char *map_file, t_cub3d *cub3d)
 {
 	int	fd;
 	int	i;
-	int	rows;
 
 	i = 0;
 	fd = open(map_file, O_RDONLY);
@@ -43,12 +42,12 @@ void	fill_content(char *map_file, t_cub3d *cub3d)
 			RED, map_file, RESET);
 		exit(1);
 	}
-	rows = get_rows_nbr(fd);
+	cub3d->map->rows = get_rows_nbr(fd);
 	close(fd);
 	fd = open(map_file, O_RDONLY);
-	cub3d->map->content = malloc(sizeof(char *) * (rows + 1));
+	cub3d->map->content = malloc(sizeof(char *) * (cub3d->map->rows + 1));
 	cub3d->map->content[i] = get_next_line(fd);
-	while (i < rows && cub3d->map->content[i++])
+	while (i < cub3d->map->rows && cub3d->map->content[i++])
 		cub3d->map->content[i] = get_next_line(fd);
 	close(fd);
 }

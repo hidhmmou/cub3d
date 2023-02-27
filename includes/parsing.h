@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 22:48:13 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:31:47 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,25 @@
 # define BLUE "\033[1;34m"
 # define RESET "\033[0m"
 
-typedef struct t_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
 typedef struct s_map
 {
+	int			rows;
+	int			cols;
+	t_player	player;
 	char		**content;
+	char		**check_map;
 	char		**map;
 	char		*so_texture;
 	char		*no_texture;
@@ -41,6 +51,8 @@ typedef struct s_map
 	char		*c_color;
 	t_color		*floor_color;
 	t_color		*ciel_color;
+	int			empty_nbr;
+	size_t		max_len;
 }		t_map;
 typedef struct s_cub3d
 {
@@ -63,4 +75,7 @@ void	check_colors(char	**content);
 int		get_rgb(int color);
 void	get_colors(t_cub3d *cub3d);
 int		check_colors_format(char **tab);
+void	check_player(t_cub3d *cub3d);
+int		in_set(char c, char *set);
+int		check_surrounded(t_cub3d *cub3d);
 #endif
