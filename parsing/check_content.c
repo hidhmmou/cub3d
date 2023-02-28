@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 21:02:15 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:52:38 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,15 @@ void	get_square_map(t_cub3d *cub3d)
 	cub3d->map->square_map[i] = NULL;
 }
 
+int	fast_check(char	*line, int i, int len)
+{
+	if (line[0] == '\n')
+		ft_error("invalid map (extra new line)!", NULL);
+	if (i == len - 2 && line[ft_strlen(line) - 1] == '\n')
+		ft_error("invalid map (extra new line at the end of the map)!", NULL);
+	return (1);
+}
+
 void	get_map(t_cub3d *cub3d)
 {
 	int		i;
@@ -108,11 +117,11 @@ void	get_map(t_cub3d *cub3d)
 	cub3d->map->map = malloc(len * sizeof(char *));
 	cub3d->map->check_map = malloc(len * sizeof(char *));
 	cub3d->map->square_map = malloc(len * sizeof(char *));
-	if (!cub3d->map->map || !cub3d->map->check_map)
+	if (!cub3d->map->map || !cub3d->map->check_map || !cub3d->map->square_map)
 		ft_error("malloc error !", NULL);
 	while (cub3d->map->content[i] && !in_set(cub3d->map->content[i][0], "0 1"))
 		i++;
-	while (cub3d->map->content[i])
+	while (cub3d->map->content[i] && fast_check(cub3d->map->content[i], j, len))
 	{
 		cub3d->map->map[j] = ft_strdup(cub3d->map->content[i]);
 		if (ft_strlen(cub3d->map->map[j]) > cub3d->map->max_len)
@@ -121,7 +130,6 @@ void	get_map(t_cub3d *cub3d)
 		j++;
 	}
 	cub3d->map->map[j] = NULL;
-	check_player(cub3d);
 }
 
 void	check_map(t_cub3d *cub3d)
@@ -139,6 +147,7 @@ void	check_content(t_cub3d *cub3d)
 	get_textures(cub3d);
 	get_colors(cub3d);
 	get_map(cub3d);
+	check_player(cub3d);
 	get_check_map(cub3d);
 	get_square_map(cub3d);
 	check_map(cub3d);
