@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/27 23:31:47 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:27:12 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_map
 	t_player	player;
 	char		**content;
 	char		**check_map;
+	char		**square_map;
 	char		**map;
 	char		*so_texture;
 	char		*no_texture;
@@ -78,4 +79,7 @@ int		check_colors_format(char **tab);
 void	check_player(t_cub3d *cub3d);
 int		in_set(char c, char *set);
 int		check_surrounded(t_cub3d *cub3d);
+int		check_outsider_floor(t_cub3d *cub3d);
+int		check_floor_outside_1(char **map);
+int		check_floor_outside_2(char **map);
 #endif

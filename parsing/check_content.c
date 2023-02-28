@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/27 23:35:21 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:02:15 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,33 @@ void	get_check_map(t_cub3d *cub3d)
 	cub3d->map->check_map[i] = NULL;
 }
 
+void	get_square_map(t_cub3d *cub3d)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	j = 0;
+	tmp = 0;
+	while (cub3d->map->map[i])
+	{
+		cub3d->map->square_map[i] = malloc(sizeof(char) * cub3d->map->max_len);
+		cub3d->map->square_map[i][cub3d->map->max_len] = 0;
+		cub3d->map->square_map[i][cub3d->map->max_len - 1] = '\n';
+		ft_memset(cub3d->map->square_map[i], 'K', cub3d->map->max_len - 1);
+		tmp = 0;
+		while (cub3d->map->map[i][j] && cub3d->map->map[i][j] != '\n')
+		{
+			cub3d->map->square_map[i][j] = cub3d->map->map[i][j];
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	cub3d->map->square_map[i] = NULL;
+}
+
 void	get_map(t_cub3d *cub3d)
 {
 	int		i;
@@ -80,6 +107,7 @@ void	get_map(t_cub3d *cub3d)
 	len = map_len(cub3d->map->content) + 1;
 	cub3d->map->map = malloc(len * sizeof(char *));
 	cub3d->map->check_map = malloc(len * sizeof(char *));
+	cub3d->map->square_map = malloc(len * sizeof(char *));
 	if (!cub3d->map->map || !cub3d->map->check_map)
 		ft_error("malloc error !", NULL);
 	while (cub3d->map->content[i] && !in_set(cub3d->map->content[i][0], "0 1"))
@@ -93,7 +121,6 @@ void	get_map(t_cub3d *cub3d)
 		j++;
 	}
 	cub3d->map->map[j] = NULL;
-	get_check_map(cub3d);
 	check_player(cub3d);
 }
 
@@ -101,8 +128,8 @@ void	check_map(t_cub3d *cub3d)
 {
 	if (!check_surrounded(cub3d))
 		ft_error("map not surrounded by walls !", NULL);
-	// printf("spaces nbr = %d\n", cub3d->map->empty_nbr);
-	// printf("player in x = %d, y = %d\n", cub3d->map->player.x, cub3d->map->player.y);
+	if (!check_outsider_floor(cub3d))
+		ft_error("floor outside !", NULL);
 }
 
 void	check_content(t_cub3d *cub3d)
@@ -112,6 +139,8 @@ void	check_content(t_cub3d *cub3d)
 	get_textures(cub3d);
 	get_colors(cub3d);
 	get_map(cub3d);
+	get_check_map(cub3d);
+	get_square_map(cub3d);
 	check_map(cub3d);
 	printf("%svalid map !\n%s", GREEN, RESET);
 }

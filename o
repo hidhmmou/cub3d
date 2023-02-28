@@ -1,0 +1,7 @@
+111111111
+100000001
+111111111
+
+map[0][0] bellow map[1][0] bellow map[2][0]
+
+//printf("%c", cub3d->map->square_map[i][j]);

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:18:51 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 22:47:22 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:17:04 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	get_colors(t_cub3d *cub3d)
 	char	**floor;
 	char	**ciel;
 
-	cub3d->map->c_color = get_from_file(cub3d->map->content, "C ");
-	cub3d->map->f_color = get_from_file(cub3d->map->content, "F ");
+	cub3d->map->c_color = get_from_file(cub3d->map->content, "C");
+	cub3d->map->f_color = get_from_file(cub3d->map->content, "F");
 	ciel = ft_split(cub3d->map->c_color, ',');
 	floor = ft_split(cub3d->map->f_color, ',');
 	if (check_colors_format(ciel) != 3 || check_colors_format(floor) != 3)
@@ -84,10 +84,10 @@ void	get_colors(t_cub3d *cub3d)
 
 void	get_textures(t_cub3d *cub3d)
 {
-	cub3d->map->ea_texture = get_from_file(cub3d->map->content, "EA ");
-	cub3d->map->no_texture = get_from_file(cub3d->map->content, "NO ");
-	cub3d->map->so_texture = get_from_file(cub3d->map->content, "SO ");
-	cub3d->map->we_texture = get_from_file(cub3d->map->content, "WE ");
+	cub3d->map->ea_texture = get_from_file(cub3d->map->content, "EA");
+	cub3d->map->no_texture = get_from_file(cub3d->map->content, "NO");
+	cub3d->map->so_texture = get_from_file(cub3d->map->content, "SO");
+	cub3d->map->we_texture = get_from_file(cub3d->map->content, "WE");
 	if (open(cub3d->map->ea_texture, O_RDONLY) < 0
 		|| open(cub3d->map->so_texture, O_RDONLY) < 0
 		|| open(cub3d->map->we_texture, O_RDONLY) < 0

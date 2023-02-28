@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:20:45 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/27 20:32:15 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:22:01 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	fill_content(char *map_file, t_cub3d *cub3d)
 char	*get_from_file(char **content, char *target)
 {
 	int		i;
+	char	*tmp;
 	char	*ret;
 
 	i = 0;
@@ -62,8 +63,10 @@ char	*get_from_file(char **content, char *target)
 	{
 		if (!ft_strncmp(content[i++], target, ft_strlen(target)))
 		{
-			ret = ft_substr(content[i - 1] + ft_strlen(target), 0, \
+			tmp = ft_substr(content[i - 1] + ft_strlen(target), 0, \
 				ft_strlen(content[i - 1] + ft_strlen(target)) - 1);
+			ret = ft_strtrim(tmp, " \t");
+			free(tmp);
 			return (ret);
 		}
 	}
