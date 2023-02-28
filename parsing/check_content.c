@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 21:52:38 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/02/28 22:18:11 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,28 @@ void	check_map(t_cub3d *cub3d)
 		ft_error("floor outside !", NULL);
 }
 
+void	check_imposter_elements(char **content)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while (content[++i])
+	{
+		if (in_set(content[i][0], " 10FC\n"))
+			continue ;
+		else if (ft_strncmp(content[i], "WE", 2)
+			&& ft_strncmp(content[i], "NO", 2)
+			&& ft_strncmp(content[i], "EA", 2)
+			&& ft_strncmp(content[i], "SO", 2))
+			ft_error("bad elements in the map !", NULL);
+	}
+}
+
 void	check_content(t_cub3d *cub3d)
 {
+	check_imposter_elements(cub3d->map->content);
 	check_textures(cub3d->map->content);
 	check_colors(cub3d->map->content);
 	get_textures(cub3d);
