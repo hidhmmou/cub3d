@@ -6,13 +6,13 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:47:47 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 21:00:42 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:23:47 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int check_right(t_cub3d *cub3d, int i, int j)
+int	check_right(t_cub3d *cub3d, int i, int j)
 {
 	while (cub3d->map->square_map[i][j])
 	{
@@ -23,7 +23,7 @@ int check_right(t_cub3d *cub3d, int i, int j)
 	return (0);
 }
 
-int check_left(t_cub3d *cub3d, int i, int j)
+int	check_left(t_cub3d *cub3d, int i, int j)
 {
 	while (j >= 0 && cub3d->map->map[i][j])
 	{
@@ -34,7 +34,7 @@ int check_left(t_cub3d *cub3d, int i, int j)
 	return (0);
 }
 
-int check_above(t_cub3d *cub3d, int i, int j)
+int	check_above(t_cub3d *cub3d, int i, int j)
 {
 	while (i >= 0)
 	{
@@ -47,7 +47,7 @@ int check_above(t_cub3d *cub3d, int i, int j)
 	return (0);
 }
 
-int check_bellow(t_cub3d *cub3d, int i, int j)
+int	check_bellow(t_cub3d *cub3d, int i, int j)
 {
 	while (cub3d->map->square_map[i] && cub3d->map->square_map[i][j])
 	{
@@ -60,7 +60,7 @@ int check_bellow(t_cub3d *cub3d, int i, int j)
 	return (0);
 }
 
-int		check_outsider_floor(t_cub3d *cub3d)
+int	check_outsider_floor(t_cub3d *cub3d)
 {
 	int	i;
 	int	j;

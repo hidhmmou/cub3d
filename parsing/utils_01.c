@@ -6,11 +6,21 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:20:45 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 18:22:01 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:26:54 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
+
+int	len_double(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
 
 int	get_rows_nbr(int fd)
 {

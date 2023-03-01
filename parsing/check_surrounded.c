@@ -6,39 +6,35 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:37:05 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/27 23:44:29 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:28:18 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-
-void	ft_func_helper(t_cub3d *cub3d, int x, int y);
-void	virus_floor(t_cub3d *cub3d, int x, int y);
-
-int check_boundaries(char **map, int rows, int max)
+int	check_boundaries(char **map, int rows, int max)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = -1;
+	i = 0;
+	j = -1;
 	(void)map;
-    while (map[0][++j])
-       if (map[0][j] == 'T')
+	while (map[0][++j])
+		if (map[0][j] == 'T')
 			return (0);
-    j = 0;
-    while (map[rows - 1][j])
-       if (map[rows - 1][j++] == 'T')
-           return (0);
-    while (map[i] && map[i][0])
+	j = 0;
+	while (map[rows - 1][j])
+		if (map[rows - 1][j++] == 'T')
+			return (0);
+	while (map[i] && map[i][0])
 		if (map[i++][0] == 'T')
-           return (0);
+			return (0);
 	i = 0;
 	while (map[i] && map[i][max - 2])
 		if (map[i++][max - 2] == 'T')
-           return (0);
-    return (1);
+			return (0);
+	return (1);
 }
 
 void	virus_floor(t_cub3d *cub3d, int x, int y)
@@ -63,15 +59,15 @@ void	ft_func_helper(t_cub3d *cub3d, int x, int y)
 	virus_floor(cub3d, x, y);
 }
 
-int count_empty(t_cub3d *cub3d)
+int	count_empty(t_cub3d *cub3d)
 {
-    int	i;
+	int	i;
 	int	j;
-    int count;
+	int	count;
 
 	i = -1;
 	j = 0;
-    count = 0;
+	count = 0;
 	while (cub3d->map->check_map[++i])
 	{
 		while (cub3d->map->check_map[i][j])
@@ -81,29 +77,19 @@ int count_empty(t_cub3d *cub3d)
 		}
 		j = 0;
 	}
-    return (count);
+	return (count);
 }
 
-int	len_double(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-int check_surrounded(t_cub3d *cub3d)
+int	check_surrounded(t_cub3d *cub3d)
 {
 	int	x;
 	int	y;
-    int check;
+	int	check;
 
 	x = cub3d->map->player.x;
 	y = cub3d->map->player.y;
 	virus_floor(cub3d, x, y);
-	check = check_boundaries(cub3d->map->check_map,\
+	check = check_boundaries(cub3d->map->check_map, \
 		len_double(cub3d->map->check_map), cub3d->map->max_len);
 	return (cub3d->map->empty_nbr == count_empty(cub3d) && check);
 }

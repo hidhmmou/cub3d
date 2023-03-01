@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 20:27:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:29:04 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,13 @@ int		check_surrounded(t_cub3d *cub3d);
 int		check_outsider_floor(t_cub3d *cub3d);
 int		check_floor_outside_1(char **map);
 int		check_floor_outside_2(char **map);
+int		fast_check(char	*line, int i, int len);
+int		in_set(char c, char *set);
+int		map_len(char **content);
+int		len_double(char **map);
+void	ft_func_helper(t_cub3d *cub3d, int x, int y);
+void	virus_floor(t_cub3d *cub3d, int x, int y);
+void	get_check_map(t_cub3d *cub3d);
+void	get_square_map(t_cub3d *cub3d);
+void	get_map(t_cub3d *cub3d);
 #endif
