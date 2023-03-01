@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:47:47 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:23:47 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:34:17 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_right(t_cub3d *cub3d, int i, int j)
 	{
 		if (cub3d->map->square_map[i][j] == '1')
 			return (1);
+		else if (cub3d->map->square_map[i][j] == ' ')
+			return (0);
 		j++;
 	}
 	return (0);
@@ -29,6 +31,8 @@ int	check_left(t_cub3d *cub3d, int i, int j)
 	{
 		if (cub3d->map->square_map[i][j] == '1')
 			return (1);
+		else if (cub3d->map->square_map[i][j] == ' ')
+			return (0);
 		j--;
 	}
 	return (0);
@@ -40,6 +44,8 @@ int	check_above(t_cub3d *cub3d, int i, int j)
 	{
 		if (cub3d->map->square_map[i][j] == '1')
 			return (1);
+		else if (cub3d->map->square_map[i][j] == ' ')
+			return (0);
 		else if (cub3d->map->square_map[i][j] == 'K')
 			break ;
 		i--;
@@ -53,6 +59,8 @@ int	check_bellow(t_cub3d *cub3d, int i, int j)
 	{
 		if (cub3d->map->square_map[i][j] == '1')
 			return (1);
+		else if (cub3d->map->square_map[i][j] == ' ')
+			return (0);
 		else if (cub3d->map->square_map[i][j] == 'K')
 			break ;
 		i++;
