@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:29:04 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:33:48 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ typedef struct s_map
 }		t_map;
 typedef struct s_cub3d
 {
-	t_map	*map;
+	t_map		*map;
+	void		*mlx;
+	void		*win;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);

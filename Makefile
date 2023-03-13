@@ -1,5 +1,6 @@
 NAME		=	cub3d
 CFLAGS		=	-Wall -Wextra -Werror
+FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 OBJDIR		=	.objfiles
@@ -25,7 +26,7 @@ HEADER		=	$(addprefix includes/, $(HEADERS))
 all			:	$(NAME)
 	
 $(NAME)		:	$(LIBFT) $(OBJ)
-				@$(CC) $(OBJ) -o $(NAME) $(LIBFT)
+				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS)
 				@echo "$(BLUE)cub3d$(GREEN)\r\t\t\t compiled$(RESET)"
 
 $(LIBFT)	:
