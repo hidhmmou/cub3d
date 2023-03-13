@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   press.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 11:26:23 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:34:21 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/execution.h"
 
-void	close_window(t_cub3d *cub3d)
+int	close_window(t_cub3d *cub3d)
 {
 	printf("%sWindow Closed\n%s", RED, RESET);
 	mlx_destroy_window(cub3d->mlx, cub3d->win);
 	ft_free(cub3d);
+	return (0);
 }
 
 int	press(int key, t_cub3d *cub3d)
 {
-	if (key == ESC || key == CLOSE)
+	if (key == ESC)
 		close_window(cub3d);
 	return (0);
 }
