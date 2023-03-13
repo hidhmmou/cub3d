@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   press.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/13 11:26:44 by hidhmmou         ###   ########.fr       */
+/*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
+/*   Updated: 2023/03/13 11:26:23 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
-# include <mlx.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../includes/parsing.h"
+#include "../includes/execution.h"
 
-int		press(int key, t_cub3d *cub3d);
-void	close_window(t_cub3d *cub3d);
-#endif
+void	close_window(t_cub3d *cub3d)
+{
+	printf("%sWindow Closed\n%s", RED, RESET);
+	mlx_destroy_window(cub3d->mlx, cub3d->win);
+	ft_free(cub3d);
+}
+
+int	press(int key, t_cub3d *cub3d)
+{
+	if (key == ESC || key == CLOSE)
+		close_window(cub3d);
+	return (0);
+}

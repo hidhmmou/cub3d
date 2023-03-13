@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 10:32:42 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:21:50 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char *av[])
 	t_cub3d	*cub3d;
 
 	parsing(&cub3d, av, ac);
+	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_loop(cub3d->mlx);
 	return (0);
 }

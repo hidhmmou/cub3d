@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:03:01 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 22:27:34 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:21:05 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_free(t_cub3d *cub3d)
 		free_double(cub3d->map->content);
 	if (cub3d->map->map)
 		free_double(cub3d->map->map);
+	exit(0);
 }
 
 void	ft_error(char *message, t_cub3d *cub3d)
@@ -39,4 +40,9 @@ void	ft_error(char *message, t_cub3d *cub3d)
 	if (cub3d)
 		ft_free(cub3d);
 	exit(EXIT_FAILURE);
+}
+
+int	rgb_to_int(t_color color)
+{
+	return ((color.r << 16) | (color.g << 8) | color.b);
 }

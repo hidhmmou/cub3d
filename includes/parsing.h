@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 10:33:48 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:26:56 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <mlx.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
@@ -22,6 +23,15 @@
 # define YELLOW "\033[1;33m"
 # define BLUE "\033[1;34m"
 # define RESET "\033[0m"
+/*--keys--*/
+# define RIGHT_MOVE 2
+# define LEFT_MOVE 0
+# define DOWN_MOVE 1
+# define UP_MOVE 13
+# define RIGHT_ROW 124
+# define LEFT_ROW 123
+# define ESC 53
+# define CLOSE 17
 
 typedef struct s_color
 {
@@ -82,6 +92,7 @@ void	check_player(t_cub3d *cub3d);
 int		in_set(char c, char *set);
 int		check_surrounded(t_cub3d *cub3d);
 int		check_outsider_floor(t_cub3d *cub3d);
+int		rgb_to_int(t_color color);
 int		check_floor_outside_1(char **map);
 int		check_floor_outside_2(char **map);
 int		fast_check(char	*line, int i, int len);

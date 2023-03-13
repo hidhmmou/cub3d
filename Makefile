@@ -15,10 +15,10 @@ PARSING		=	check_map.c get_next_line.c utils_00.c utils_01.c\
 				check_content.c check_texts_colors.c utils_02.c\
 				check_player.c check_surrounded.c check_floor_outside.c\
 				get_map.c
-EXEC		=	
+EXEC		=	press.c
 SRC 		=	cub3d.c $(EXEC_SRC) $(PARSE_SRC)
 HEADERS		=	parsing.h
-EXEC_SRC	=	$(addprefix executing/, $(EXEC))
+EXEC_SRC	=	$(addprefix execution/, $(EXEC))
 PARSE_SRC	=	$(addprefix parsing/, $(PARSING))
 HEADER		=	$(addprefix includes/, $(HEADERS))
 
@@ -53,6 +53,7 @@ norm		:
 				@norminette | grep Error
 				@printf "$(RESET)"
 				
-				
+run			:	$(NAME)
+				./$(NAME) maps/map.cub
 
 .PHONY		:	clean all fclean re
