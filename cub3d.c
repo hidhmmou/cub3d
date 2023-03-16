@@ -6,11 +6,10 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 11:32:48 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:45:04 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/parsing.h"
 #include "includes/execution.h"
 
 void	parsing(t_cub3d **cub3d, char **av, int ac)

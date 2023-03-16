@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/16 14:32:05 by ramhouch         ###   ########.fr       */
+/*   Created: 2023/03/16 14:13:04 by ramhouch          #+#    #+#             */
+/*   Updated: 2023/03/16 14:45:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
-# include <mlx.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../includes/parsing.h"
+#include "../includes/execution.h"
 
-int		press(int key, t_cub3d *cub3d);
-int		close_window(t_cub3d *cub3d);
-int		get_color(char *text);
-#endif
+int	get_color(char *text)
+{
+	int		c;
+	char	**rgb;
+	int		color;
+
+	color = 0;
+	rgb = ft_split(text, ',');
+	c = ft_atoi(rgb[0]) << 16;
+	color += c;
+	c = ft_atoi(rgb[1]) << 8;
+	color += c;
+	c = ft_atoi(rgb[2]);
+	color += c;
+	return (color);
+}
