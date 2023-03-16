@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/16 14:45:04 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:50:03 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	(*cub3d)->map->ciel_color = malloc(sizeof(t_color));
 	(*cub3d)->map->floor_color = malloc(sizeof(t_color));
 	(*cub3d)->mlx = mlx_init();
-	(*cub3d)->win = mlx_new_window((*cub3d)->mlx, 1024, 1024, "Cub3d");
+	(*cub3d)->win = mlx_new_window((*cub3d)->mlx, WIDTH, HEIGHT, "Cub3d");
 	fill_content(av[1], *cub3d);
 	check_content(*cub3d);
 }

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/16 14:32:05 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:48:41 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "../includes/parsing.h"
+
+# define HEIGHT 720
+# define WIDTH 1080
 
 int		press(int key, t_cub3d *cub3d);
 int		close_window(t_cub3d *cub3d);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 11:26:56 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:53:51 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
