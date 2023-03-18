@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/18 21:41:15 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:49:22 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,34 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 			len_double((*cub3d)->map->square_map) * 32, "Cub3d");
 }
 
+static int	key_hook(int keycode, t_cub3d *cub3d)
+{
+	(void)cub3d;
+	if (keycode == RIGHT_ROW)
+	{
+		cub3d->map->player.angle += 1;
+		render_map(cub3d, 0, 0, 0);
+		cub3d->map->player.angle += 1;
+		render_map(cub3d, 0, 0, 0);
+	}
+	else if (keycode == LEFT_ROW)
+	{
+		cub3d->map->player.angle -= 1;
+		render_map(cub3d, 0, 0, 0);
+		cub3d->map->player.angle -= 1;
+		render_map(cub3d, 0, 0, 0);
+	}
+	else if (keycode == RIGHT_MOVE)
+		right(cub3d);
+	else if (keycode == LEFT_MOVE)
+		left(cub3d);
+	else if (keycode == DOWN_MOVE)
+		down(cub3d);
+	else if (keycode == UP_MOVE)
+		up(cub3d);
+	return (0);
+}
+
 int	main(int ac, char *av[])
 {
 	t_cub3d	*cub3d;
@@ -41,8 +69,8 @@ int	main(int ac, char *av[])
 	k21(cub3d->map->square_map);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
-	render_map(cub3d, 0, 0);
-	render_player(cub3d);
+	render_map(cub3d, 0, 0, 0);
+	mlx_hook(cub3d->win, 2, 0, key_hook, cub3d);
 	mlx_loop(cub3d->mlx);
 	return (0);
 }

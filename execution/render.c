@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/18 21:18:33 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:00:21 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 	}
 }
 
-void	draw_line(t_cub3d *cub3d, int dx, int dy, int length)
+void	draw_line(t_cub3d *cub3d, int dx, int dy, int angle)
 {
 	float	radians;
 	int		steps;
 	float	increment[2];
 	float	increment2[2];
 
-	radians = cub3d->map->player.angle * PI / 180;
+	radians = angle * PI / 180;
 	dx = 200 * cos(radians) * -1;
 	dy = 200 * sin(radians);
 	if (abs(dx) > abs(dy))
@@ -56,13 +56,12 @@ void	draw_line(t_cub3d *cub3d, int dx, int dy, int length)
 			break ;
 		increment2[0] += increment[0];
 		increment2[1] += increment[1];
-		length--;
 	}
 }
 
-void	render_player(t_cub3d *cub3d)
+static void	render_player(t_cub3d *cub3d)
 {
-	draw_line(cub3d, 0, 0, 50);
+	draw_line(cub3d, 0, 0, cub3d->map->player.angle);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y, 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y + 1, 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y + 2, 0x00FF00);
@@ -74,14 +73,12 @@ void	render_player(t_cub3d *cub3d)
 	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + - 1, cub3d->map->player.y + 2, 0x00FF00);
 }
 
-void	render_map(t_cub3d *cub3d, int x, int y)
+void	render_map(t_cub3d *cub3d, int x, int y, int i)
 {
-	int		i;
 	int		j;
 	int		color;
 	char	**str;
 
-	i = 0;
 	str = cub3d->map->square_map;
 	mlx_clear_window(cub3d->mlx, cub3d->win);
 	while (str[i])
@@ -101,4 +98,5 @@ void	render_map(t_cub3d *cub3d, int x, int y)
 		i++;
 		y += 32;
 	}
+	render_player(cub3d);
 }
