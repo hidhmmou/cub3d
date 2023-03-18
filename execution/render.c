@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/16 22:24:40 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/18 21:11:28 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,54 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 		i++;
 	}
 }
+
+void	draw_line(t_cub3d *cub3d, int dx, int dy, int length)
+{
+	float	radians;
+	int		steps;
+	float	increment[2];
+	float	increment2[2];
+
+	radians = cub3d->map->player.angle * PI / 180;
+	dx = 200 * cos(radians) * -1;
+	dy = 200 * sin(radians);
+	if (abs(dx) > abs(dy))
+		steps = abs(dx);
+	else
+		steps = abs(dy);
+	increment[0] = dx / (float)steps;
+	increment[1] = dy / (float)steps;
+	increment2[0] = cub3d->map->player.x;
+	increment2[1] = cub3d->map->player.y;
+	while (length)
+	{
+		mlx_pixel_put(cub3d->mlx, cub3d->win,
+			increment2[0], increment2[1], 0xFF0000);
+		increment2[0] += increment[0];
+		increment2[1] += increment[1];
+		length--;
+	}
+}
+
 void	render_player(t_cub3d *cub3d)
 {
-	put_pixel(cub3d, cub3d->map->player.x * 32, cub3d->map->player.y * 32, get_color("255,0,0"));
+	draw_line(cub3d, 0, 0, 50);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y + 1, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x, cub3d->map->player.y + 2, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + 1, cub3d->map->player.y, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + 1, cub3d->map->player.y + 1, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + 1, cub3d->map->player.y + 2, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + - 1, cub3d->map->player.y, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + - 1, cub3d->map->player.y + 1, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, cub3d->map->player.x + - 1, cub3d->map->player.y + 2, 0x00FF00);
 }
 
 void	render_map(t_cub3d *cub3d, int x, int y)
 {
 	int		i;
 	int		j;
-	int 	color;
+	int		color;
 	char	**str;
 
 	i = 0;
@@ -50,10 +88,10 @@ void	render_map(t_cub3d *cub3d, int x, int y)
 		x = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '0')
-				color = 16777215;
-			else
+			if (str[i][j] == '1')
 				color = 0;
+			else
+				color = 16777215;
 			put_pixel(cub3d, x, y, color);
 			j++;
 			x += 32;

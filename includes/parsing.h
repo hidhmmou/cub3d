@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/16 22:11:13 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:58:56 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	float	rotationAngle;
+	float	angle;
 }	t_player;
 typedef struct s_map
 {
