@@ -6,11 +6,30 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:13:04 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/16 14:45:25 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:58:13 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/execution.h"
+
+void k21(char **str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == 'K' || str[i][j] == ' ')
+				str[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
 
 int	get_color(char *text)
 {

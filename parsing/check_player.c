@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:24:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:24:26 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	get_player(t_cub3d *cub3d, int x, int y, int *found)
 {
-	cub3d->map->player.x = x;
-	cub3d->map->player.y = y;
+	cub3d->map->player.x = y;
+	cub3d->map->player.y = x;
 	(*found)++;
 }
 

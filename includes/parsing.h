@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/16 14:53:51 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:11:13 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	float	rotationAngle;
 }	t_player;
 typedef struct s_map
 {
@@ -62,6 +63,8 @@ typedef struct s_map
 	char		*f_color;
 	char		*c_color;
 	t_color		*floor_color;
+	int			ff_color;
+	int			cc_color;
 	t_color		*ciel_color;
 	int			empty_nbr;
 	size_t		max_len;
