@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/18 23:48:43 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:29:31 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
 # define NUM_RAYS WIDTH
+# define SPEED 10
+# define RET_ANGLE 5
 
 int		press(int key, t_cub3d *cub3d);
 int		close_window(t_cub3d *cub3d);
