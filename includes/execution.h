@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 18:29:31 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/19 22:49:49 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		close_window(t_cub3d *cub3d);
 void	k21(char **str);
 void	render_map(t_cub3d *cub3d, int x, int y, int i);
 int		get_color(char *text);
-void	up(t_cub3d *cub3d);
-void	down(t_cub3d *cub3d);
-void	left(t_cub3d *cub3d);
-void	right(t_cub3d *cub3d);
+void	up(t_cub3d *cub3d, int dx, int dy, int i);
+void	left(t_cub3d *cub3d, int dx, int dy, int i);
+void	right(t_cub3d *cub3d, int dx, int dy, int i);
+void	down(t_cub3d *cub3d, int dx, int dy, int i);
 #endif

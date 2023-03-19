@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 21:55:46 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/19 22:06:37 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void	draw_line(t_cub3d *cub3d, int dx, int dy, float angle)
 	{
 		mlx_pixel_put(cub3d->mlx, cub3d->win,
 			increment2[0], increment2[1], 0xFF0000);
-		increment2[0] += increment[0];
-		increment2[1] += increment[1];
+		increment2[0] -= increment[0];
+		increment2[1] -= increment[1];
 		if (help_draw_line(cub3d, increment2))
 			break ;
 	}

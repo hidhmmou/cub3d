@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/19 18:29:06 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/19 22:49:57 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static int	key_hook(int keycode, t_cub3d *cub3d)
 		render_map(cub3d, 0, 0, 0);
 	}
 	else if (keycode == RIGHT_MOVE)
-		right(cub3d);
+		right(cub3d, 0, 0, 0);
 	else if (keycode == LEFT_MOVE)
-		left(cub3d);
+		left(cub3d, 0, 0, 0);
 	else if (keycode == DOWN_MOVE)
-		down(cub3d);
+		down(cub3d, 0, 0, 0);
 	else if (keycode == UP_MOVE)
-		up(cub3d);
+		up(cub3d, 0, 0, 0);
 	return (0);
 }
 
