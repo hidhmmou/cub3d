@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/19 23:03:30 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:13:13 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	check_content(*cub3d);
 	(*cub3d)->mlx = mlx_init();
 	(*cub3d)->win = mlx_new_window((*cub3d)->mlx,
-			ft_strlen((*cub3d)->map->square_map[0]) * 32,
-			len_double((*cub3d)->map->square_map) * 32, "Cub3d");
+			ft_strlen((*cub3d)->map->square_map[0]) * SIZE,
+			len_double((*cub3d)->map->square_map) * SIZE, "Cub3d");
 }
 
 static int	key_hook(int keycode, t_cub3d *cub3d)

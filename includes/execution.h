@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 22:18:43 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:23:44 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define NUM_RAYS WIDTH
 # define SPEED 10
 # define RET_ANGLE 5
+# define SIZE 32
 
 int		press(int key, t_cub3d *cub3d);
 int		close_window(t_cub3d *cub3d);

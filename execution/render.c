@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 22:06:37 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:15:40 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while (i < 32)
+	while (i < SIZE)
 	{
 		j = 0;
-		while (j < 32)
+		while (j < SIZE)
 		{
 			mlx_pixel_put(cub3d->mlx, cub3d->win, x + i, y + j, color);
 			j++;
@@ -32,23 +32,23 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 
 static int	help_draw_line(t_cub3d *cub3d, float *increment2)
 {
-	if (cub3d->map->square_map[(int)increment2[1] / 32] \
-			[(int)increment2[0] / 32] == '1')
+	if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
+			[(int)increment2[0] / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] + 1) / 32] \
-		[(int)increment2[0] / 32] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / 32] \
-		[((int)increment2[0] + 1) / 32] == '1')
+	if (cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
+		[(int)increment2[0] / SIZE] == '1'
+		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
+		[((int)increment2[0] + 1) / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] + 1) / 32] \
-		[(int)increment2[0] / 32] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / 32] \
-		[((int)increment2[0] + 1) / 32] == '1')
+	if (cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
+		[(int)increment2[0] / SIZE] == '1'
+		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
+		[((int)increment2[0] + 1) / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] - 1) / 32] \
-		[(int)increment2[0] / 32] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / 32] \
-		[((int)increment2[0] + 1) / 32] == '1')
+	if (cub3d->map->square_map[((int)increment2[1] - 1) / SIZE] \
+		[(int)increment2[0] / SIZE] == '1'
+		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
+		[((int)increment2[0] + 1) / SIZE] == '1')
 		return (1);
 	return (0);
 }
@@ -119,10 +119,10 @@ void	render_map(t_cub3d *cub3d, int x, int y, int i)
 				color = 16777215;
 			put_pixel(cub3d, x, y, color);
 			j++;
-			x += 32;
+			x += SIZE;
 		}
 		i++;
-		y += 32;
+		y += SIZE;
 	}
 	render_player(cub3d);
 }

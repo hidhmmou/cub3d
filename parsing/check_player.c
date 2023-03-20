@@ -6,18 +6,19 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/18 22:43:25 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:17:19 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
+#include "../includes/execution.h"
 
 void	get_player(t_cub3d *cub3d, int x, int y, int *found)
 {
 	int	n;
 
-	cub3d->map->player.x = y * 32 + 16;
-	cub3d->map->player.y = x * 32 + 16;
+	cub3d->map->player.x = y * SIZE + SIZE / 2;
+	cub3d->map->player.y = x * SIZE + SIZE / 2;
 	if (cub3d->map->map[x][y] == 'N')
 		n = 270;
 	else if (cub3d->map->map[x][y] == 'S')

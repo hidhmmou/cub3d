@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 22:18:30 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:14:47 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	up(t_cub3d *cub3d, int dx, int dy, int i)
 		i++;
 		increment2[0] -= increment[0];
 		increment2[1] -= increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / 32] \
-			[(int)increment2[0] / 32] == '1')
+		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
+			[(int)increment2[0] / SIZE] == '1')
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
@@ -75,8 +75,8 @@ void	down(t_cub3d *cub3d, int dx, int dy, int i)
 		i++;
 		increment2[0] += increment[0];
 		increment2[1] += increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / 32] \
-			[(int)increment2[0] / 32] == '1')
+		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
+			[(int)increment2[0] / SIZE] == '1')
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
@@ -103,8 +103,8 @@ void	left(t_cub3d *cub3d, int dx, int dy, int i)
 		i++;
 		increment2[0] += increment[0];
 		increment2[1] += increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / 32] \
-			[(int)increment2[0] / 32] == '1')
+		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
+			[(int)increment2[0] / SIZE] == '1')
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
@@ -129,8 +129,8 @@ void	right(t_cub3d *cub3d, int dx, int dy, int i)
 		i++;
 		increment2[0] += increment[0];
 		increment2[1] += increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / 32] \
-			[(int)increment2[0] / 32] == '1')
+		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
+			[(int)increment2[0] / SIZE] == '1')
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
