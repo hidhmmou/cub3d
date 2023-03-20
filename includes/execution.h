@@ -6,30 +6,19 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 23:03:26 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:35:08 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+# include <mlx.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 # include "../includes/parsing.h"
 
-# define HEIGHT 720
-# define WIDTH 1080
-# define PI 3.14159265
-# define TWO_PI 6.2831853
-# define VEW_ANGLE 60
-# define NUM_RAYS WIDTH
-# define SPEED 10
-# define RET_ANGLE 5
-
-int		press(int key, t_cub3d *cub3d);
-int		close_window(t_cub3d *cub3d);
-void	k21(char **str);
-void	render_map(t_cub3d *cub3d, int x, int y, int i);
-int		get_color(char *text);
-void	up(t_cub3d *cub3d, int dx, int dy, int i);
-void	left(t_cub3d *cub3d, int dx, int dy, int i);
-void	right(t_cub3d *cub3d, int dx, int dy, int i);
-void	down(t_cub3d *cub3d, int dx, int dy, int i);
+int	press(int key, t_cub3d *cub3d);
+int	close_window(t_cub3d *cub3d);
 #endif

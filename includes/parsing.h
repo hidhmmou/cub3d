@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/18 16:58:56 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:39:27 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <fcntl.h>
-# include <math.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -43,9 +42,8 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	float	angle;
+	int	x;
+	int	y;
 }	t_player;
 typedef struct s_map
 {
@@ -63,8 +61,6 @@ typedef struct s_map
 	char		*f_color;
 	char		*c_color;
 	t_color		*floor_color;
-	int			ff_color;
-	int			cc_color;
 	t_color		*ciel_color;
 	int			empty_nbr;
 	size_t		max_len;
@@ -108,4 +104,6 @@ void	virus_floor(t_cub3d *cub3d, int x, int y);
 void	get_check_map(t_cub3d *cub3d);
 void	get_square_map(t_cub3d *cub3d);
 void	get_map(t_cub3d *cub3d);
+char	**splite_colors(char const *s);
+int		check_commas(char *floor, char *ciel);
 #endif

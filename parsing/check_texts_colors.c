@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:18:51 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/28 18:17:04 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:40:44 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	get_colors(t_cub3d *cub3d)
 
 	cub3d->map->c_color = get_from_file(cub3d->map->content, "C");
 	cub3d->map->f_color = get_from_file(cub3d->map->content, "F");
-	ciel = ft_split(cub3d->map->c_color, ',');
-	floor = ft_split(cub3d->map->f_color, ',');
+	if (!check_commas(cub3d->map->c_color, cub3d->map->f_color))
+		ft_error("extra commas in colors (R,G,B)", NULL);
+	ciel = splite_colors(cub3d->map->c_color);
+	floor = splite_colors(cub3d->map->f_color);
 	if (check_colors_format(ciel) != 3 || check_colors_format(floor) != 3)
 		ft_error("colors must be in this form : R,G,B", NULL);
 	cub3d->map->floor_color->r = get_rgb(ft_atoi(floor[0]));
