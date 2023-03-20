@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 23:03:26 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:18:43 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	up(t_cub3d *cub3d, int dx, int dy, int i);
 void	left(t_cub3d *cub3d, int dx, int dy, int i);
 void	right(t_cub3d *cub3d, int dx, int dy, int i);
 void	down(t_cub3d *cub3d, int dx, int dy, int i);
+void	wall_collisions(t_cub3d *cub3d, float *increment2);
 #endif
