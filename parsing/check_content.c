@@ -6,13 +6,13 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 15:21:57 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:38:43 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void	check_map(t_cub3d *cub3d)
+void	check_surroundness(t_cub3d *cub3d)
 {
 	if (!check_surrounded(cub3d))
 		ft_error("map not surrounded by walls !", NULL);
@@ -35,7 +35,7 @@ void	check_imposter_elements(char **content)
 			&& ft_strncmp(content[i], "NO", 2)
 			&& ft_strncmp(content[i], "EA", 2)
 			&& ft_strncmp(content[i], "SO", 2))
-			ft_error("∏", NULL);
+			ft_error("invalid element in the file", NULL);
 	}
 }
 
@@ -50,6 +50,6 @@ void	check_content(t_cub3d *cub3d)
 	check_player(cub3d);
 	get_check_map(cub3d);
 	get_square_map(cub3d);
-	check_map(cub3d);
+	check_surroundness(cub3d);
 	printf("%sValid map !\n%s", GREEN, RESET);
 }

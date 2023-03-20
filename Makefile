@@ -54,6 +54,9 @@ norm		:
 				@printf "$(RESET)"
 				
 run			:	$(NAME)
-				./$(NAME) maps/map.cub
+				@./$(NAME) maps/map.cub
+
+push		:
+				@./push.sh
 
 .PHONY		:	clean all fclean re
