@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 15:25:38 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:41:07 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	get_square_map(t_cub3d *cub3d);
 void	get_map(t_cub3d *cub3d);
 char	**splite_colors(char const *s);
 int		check_commas(char *floor, char *ciel);
+void	cub3d_init(t_cub3d **cub3d);
 #endif

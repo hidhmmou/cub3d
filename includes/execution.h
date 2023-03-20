@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/13 11:35:08 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:45:12 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include "../includes/parsing.h"
 
-int	press(int key, t_cub3d *cub3d);
-int	close_window(t_cub3d *cub3d);
+int     press(int key, t_cub3d *cub3d);
+int     close_window(t_cub3d *cub3d);
+void	render_map_2d(t_cub3d *cub3d);
 #endif

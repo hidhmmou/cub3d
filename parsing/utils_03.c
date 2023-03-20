@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:31:47 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 14:39:27 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:40:54 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,12 @@ int check_commas(char *floor, char *ciel)
         if (*ciel++ == ',')
             nbr++;
     return (nbr == 4);
+}
+
+void	cub3d_init(t_cub3d **cub3d)
+{
+	*cub3d = malloc(sizeof(t_cub3d));
+	(*cub3d)->map = malloc(sizeof(t_map));
+	(*cub3d)->map->ciel_color = malloc(sizeof(t_color));
+	(*cub3d)->map->floor_color = malloc(sizeof(t_color));
 }

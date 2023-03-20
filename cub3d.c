@@ -6,20 +6,12 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 15:30:59 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:57:50 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/parsing.h"
 #include "includes/execution.h"
-
-void	cub3d_init(t_cub3d **cub3d)
-{
-	*cub3d = malloc(sizeof(t_cub3d));
-	(*cub3d)->map = malloc(sizeof(t_map));
-	(*cub3d)->map->ciel_color = malloc(sizeof(t_color));
-	(*cub3d)->map->floor_color = malloc(sizeof(t_color));
-}
 
 void	parsing(t_cub3d **cub3d, char **av, int ac)
 {
@@ -34,7 +26,8 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 void	executing(t_cub3d *cub3d)
 {
 	cub3d->mlx = mlx_init();
-	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->map->max_len * 32, cub3d->map->len * 32, "Cub3d");
+	cub3d->win = mlx_new_window(cub3d->mlx, --cub3d->map->max_len * 32, --cub3d->map->len * 32, "Cub3d");
+	render_map_2d(cub3d);
 }
 
 int	main(int ac, char *av[])
