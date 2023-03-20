@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/19 23:07:24 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:08:21 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,46 @@ void	up(t_cub3d *cub3d, int dx, int dy, int i)
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
 	}
-	if (i)
+	if (i > 1)
 		render_map(cub3d, 0, 0, 0);
+	else
+	{
+		if (abs((cub3d->map->player.angle) % 180) != 90)
+		{
+			if (cub3d->map->square_map[((int)increment2[1] - 1)/ 32][((int)increment2[0]) / 32] == '0')
+			{
+				if (abs((cub3d->map->player.angle) % 180) > 90)
+					cub3d->map->player.x += SPEED;
+				else
+					cub3d->map->player.x -= SPEED;
+				render_map(cub3d, 0, 0, 0);
+			}
+			else if (cub3d->map->square_map[((int)increment2[1] + 1)/ 32][((int)increment2[0]) / 32] == '0')
+			{
+				if (abs((cub3d->map->player.angle) % 180) > 90)
+					cub3d->map->player.x -= SPEED;
+				else
+					cub3d->map->player.x += SPEED;
+				render_map(cub3d, 0, 0, 0);
+			}
+			else if (cub3d->map->square_map[((int)increment2[1])/ 32][((int)increment2[0] + 1) / 32] == '0')
+			{
+				if (abs((cub3d->map->player.angle) % 180) > 90)
+					cub3d->map->player.y -= SPEED;
+				else
+					cub3d->map->player.y += SPEED;
+				render_map(cub3d, 0, 0, 0);
+			}
+			else if (cub3d->map->square_map[((int)increment2[1])/ 32][((int)increment2[0] - 1) / 32] == '0')
+			{
+				if (abs((cub3d->map->player.angle) % 180) > 90)
+					cub3d->map->player.y += SPEED;
+				else
+					cub3d->map->player.y -= SPEED;
+				render_map(cub3d, 0, 0, 0);
+			}
+		}
+	}
 }
 
 void	down(t_cub3d *cub3d, int dx, int dy, int i)
