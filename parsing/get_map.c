@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:46 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:21:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:27:07 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	get_map(t_cub3d *cub3d)
 	i = 0;
 	j = 0;
 	cub3d->map->max_len = 0;
-	len = map_len(cub3d->map->content) + 1;
+	cub3d->map->len = map_len(cub3d->map->content) + 1;
+	len = cub3d->map->len;
 	cub3d->map->map = malloc(len * sizeof(char *));
 	cub3d->map->check_map = malloc(len * sizeof(char *));
 	cub3d->map->square_map = malloc(len * sizeof(char *));

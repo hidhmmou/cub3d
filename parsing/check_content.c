@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:22:55 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:21:57 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	check_content(t_cub3d *cub3d)
 	get_check_map(cub3d);
 	get_square_map(cub3d);
 	check_map(cub3d);
-	printf("%svalid map !\n%s", GREEN, RESET);
+	printf("%sValid map !\n%s", GREEN, RESET);
 }
