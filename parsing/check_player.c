@@ -6,25 +6,27 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/01 18:24:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:17:18 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void	get_player(t_cub3d *cub3d, int x, int y, int *found)
+void	get_player(t_cub3d *cub3d, int i, int j, int *found)
 {
-	cub3d->map->player.x = x;
-	cub3d->map->player.y = y;
-	(*found)++;
-}
-
-void	check_player_helper(int found, int bad_character)
-{
-	if (found != 1)
+	if ((*found)++)
 		ft_error("one player must exist in the map !", NULL);
-	if (bad_character)
-		ft_error("bad charachter in the map !", NULL);
+	cub3d->map->player.x = j * 32 + 16;
+	cub3d->map->player.y = i * 32 + 16;
+	if (cub3d->map->map[i][j] == 'N')
+		cub3d->map->player.angle = 270;
+	else if (cub3d->map->map[i][j] == 'S')
+		cub3d->map->player.angle = 90;
+	else if (cub3d->map->map[i][j] == 'E')
+		cub3d->map->player.angle = 180;
+	else
+		cub3d->map->player.angle = 0;
+	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 }
 
 void	check_player(t_cub3d *cub3d)
@@ -46,11 +48,10 @@ void	check_player(t_cub3d *cub3d)
 			if (in_set(cub3d->map->map[i][j], "ENSW"))
 				get_player(cub3d, i, j, &found);
 			else if (!in_set(cub3d->map->map[i][j], "1 0\n"))
-				bad_character++;
+				ft_error("bad charachter in the map !", NULL);
 			if (cub3d->map->map[i][j++] == ' ')
 				cub3d->map->empty_nbr++;
 		}
 		j = 0;
 	}
-	check_player_helper(found, bad_character);
 }

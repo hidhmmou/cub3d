@@ -6,20 +6,24 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 15:45:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:45:01 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
 # include <mlx.h>
+# include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include "../includes/parsing.h"
 
+# define WIDTH 1080
+
 int     press(int key, t_cub3d *cub3d);
 int     close_window(t_cub3d *cub3d);
 void	render_map_2d(t_cub3d *cub3d);
+void	render_player(t_cub3d *cub3d);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 15:41:07 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:05:48 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <mlx.h>
+# include <math.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
@@ -32,6 +33,10 @@
 # define LEFT_ROW 123
 # define ESC 53
 # define CLOSE 17
+# define PI 3.14159265358979323846264338327950288
+# define WIDTH 1080
+# define FOV 60
+# define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color
 {
@@ -40,10 +45,23 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+
+typedef struct s_draw
+{
+	float	radiant;
+	int		dx;
+	int		dy;
+	float	ray_angle;
+	int		pixel_nbr;
+	float	increment_x;
+	float	increment_y;
+}	t_draw;
+
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	float	angle;
 }	t_player;
 typedef struct s_map
 {
@@ -69,6 +87,7 @@ typedef struct s_map
 typedef struct s_cub3d
 {
 	t_map		*map;
+	t_draw		*draw;
 	void		*mlx;
 	void		*win;
 }	t_cub3d;

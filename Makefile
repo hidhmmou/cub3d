@@ -1,5 +1,5 @@
 NAME		=	cub3d
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
 FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -15,7 +15,8 @@ PARSING		=	check_map.c get_next_line.c utils_00.c utils_01.c\
 				check_content.c check_texts_colors.c utils_02.c\
 				check_player.c check_surrounded.c check_floor_outside.c\
 				get_map.c splite_color.c utils_03.c
-EXEC		=	press.c render.c
+
+EXEC		=	press.c render_2d_map.c render_player.c
 SRC 		=	cub3d.c $(EXEC_SRC) $(PARSE_SRC)
 HEADERS		=	parsing.h
 EXEC_SRC	=	$(addprefix execution/, $(EXEC))
