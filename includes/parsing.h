@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 11:05:48 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:04:33 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ typedef struct s_cub3d
 	t_map		*map;
 	t_draw		*draw;
 	void		*mlx;
+	int			win_width;
+	int			win_height;
+	int			bpp;
+	int			line_size;
+	int			endian;
 	void		*win;
 }	t_cub3d;
 

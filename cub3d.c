@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 18:33:06 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:02:16 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 
 void	executing(t_cub3d *cub3d)
 {
+	cub3d->win_height = --cub3d->map->max_len * 32;
+	cub3d->win_width = --cub3d->map->len * 32;
 	cub3d->mlx = mlx_init();
-	cub3d->win = mlx_new_window(cub3d->mlx, --cub3d->map->max_len * 32, --cub3d->map->len * 32, "Cub3d");
-	render_map_2d(cub3d);
+	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_height, cub3d->win_width, "Cub3d");
 }
 
 int	main(int ac, char *av[])
@@ -36,6 +37,7 @@ int	main(int ac, char *av[])
 
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
+	render_map_2d(cub3d);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
 	mlx_loop(cub3d->mlx);

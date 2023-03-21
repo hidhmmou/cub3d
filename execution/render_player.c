@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 15:24:21 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:08:44 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 
 void	init_draw(t_cub3d *cub3d)
 {
-	cub3d->draw->radiant = cub3d->draw->ray_angle * PI / 180;
+	cub3d->draw->radiant = cub3d->draw->ray_angle * M_PI / 180;
 	cub3d->draw->dx = 200 * cos(cub3d->draw->radiant);
 	cub3d->draw->dy = 200 * sin(cub3d->draw->radiant) * -1;
 	if (abs(cub3d->draw->dx) > abs(cub3d->draw->dy))
@@ -58,9 +58,12 @@ void	cast_ray(t_cub3d *cub3d)
 {
 	float	pixel_x;
 	float	pixel_y;
+	float	tmp[2];
 
 	pixel_x = cub3d->map->player.x;
 	pixel_y = cub3d->map->player.y;
+	tmp[0] = pixel_x;
+	tmp[1] = pixel_y;
 	init_draw(cub3d);
 	while (1)
 	{
@@ -70,6 +73,7 @@ void	cast_ray(t_cub3d *cub3d)
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
 			break ;
 	}
+	put_center_view(cub3d, tmp, pixel_x, pixel_y);
 }
 
 void	render_player(t_cub3d *cub3d)
@@ -77,6 +81,7 @@ void	render_player(t_cub3d *cub3d)
 	int 	i;
 
 	i = -1;
+	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 	while (++i <= WIDTH)
 		cast_ray(cub3d);
 }

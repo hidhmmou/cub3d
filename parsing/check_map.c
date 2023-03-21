@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:47:20 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/02/24 13:59:46 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:32:51 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_empty(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("%sso_long: no such file or directory: %s%s",
+		printf("%scub3d: no such file or directory: %s%s",
 			RED, file, RESET);
 		exit(1);
 	}
