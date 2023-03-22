@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/22 15:15:41 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:27:34 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../includes/parsing.h"
 
 # define WIDTH 1080
-# define ROTATE_ANGLE 1
+# define ROTATE_ANGLE 5
 # define P 3.14159265
 
 int     press(int key, t_cub3d *cub3d);

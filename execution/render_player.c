@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:17:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:29:23 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,14 @@ int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 void	init_draw(t_cub3d *cub3d)
 {
 	cub3d->draw->radiant = cub3d->draw->ray_angle * P / 180;
-	cub3d->draw->dx = 10000 * cos(cub3d->draw->radiant) * -1;
-	cub3d->draw->dy = 10000 * sin(cub3d->draw->radiant);
+	cub3d->draw->dx = 500 * cos(cub3d->draw->radiant) * -1;
+	cub3d->draw->dy = 500 * sin(cub3d->draw->radiant);
 	if (abs(cub3d->draw->dx) > abs(cub3d->draw->dy))
-		cub3d->draw->pixel_nbr = cub3d->draw->dx;
+		cub3d->draw->pixel_nbr = abs(cub3d->draw->dx);
 	else
-		cub3d->draw->pixel_nbr = cub3d->draw->dy;
+		cub3d->draw->pixel_nbr = abs(cub3d->draw->dy);
 	cub3d->draw->increment_x = cub3d->draw->dx / (float)cub3d->draw->pixel_nbr;
 	cub3d->draw->increment_y = cub3d->draw->dy / (float)cub3d->draw->pixel_nbr;
-	//if (cub3d->draw->radiant <= (220 * M_PI / 180) && cub3d->draw->radiant >= (45 * M_PI / 180))
-	//{
-	//	cub3d->draw->increment_x *= -1;
-	//	cub3d->draw->increment_y *= -1;
-	//}
 	cub3d->draw->ray_angle += 60.0 / WIDTH;
 }
 
@@ -89,8 +84,7 @@ void	render_player(t_cub3d *cub3d)
 
 	i = -1;
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
-	printf("ray angle :  %f\n", cub3d->draw->ray_angle);
-	//while (++i <= WIDTH)
-	//	cast_ray(cub3d);
+	while (++i <= WIDTH)
+		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
 }
