@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 18:33:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 09:13:07 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	put_pixel_square(t_cub3d *cub3d, int x, int y, int color)
 	int		j;
 
 	i = 0;
-	while (i < 32)
+	while (i < SIZE)
 	{
 		j = -1;
-		while (++j < 32)
+		while (++j < SIZE)
 			mlx_pixel_put(cub3d->mlx, cub3d->win, y + j, x + i, color);
 		i++;
 	}
@@ -56,10 +56,11 @@ void	render_map_2d(t_cub3d *cub3d)
 		{
 			put_pixel_square(cub3d, x, y, get_color(cub3d->map->square_map[i][j]));
 			j++;
-			y += 32;
+			y += SIZE;
 		}
 		i++;
-		x += 32;
+		x += SIZE;
 	}
 	render_player(cub3d);
 }
+

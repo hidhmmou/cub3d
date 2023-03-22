@@ -6,52 +6,59 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 22:08:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:17:12 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/execution.h"
 
+int is_wall(char c)
+{
+	return (c == '1');
+}
+
 int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 {
-	if (cub3d->map->square_map[(int)pixel_y / 32] \
-			[(int)pixel_x / 32] == '1')
+	/*
+		1
+		0
+	*/
+	if (is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][(int)pixel_x / SIZE]))
 		return (1);
-	if (cub3d->map->square_map[((int)pixel_y + 1) / 32] \
-		[(int)pixel_x / 32] == '1'
-		&& cub3d->map->square_map[(int)pixel_y / 32] \
-		[((int)pixel_x + 1) / 32] == '1')
+	/*
+		01
+		10
+	*/
+	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / SIZE][(int)pixel_x / SIZE])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
 		return (1);
-	if (cub3d->map->square_map[((int)pixel_y + 1) / 32] \
-		[(int)pixel_x / 32] == '1'
-		&& cub3d->map->square_map[(int)pixel_y / 32] \
-		[((int)pixel_x + 1) / 32] == '1')
-		return (1);
-	if (cub3d->map->square_map[((int)pixel_y - 1) / 32] \
-		[(int)pixel_x / 32] == '1'
-		&& cub3d->map->square_map[(int)pixel_y / 32] \
-		[((int)pixel_x + 1) / 32] == '1')
+	/*
+		10
+		01
+	*/
+	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE][(int)pixel_x /SIZE])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) /SIZE]))
 		return (1);
 	return (0);
 }
 
 void	init_draw(t_cub3d *cub3d)
 {
-	cub3d->draw->radiant = cub3d->draw->ray_angle * M_PI / 180;
-	cub3d->draw->dx = 200 * cos(cub3d->draw->radiant);
-	cub3d->draw->dy = 200 * sin(cub3d->draw->radiant) * -1;
+	cub3d->draw->radiant = cub3d->draw->ray_angle * P / 180;
+	cub3d->draw->dx = 10000 * cos(cub3d->draw->radiant) * -1;
+	cub3d->draw->dy = 10000 * sin(cub3d->draw->radiant);
 	if (abs(cub3d->draw->dx) > abs(cub3d->draw->dy))
 		cub3d->draw->pixel_nbr = cub3d->draw->dx;
 	else
 		cub3d->draw->pixel_nbr = cub3d->draw->dy;
 	cub3d->draw->increment_x = cub3d->draw->dx / (float)cub3d->draw->pixel_nbr;
 	cub3d->draw->increment_y = cub3d->draw->dy / (float)cub3d->draw->pixel_nbr;
-	if (cub3d->map->player.angle == 270 || cub3d->map->player.angle == 180)
-	{
-		cub3d->draw->increment_x *= -1;
-		cub3d->draw->increment_y *= -1;
-	}
-	cub3d->draw->ray_angle += 60.0 / 1080;
+	//if (cub3d->draw->radiant <= (220 * M_PI / 180) && cub3d->draw->radiant >= (45 * M_PI / 180))
+	//{
+	//	cub3d->draw->increment_x *= -1;
+	//	cub3d->draw->increment_y *= -1;
+	//}
+	cub3d->draw->ray_angle += 60.0 / WIDTH;
 }
 
 void	cast_ray(t_cub3d *cub3d)
@@ -68,8 +75,8 @@ void	cast_ray(t_cub3d *cub3d)
 	while (1)
 	{
 		mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0xFF0000);
-		pixel_x += cub3d->draw->increment_x;
-		pixel_y += cub3d->draw->increment_y;
+		pixel_x -= cub3d->draw->increment_x;
+		pixel_y -= cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
 			break ;
 	}
@@ -82,6 +89,8 @@ void	render_player(t_cub3d *cub3d)
 
 	i = -1;
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
-	while (++i <= WIDTH)
-		cast_ray(cub3d);
+	printf("ray angle :  %f\n", cub3d->draw->ray_angle);
+	//while (++i <= WIDTH)
+	//	cast_ray(cub3d);
+	cast_mid_ray(cub3d);
 }

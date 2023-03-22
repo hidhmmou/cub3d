@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 15:17:18 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:37:08 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	get_player(t_cub3d *cub3d, int i, int j, int *found)
 {
 	if ((*found)++)
 		ft_error("one player must exist in the map !", NULL);
-	cub3d->map->player.x = j * 32 + 16;
-	cub3d->map->player.y = i * 32 + 16;
+	cub3d->map->player.x = j * SIZE + 16;
+	cub3d->map->player.y = i * SIZE + 16;
 	if (cub3d->map->map[i][j] == 'N')
 		cub3d->map->player.angle = 270;
 	else if (cub3d->map->map[i][j] == 'S')
@@ -26,7 +26,6 @@ void	get_player(t_cub3d *cub3d, int i, int j, int *found)
 		cub3d->map->player.angle = 180;
 	else
 		cub3d->map->player.angle = 0;
-	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 }
 
 void	check_player(t_cub3d *cub3d)

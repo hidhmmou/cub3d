@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 17:43:05 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:54:44 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,27 @@ void put_center_view(t_cub3d *cub3d, float *tmp, float pixel_x, float pixel_y)
 	mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] + 1, tmp[1], 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] - 2, tmp[1], 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] + 2, tmp[1], 0x00FF00);
+}
+
+void	cast_mid_ray(t_cub3d *cub3d)
+{
+	float	pixel_x;
+	float	pixel_y;
+	float	tmp[2];
+
+	pixel_x = cub3d->map->player.x;
+	pixel_y = cub3d->map->player.y;
+	tmp[0] = pixel_x;
+	tmp[1] = pixel_y;
+	cub3d->draw->ray_angle = cub3d->map->player.angle;
+	init_draw(cub3d);
+	while (1)
+	{
+		mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
+		pixel_x -= cub3d->draw->increment_x;
+		pixel_y -= cub3d->draw->increment_y;
+		if (check_hit_wall(cub3d, pixel_y, pixel_x))
+			break ;
+	}
+	put_center_view(cub3d, tmp, pixel_x, pixel_y);
 }

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/21 22:04:33 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:05:40 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define PI 3.14159265358979323846264338327950288
 # define WIDTH 1080
 # define FOV 60
+# define SIZE 16
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color
@@ -61,7 +62,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	float	angle;
+	int 	angle;
 }	t_player;
 typedef struct s_map
 {
@@ -84,18 +85,26 @@ typedef struct s_map
 	size_t		max_len;
 	int			len;
 }		t_map;
+
+typedef struct s_img
+{
+	void		*ptr;
+	int			bpp;
+	int			line_size;
+	int			endian;
+}	t_img;
+
 typedef struct s_cub3d
 {
 	t_map		*map;
 	t_draw		*draw;
+	t_img		*img;
 	void		*mlx;
 	int			win_width;
 	int			win_height;
-	int			bpp;
-	int			line_size;
-	int			endian;
 	void		*win;
 }	t_cub3d;
+
 
 void	ft_error(char *message, t_cub3d *cub3d);
 void	free_double(char **content);
