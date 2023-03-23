@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/23 00:20:49 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:43:30 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	move_up(t_cub3d *cub3d);
 void	move_down(t_cub3d *cub3d);
 void	move_left(t_cub3d *cub3d);
 void	move_right(t_cub3d *cub3d);
+void    check_direction(t_cub3d *cub3d, float y, float x);
 
 #endif

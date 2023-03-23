@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/23 01:50:02 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:41:15 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	int 	angle;
+	int		direction;
 }	t_player;
 typedef struct s_map
 {
@@ -141,4 +142,5 @@ void	get_map(t_cub3d *cub3d);
 char	**splite_colors(char const *s);
 int		check_commas(char *floor, char *ciel);
 void	cub3d_init(t_cub3d **cub3d);
+int		is_wall(char c);
 #endif
