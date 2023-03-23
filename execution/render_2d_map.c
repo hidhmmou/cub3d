@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/22 09:13:07 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:28:34 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ void	render_map_2d(t_cub3d *cub3d)
 	}
 	render_player(cub3d);
 }
-

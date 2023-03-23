@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/22 16:27:34 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:20:49 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@
 # define WIDTH 1080
 # define ROTATE_ANGLE 5
 # define P 3.14159265
+# define SPEED 10
 
 int     press(int key, t_cub3d *cub3d);
 int     close_window(t_cub3d *cub3d);
 void	render_map_2d(t_cub3d *cub3d);
 void	render_player(t_cub3d *cub3d);
-void    put_center_view(t_cub3d *cub3d, float *tmp, float pixel_x, float pixel_y);
+void    put_player(t_cub3d *cub3d, float *tmp);
 void	cast_mid_ray(t_cub3d *cub3d);
 int     check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x);
 void	init_draw(t_cub3d *cub3d);
+void	move_up(t_cub3d *cub3d);
+void	move_down(t_cub3d *cub3d);
+void	move_left(t_cub3d *cub3d);
+void	move_right(t_cub3d *cub3d);
+
 #endif

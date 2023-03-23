@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/22 16:29:23 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:22:01 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	cast_ray(t_cub3d *cub3d)
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
 			break ;
 	}
-	put_center_view(cub3d, tmp, pixel_x, pixel_y);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x - 1, pixel_y - 1, 0x00FF00);
 }
 
 void	render_player(t_cub3d *cub3d)
