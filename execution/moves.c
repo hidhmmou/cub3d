@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 23:14:47 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:54:19 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	help_movements(float angle, int *x, int *y)
 	int		steps;
 
 	radians = angle * PI / 180;
-	dx = 200 * cos(radians) * -1;
-	dy = 200 * sin(radians);
+	dx = 500 * cos(radians) * -1;
+	dy = 500 * sin(radians);
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else
@@ -42,20 +42,21 @@ void	up(t_cub3d *cub3d, int dx, int dy, int i)
 	increment[1] = dy / (float)steps;
 	increment2[0] = cub3d->map->player.x;
 	increment2[1] = cub3d->map->player.y;
-	while (i < SPEED)
+	while (i++ < SPEED)
 	{
-		i++;
 		increment2[0] -= increment[0];
 		increment2[1] -= increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
-			[(int)increment2[0] / SIZE] == '1')
+		if (check_movements(cub3d, (increment2[1] - 0), (increment2[0] - 0)))
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
+	{
 		render_map(cub3d, 0, 0, 0);
-	else
+		cub3d->collisions = 1;
+	}
+	else if (cub3d->collisions == 1)
 		wall_collisions(cub3d, increment2);
 }
 
@@ -70,20 +71,21 @@ void	down(t_cub3d *cub3d, int dx, int dy, int i)
 	increment[1] = dy / (float)steps;
 	increment2[0] = cub3d->map->player.x;
 	increment2[1] = cub3d->map->player.y;
-	while (i < SPEED)
+	while (i++ < SPEED)
 	{
-		i++;
 		increment2[0] += increment[0];
 		increment2[1] += increment[1];
-		if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
-			[(int)increment2[0] / SIZE] == '1')
+		if (check_movements(cub3d, (increment2[1] - 0), (increment2[0] - 0)))
 			break ;
 		cub3d->map->player.x = increment2[0];
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
+	{
 		render_map(cub3d, 0, 0, 0);
-	else
+		cub3d->collisions = 1;
+	}
+	else if (cub3d->collisions == 1)
 		wall_collisions(cub3d, increment2);
 }
 

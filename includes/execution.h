@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 23:23:44 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:55:42 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define SPEED 10
 # define RET_ANGLE 5
 # define SIZE 32
+# define OFF 1
+# define COLLISIONS_SPEED 5
 
 int		press(int key, t_cub3d *cub3d);
 int		close_window(t_cub3d *cub3d);
@@ -34,4 +36,6 @@ void	left(t_cub3d *cub3d, int dx, int dy, int i);
 void	right(t_cub3d *cub3d, int dx, int dy, int i);
 void	down(t_cub3d *cub3d, int dx, int dy, int i);
 void	wall_collisions(t_cub3d *cub3d, float *increment2);
+int		check_movements(t_cub3d *cub3d, int x, int y);
+int		no(t_cub3d *cub3d, int *i);
 #endif

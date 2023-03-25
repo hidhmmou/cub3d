@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/20 23:15:40 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:27:45 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	draw_line(t_cub3d *cub3d, int dx, int dy, float angle)
 	float	increment2[2];
 
 	radians = angle * PI / 180;
-	dx = 200 * cos(radians) * -1;
-	dy = 200 * sin(radians);
+	dx = 500 * cos(radians) * -1;
+	dy = 500 * sin(radians);
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else

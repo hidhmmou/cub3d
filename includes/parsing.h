@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 17:54:26 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:44:24 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ typedef struct s_map
 	int			empty_nbr;
 	size_t		max_len;
 }		t_map;
+
 typedef struct s_cub3d
 {
 	t_map		*map;
 	void		*mlx;
 	void		*win;
+	int			collisions;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
