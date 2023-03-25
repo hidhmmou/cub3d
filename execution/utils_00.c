@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 16:18:52 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:27:30 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void	cast_mid_ray(t_cub3d *cub3d)
 			break ;
 		}
 	}
-	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
+	cub3d->draw->distance = (float)sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
     cub3d->draw->wall_height = (float)HEIGHT / cub3d->draw->distance;
-	cub3d->draw->wall_height = pow(cub3d->draw->wall_height, -1) * 7000;
-    cub3d->draw->draw_start = (int)(-cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
-    cub3d->draw->draw_end = (int)(cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
+	cub3d->draw->wall_height = (float)pow(cub3d->draw->wall_height, -1) * 7000;
+    cub3d->draw->draw_start = (float)(-cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
+    cub3d->draw->draw_end = (float)(cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
     if (cub3d->draw->draw_start < 0)
         cub3d->draw->draw_start = 0;
     if (cub3d->draw->draw_end >= HEIGHT)

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 15:28:48 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:38:05 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ typedef struct s_draw
 	float	increment_y;
 	float	distance;
 	float	wall_height;
-	int		draw_start;
-	int		draw_end;
-	int			color;
+	float	draw_start;
+	float	draw_end;
+	int		color;
 }	t_draw;
 
 typedef struct s_player
