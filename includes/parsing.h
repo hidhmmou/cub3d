@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/23 17:41:15 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:00:22 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
-# define WIDTH 1080
+# define WIDTH 640
+# define HEIGHT 360
 # define FOV 60
 # define SIZE 16
 # define ANGLE_SIZE FOV / WIDTH
@@ -52,10 +53,15 @@ typedef struct s_draw
 	float	radiant;
 	int		dx;
 	int		dy;
+	int 	x;
 	float	ray_angle;
 	int		pixel_nbr;
 	float	increment_x;
 	float	increment_y;
+	float	distance;
+	float	wall_height;
+	int		draw_start;
+	int		draw_end;
 }	t_draw;
 
 typedef struct s_player
@@ -101,9 +107,11 @@ typedef struct s_cub3d
 	t_draw		*draw;
 	t_img		*img;
 	void		*mlx;
+	void		*win;
+	void		*mlx_3d;
+	void		*win_3d;
 	int			win_width;
 	int			win_height;
-	void		*win;
 }	t_cub3d;
 
 

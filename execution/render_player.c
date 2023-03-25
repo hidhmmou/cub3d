@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/22 23:22:01 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:04:11 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 void	init_draw(t_cub3d *cub3d)
 {
 	cub3d->draw->radiant = cub3d->draw->ray_angle * P / 180;
-	cub3d->draw->dx = 500 * cos(cub3d->draw->radiant) * -1;
-	cub3d->draw->dy = 500 * sin(cub3d->draw->radiant);
+	cub3d->draw->dx = 500 * cos(cub3d->draw->radiant);
+	cub3d->draw->dy = 500 * sin(cub3d->draw->radiant) * -1;
 	if (abs(cub3d->draw->dx) > abs(cub3d->draw->dy))
 		cub3d->draw->pixel_nbr = abs(cub3d->draw->dx);
 	else
@@ -54,6 +54,19 @@ void	init_draw(t_cub3d *cub3d)
 	cub3d->draw->increment_x = cub3d->draw->dx / (float)cub3d->draw->pixel_nbr;
 	cub3d->draw->increment_y = cub3d->draw->dy / (float)cub3d->draw->pixel_nbr;
 	cub3d->draw->ray_angle += 60.0 / WIDTH;
+}
+
+void draw_wall(t_cub3d *cub3d)
+{
+	int i;
+
+	i = -1;
+	while (++i < cub3d->draw->draw_start)
+		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i, rgb_to_int(*cub3d->map->ciel_color));
+	while (i <= cub3d->draw->draw_end)
+		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, 0xFF8FFF);
+	while (i < HEIGHT)
+		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
 }
 
 void	cast_ray(t_cub3d *cub3d)
@@ -70,12 +83,24 @@ void	cast_ray(t_cub3d *cub3d)
 	while (1)
 	{
 		mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0xFF0000);
-		pixel_x -= cub3d->draw->increment_x;
-		pixel_y -= cub3d->draw->increment_y;
+		pixel_x += cub3d->draw->increment_x;
+		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
 			break ;
 	}
+	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
+    cub3d->draw->wall_height = cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180));
+	cub3d->draw->wall_height = pow(cub3d->draw->wall_height, -1) * 5000;
+    cub3d->draw->draw_start = (int)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
+    cub3d->draw->draw_end = (int)(cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
+    if (cub3d->draw->draw_start < 0)
+        cub3d->draw->draw_start = 0;
+    if (cub3d->draw->draw_end >= HEIGHT)
+        cub3d->draw->draw_end = HEIGHT - 1;
+	draw_wall(cub3d);
+	cub3d->draw->x++;
 	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
+	mlx_pixel_put(cub3d->mlx, cub3d->win_3d, 32, 32, 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x - 1, pixel_y - 1, 0x00FF00);
 }
 
@@ -84,6 +109,7 @@ void	render_player(t_cub3d *cub3d)
 	int 	i;
 
 	i = -1;
+	cub3d->draw->x = 0;
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 	while (++i <= WIDTH)
 		cast_ray(cub3d);

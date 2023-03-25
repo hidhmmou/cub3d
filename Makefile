@@ -1,5 +1,5 @@
 NAME		=	cub3d
-CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS		=	#-Wall -Wextra -Werror -fsanitize=address
 FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -60,6 +60,9 @@ run			:	$(NAME)
 
 run2		:	$(NAME)
 				@./$(NAME) maps/map2.cub
+
+large		:	$(NAME)
+				@./$(NAME) maps/large.cub
 
 push		:
 				@./push.sh
