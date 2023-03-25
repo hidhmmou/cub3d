@@ -6,11 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 18:10:16 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:57:50 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/execution.h"
+#include "includes/raycasting.h"
 
 void	parsing(t_cub3d **cub3d, char **av, int ac)
 {

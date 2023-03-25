@@ -6,11 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:53:07 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 20:55:53 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:57:31 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/execution.h"
+#include "../includes/raycasting.h"
 
 int	check_movements(t_cub3d *cub3d, int x, int y)
 {

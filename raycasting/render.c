@@ -6,11 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/22 20:27:45 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:57:43 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/execution.h"
+#include "../includes/raycasting.h"
 
 static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 {

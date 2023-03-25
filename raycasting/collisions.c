@@ -6,11 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:18:07 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 20:55:00 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:57:28 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/execution.h"
+#include "../includes/raycasting.h"
 
 static int	check_x(t_cub3d *cub3d, int n)
 {

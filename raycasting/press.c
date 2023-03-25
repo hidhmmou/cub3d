@@ -6,11 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 11:34:21 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:57:39 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/execution.h"
+#include "../includes/raycasting.h"
 
 int	close_window(t_cub3d *cub3d)
 {
