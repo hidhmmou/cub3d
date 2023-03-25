@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 14:04:33 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:31:56 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define ROTATE_ANGLE 5
 # define P 3.14159265
-# define SPEED 20
+# define SPEED 10
 
 int     press(int key, t_cub3d *cub3d);
 int     close_window(t_cub3d *cub3d);

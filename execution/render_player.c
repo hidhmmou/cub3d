@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 14:04:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:16:25 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ void draw_wall(t_cub3d *cub3d)
 	i = -1;
 	while (++i < cub3d->draw->draw_start)
 		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i, rgb_to_int(*cub3d->map->ciel_color));
+	mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, 0);
 	while (i <= cub3d->draw->draw_end)
-		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, 0xFF8FFF);
+		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, cub3d->draw->color);
+	mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, 0);
 	while (i < HEIGHT)
 		mlx_pixel_put(cub3d->mlx_3d, cub3d->win_3d, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
 }
@@ -86,11 +88,14 @@ void	cast_ray(t_cub3d *cub3d)
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
+		{
+			check_direction(cub3d, pixel_y, pixel_x);
 			break ;
+		}
 	}
 	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
     cub3d->draw->wall_height = cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180));
-	cub3d->draw->wall_height = pow(cub3d->draw->wall_height, -1) * 5000;
+	cub3d->draw->wall_height = pow(cub3d->draw->wall_height, -1) * 7000;
     cub3d->draw->draw_start = (int)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
     cub3d->draw->draw_end = (int)(cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
     if (cub3d->draw->draw_start < 0)

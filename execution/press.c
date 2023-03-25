@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 14:05:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:17:19 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	press(int key, t_cub3d *cub3d)
 		close_window(cub3d);
 	else if (key == LEFT_ROW)
 	{
-		cub3d->map->player.angle -= ROTATE_ANGLE;
+		cub3d->map->player.angle += ROTATE_ANGLE;
 		render_map_2d(cub3d);
 	}
 	else if (key == RIGHT_ROW)
 	{
-		cub3d->map->player.angle += ROTATE_ANGLE;
+		cub3d->map->player.angle -= ROTATE_ANGLE;
 		render_map_2d(cub3d);
 	}
 	else if (key == RIGHT_MOVE)

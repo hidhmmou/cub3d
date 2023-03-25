@@ -6,22 +6,41 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 01:11:51 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:18:52 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/execution.h"
 
+
+void	get_wall_color(t_cub3d *cub3d, float y, float x)
+{
+	int i;
+
+	i = 0;
+	if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 1) / SIZE]) && ++i)
+		cub3d->draw->color = 23211;
+	if (!is_wall(cub3d->map->square_map[(int)(y) / SIZE][(int)(x + 1) / SIZE]) && ++i)
+		cub3d->draw->color = 54321;
+	if (!is_wall(cub3d->map->square_map[(int)(y + 1) / SIZE][(int)x / SIZE]) && ++i)
+		cub3d->draw->color = 3214;
+	if (!is_wall(cub3d->map->square_map[(int)(y - 1) / SIZE][(int)x / SIZE]) && ++i)
+		cub3d->draw->color = 34614;
+	if (i > 1)
+		cub3d->draw->color = 0;
+}
+
 void check_direction(t_cub3d *cub3d, float y, float x)
 {
-	if (!is_wall(cub3d->map->square_map[(int)(y + 2) / SIZE][(int)x / SIZE]))
-		cub3d->map->player.direction = 1;
-	else if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 2) / SIZE]))
+	if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 2) / SIZE]))
 		cub3d->map->player.direction = 2;
+	else if (!is_wall(cub3d->map->square_map[(int)(y) / SIZE][(int)(x + 2) / SIZE]))
+		cub3d->map->player.direction = 4;
+	else if (!is_wall(cub3d->map->square_map[(int)(y + 2) / SIZE][(int)x / SIZE]))
+		cub3d->map->player.direction = 1;
 	else if (!is_wall(cub3d->map->square_map[(int)(y - 2) / SIZE][(int)x / SIZE]))
 		cub3d->map->player.direction = 3;
-	else
-		cub3d->map->player.direction = 4;
+	get_wall_color(cub3d, y, x);
 	//printf("the direction is : %d\n", cub3d->map->player.direction);
 }
 
@@ -64,6 +83,7 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	}
 	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
     cub3d->draw->wall_height = (float)HEIGHT / cub3d->draw->distance;
+	cub3d->draw->wall_height = pow(cub3d->draw->wall_height, -1) * 7000;
     cub3d->draw->draw_start = (int)(-cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
     cub3d->draw->draw_end = (int)(cub3d->draw->wall_height / 2.0 + HEIGHT / 2.0);
     if (cub3d->draw->draw_start < 0)
