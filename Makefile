@@ -41,11 +41,11 @@ $(OBJDIR)/%.o	:	%.c $(HEADER)
 				@echo "$(BLUE)$<:$(RESET)\r\t\t\t $(GREEN)compiled$(RESET)"
 
 clean		:
-				@rm -f $(OBJ) $(BONUS_OBJ)
+				@rm -rf $(OBJDIR)
 				@echo "$(YELLOW)object files cleaned$(RESET)"
 
 fclean		:	clean
-				@rm -f $(NAME) $(BONUS)
+				@rm -rf $(NAME) $(OBJDIR)
 				@echo "$(RED)cub3d cleaned$(RESET)"
 
 re			:	fclean all
