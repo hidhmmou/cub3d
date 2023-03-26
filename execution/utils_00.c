@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 18:27:30 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:17:18 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,20 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
 	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x - 1, pixel_y - 1, 0x00FF00);
 	mlx_string_put(cub3d->mlx, cub3d->win, tmp[0] - 5, tmp[1] - 11, 0x00FF00, "*");
+}
+
+void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = cub3d->img->addr + (y * cub3d->img->line_length + x * (cub3d->img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	my_mlx_pixel_put_2d(t_cub3d *cub3d, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = cub3d->img_2d->addr + (y * cub3d->img_2d->line_length + x * (cub3d->img_2d->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }

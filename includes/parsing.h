@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 18:38:05 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:11:51 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
-# define WIDTH 640
-# define HEIGHT 360
+# define WIDTH 2048
+# define HEIGHT 1024
 # define FOV 60
 # define SIZE 16
 # define ANGLE_SIZE FOV / WIDTH
@@ -50,27 +50,27 @@ typedef struct s_color
 
 typedef struct s_draw
 {
-	float	radiant;
+	double	radiant;
 	int		dx;
 	int		dy;
 	int 	x;
-	float	ray_angle;
+	double	ray_angle;
 	int		pixel_nbr;
-	float	increment_x;
-	float	increment_y;
-	float	distance;
-	float	wall_height;
-	float	draw_start;
-	float	draw_end;
+	double	increment_x;
+	double	increment_y;
+	double	distance;
+	double	wall_height;
+	double	draw_start;
+	double	draw_end;
 	int		color;
 }	t_draw;
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	int 	angle;
-	int		direction;
+	double		x;
+	double		y;
+	double 		angle;
+	double		direction;
 }	t_player;
 typedef struct s_map
 {
@@ -96,14 +96,16 @@ typedef struct s_map
 
 typedef struct s_img
 {
-	void		*ptr;
-	int			bpp;
-	int			line_size;
+	void		*img;
+	int			bits_per_pixel;
+	int			line_length;
 	int			endian;
+	char		*addr;
 }	t_img;
 
 typedef struct s_cub3d
 {
+	t_img		*img_2d;
 	t_map		*map;
 	t_draw		*draw;
 	t_img		*img;
@@ -152,4 +154,6 @@ char	**splite_colors(char const *s);
 int		check_commas(char *floor, char *ciel);
 void	cub3d_init(t_cub3d **cub3d);
 int		is_wall(char c);
+void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
+void	my_mlx_pixel_put_2d(t_cub3d *cub3d, int x, int y, int color);
 #endif

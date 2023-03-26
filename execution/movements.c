@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 17:08:32 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:14:43 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_movement(t_cub3d *cub3d, int to_add)
 {
+	mlx_destroy_image(cub3d->mlx, cub3d->img->img);
+	cub3d->img->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	cub3d->draw->radiant = (cub3d->map->player.angle + to_add) * PI / 180;
 	cub3d->draw->dx = 500 * cos(cub3d->draw->radiant) * -1;
 	cub3d->draw->dy = 500 * sin(cub3d->draw->radiant);
