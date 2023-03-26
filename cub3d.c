@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/25 20:57:50 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/26 04:00:08 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	(*cub3d)->map->ff_color = rgb_to_int(*((*cub3d)->map->floor_color));
 	fill_content(av[1], *cub3d);
 	check_content(*cub3d);
+	(*cub3d)->rays = malloc(sizeof(t_rays) * WIDTH);
 	(*cub3d)->mlx = mlx_init();
 	if (OFF)
 		(*cub3d)->win = mlx_new_window((*cub3d)->mlx, \
@@ -55,6 +56,34 @@ static int	key_hook(int keycode, t_cub3d *cub3d)
 		down(cub3d, 0, 0, 0);
 	else if (keycode == UP_MOVE)
 		up(cub3d, 0, 0, 0);
+	if (keycode == ESC)
+		close_window(cub3d);
+	return (0);
+}
+
+static int	key_hook3d(int keycode, t_cub3d *cub3d)
+{
+	(void)cub3d;
+	if (keycode == RIGHT_ROW)
+	{
+		cub3d->map->player.angle -= RET_ANGLE;
+		render_map(cub3d, 0, 0, 0);
+	}
+	else if (keycode == LEFT_ROW)
+	{
+		cub3d->map->player.angle += RET_ANGLE;
+		render_map(cub3d, 0, 0, 0);
+	}
+	else if (keycode == RIGHT_MOVE)
+		right(cub3d, 0, 0, 0);
+	else if (keycode == LEFT_MOVE)
+		left(cub3d, 0, 0, 0);
+	else if (keycode == DOWN_MOVE)
+		down(cub3d, 0, 0, 0);
+	else if (keycode == UP_MOVE)
+		up(cub3d, 0, 0, 0);
+	if (keycode == ESC)
+		close_window(cub3d);
 	return (0);
 }
 
@@ -67,12 +96,16 @@ int	main(int ac, char *av[])
 	parsing(&cub3d, av, ac);
 	if (OFF)
 	{
-		k21(cub3d->map->square_map);
 		render_map(cub3d, 0, 0, 0);
-		mlx_hook(cub3d->win, 2, 0, &press, cub3d);
-		mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
 		mlx_hook(cub3d->win, 2, 0, key_hook, cub3d);
 	}
+	else
+	{
+		render_fc(cub3d);
+		render(cub3d);
+		mlx_hook(cub3d->win, 2, 0, key_hook3d, cub3d);
+	}
+	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
 	mlx_loop(cub3d->mlx);
 	return (0);
 }

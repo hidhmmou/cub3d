@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:18:07 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 20:57:28 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/26 01:22:11 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ static int	check_y(t_cub3d *cub3d, int n)
 static int	wall_collisions_x(t_cub3d *cub3d, float *increment2)
 {
 	if (cub3d->map->square_map[((int)increment2[1] - 1) / SIZE] \
-		[((int)increment2[0]) / SIZE] != '1')
+		[((int)increment2[0]) / SIZE] != '1' && \
+		cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
+		[((int)increment2[0] + 1) / SIZE] == '1')
 	{
 		if (abs((cub3d->map->player.angle) % 180) > 90)
 			cub3d->map->player.x += check_x(cub3d, 0);
@@ -81,7 +83,9 @@ static int	wall_collisions_x(t_cub3d *cub3d, float *increment2)
 		return (1);
 	}
 	else if (cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
-		[((int)increment2[0]) / SIZE] != '1')
+		[((int)increment2[0]) / SIZE] != '1' && \
+		cub3d->map->square_map[((int)increment2[1] - 1) / SIZE] \
+		[((int)increment2[0] + 1) / SIZE] == '1')
 	{
 		if (abs((cub3d->map->player.angle) % 180) > 90)
 			cub3d->map->player.x -= check_x(cub3d, 1);

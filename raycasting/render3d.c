@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render3d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 01:07:05 by ramhouch         ###   ########.fr       */
+/*   Created: 2023/03/26 02:17:48 by ramhouch          #+#    #+#             */
+/*   Updated: 2023/03/26 03:15:51 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
 
-static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < SIZE && color)
-	{
-		j = 0;
-		while (j < SIZE)
-		{
-			mlx_pixel_put(cub3d->mlx, cub3d->win, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-static int	help_draw_line(t_cub3d *cub3d, float *increment2)
+static int	help_help_draw_ray(t_cub3d *cub3d, float *increment2)
 {
 	if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
 			[(int)increment2[0] / SIZE] == '1')
@@ -52,77 +34,83 @@ static int	help_draw_line(t_cub3d *cub3d, float *increment2)
 		return (1);
 	return (0);
 }
-
-static void	draw_line(t_cub3d *cub3d, int dx, int dy, float angle)
+static int	help_draw_ray(t_cub3d *cub3d, float *increment2, int index)
 {
-	float	radians;
+	if (help_help_draw_ray(cub3d, increment2))
+	{
+		cub3d->rays[index].x = increment2[0];
+		cub3d->rays[index].y = increment2[1];
+		cub3d->rays[index].inter = inter(cub3d, increment2);
+		return (1);
+	}
+	return (0);
+}
+
+static int	draw_ray(t_cub3d *cub3d, int *d, float angle, int index)
+{
+	int		i;
 	int		steps;
 	float	increment[2];
 	float	increment2[2];
 
-	radians = angle * PI / 180;
-	dx = 500 * cos(radians) * -1;
-	dy = 500 * sin(radians);
-	if (abs(dx) > abs(dy))
-		steps = abs(dx);
+	i = 0;
+	d[0] = 500 * cos(angle * PI / 180) * -1;
+	d[1] = 500 * sin(angle * PI / 180);
+	if (abs(d[0]) > abs(d[1]))
+		steps = abs(d[0]);
 	else
-		steps = abs(dy);
-	increment[0] = dx / (float)steps;
-	increment[1] = dy / (float)steps;
+		steps = abs(d[1]);
+	increment[0] = d[0] / (float)steps;
+	increment[1] = d[1] / (float)steps;
 	increment2[0] = cub3d->map->player.x;
 	increment2[1] = cub3d->map->player.y;
 	while (1)
 	{
-		mlx_pixel_put(cub3d->mlx, cub3d->win,
-			increment2[0], increment2[1], 0xFF0000);
+		i++;
 		increment2[0] -= increment[0];
 		increment2[1] -= increment[1];
-		if (help_draw_line(cub3d, increment2))
+		if (help_draw_ray(cub3d, increment2, index))
 			break ;
 	}
+	return (i);
 }
 
-static void	render_player(t_cub3d *cub3d)
+void	raycasting(t_cub3d *cub3d)
 {
 	float	angel_size;
 	float	start;
 	int		i;
+	int		d[2];
 
 	angel_size = 60.0 / WIDTH;
 	start = cub3d->map->player.angle - 30;
 	i = 0;
-	while (i <= WIDTH)
+	while (i < WIDTH)
 	{
-		draw_line(cub3d, 0, 0, start);
+		cub3d->rays[i].length = draw_ray(cub3d, d, start, i);
 		start += angel_size;
 		i++;
 	}
 }
-
-void	render_map(t_cub3d *cub3d, int x, int y, int i)
+void	render_fc(t_cub3d *cub3d)
 {
 	int		j;
-	int		color;
+	int		i;
 	char	**str;
 
 	str = cub3d->map->square_map;
-	mlx_clear_window(cub3d->mlx, cub3d->win);
-	while (str[i])
+	i = 0;
+	while (i < HEIGHT)
 	{
 		j = 0;
-		x = 0;
-		while (str[i][j])
+		while (j < WIDTH)
 		{
-			if (str[i][j] == '1' || str[i][j] == ' ')
-				color = 0;
+			if (i <= HEIGHT / 2)
+				mlx_pixel_put(cub3d->mlx, cub3d->win, j, i, rgb_to_int(*(cub3d->map->ciel_color)));
 			else
-				color = get_color("210, 180, 222");
-			put_pixel(cub3d, x, y, color);
+				mlx_pixel_put(cub3d->mlx, cub3d->win, j, i, rgb_to_int(*(cub3d->map->floor_color)));
 			j++;
-			x += SIZE;
 		}
 		i++;
-		y += SIZE;
 	}
-	render_player(cub3d);
 }

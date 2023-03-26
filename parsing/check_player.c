@@ -6,12 +6,12 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/20 23:17:19 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/26 00:53:35 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
-#include "../includes/execution.h"
+#include "../includes/raycasting.h"
 
 void	get_player(t_cub3d *cub3d, int x, int y, int *found)
 {

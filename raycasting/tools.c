@@ -6,30 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:13:04 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 20:57:45 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/26 01:05:10 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
-
-void	k21(char **str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (str[i][j] == 'K' || str[i][j] == ' ')
-				str[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
-}
 
 int	get_color(char *text)
 {
