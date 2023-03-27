@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 01:32:01 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:45:06 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 		return (1);
 	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE][(int)pixel_x / SIZE])
 		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
+		return (1);
+	return (0);
+}
+
+int	check_hit_wall_2d(t_cub3d *cub3d, float pixel_y, float pixel_x)
+{
+	if (is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][(int)pixel_x / SIZE_2D]))
+		return (1);
+	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / SIZE_2D][(int)pixel_x / SIZE_2D])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][((int)pixel_x + 1) / SIZE_2D]))
+		return (1);
+	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE_2D][(int)pixel_x / SIZE_2D])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][((int)pixel_x + 1) / SIZE_2D]))
 		return (1);
 	return (0);
 }
