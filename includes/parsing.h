@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 14:11:51 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 22:10:59 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
-# define WIDTH 2048
-# define HEIGHT 1024
+# define WIDTH 1400
+# define HEIGHT 800
 # define FOV 60
 # define SIZE 16
 # define ANGLE_SIZE FOV / WIDTH
@@ -67,8 +67,8 @@ typedef struct s_draw
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
+	int		x;
+	int		y;
 	double 		angle;
 	double		direction;
 }	t_player;
@@ -156,4 +156,5 @@ void	cub3d_init(t_cub3d **cub3d);
 int		is_wall(char c);
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
 void	my_mlx_pixel_put_2d(t_cub3d *cub3d, int x, int y, int color);
+int		rotate(int key, t_cub3d *cub3d);
 #endif

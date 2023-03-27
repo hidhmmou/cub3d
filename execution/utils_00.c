@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 14:17:18 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:16:42 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,19 @@ void check_direction(t_cub3d *cub3d, float y, float x)
 	else if (!is_wall(cub3d->map->square_map[(int)(y - 2) / SIZE][(int)x / SIZE]))
 		cub3d->map->player.direction = 3;
 	get_wall_color(cub3d, y, x);
-	//printf("the direction is : %d\n", cub3d->map->player.direction);
 }
 
 void put_player(t_cub3d *cub3d, float *tmp)
 {
-	
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] , tmp[1], 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0], tmp[1] - 1, 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0], tmp[1] + 1, 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0], tmp[1] - 2, 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0], tmp[1] + 2, 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] - 1, tmp[1], 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] + 1, tmp[1], 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] - 2, tmp[1], 0x00FF00);
-	//mlx_pixel_put(cub3d->mlx, cub3d->win, tmp[0] + 2, tmp[1], 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0] , tmp[1], 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] - 1, 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] + 1, 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] - 2, 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] + 2, 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0] - 1, tmp[1], 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0] + 1, tmp[1], 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0] - 2, tmp[1], 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, tmp[0] + 2, tmp[1], 0x00FF00);
 }
 
 void	cast_mid_ray(t_cub3d *cub3d)
@@ -72,7 +70,7 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	init_draw(cub3d);
 	while (1)
 	{
-		mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
+		my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0x00FF00);
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
@@ -91,9 +89,9 @@ void	cast_mid_ray(t_cub3d *cub3d)
     if (cub3d->draw->draw_end >= HEIGHT)
         cub3d->draw->draw_end = HEIGHT - 1;
 	cub3d->draw->x++;
-	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x, pixel_y, 0x00FF00);
-	mlx_pixel_put(cub3d->mlx, cub3d->win, pixel_x - 1, pixel_y - 1, 0x00FF00);
-	mlx_string_put(cub3d->mlx, cub3d->win, tmp[0] - 5, tmp[1] - 11, 0x00FF00, "*");
+	my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0x00FF00);
+	my_mlx_pixel_put_2d(cub3d, pixel_x - 1, pixel_y - 1, 0x00FF00);
+	put_player(cub3d, tmp);
 }
 
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color)

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 14:30:27 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 00:06:37 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,13 @@ int is_wall(char c)
 
 int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
 {
-	/*
-		1
-		0
-	*/
 	if (is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][(int)pixel_x / SIZE]))
 		return (1);
-	/*
-		01
-		10
-	*/
 	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / SIZE][(int)pixel_x / SIZE])
 		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
 		return (1);
-	/*
-		10
-		01
-	*/
-	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE][(int)pixel_x /SIZE])
-		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) /SIZE]))
+	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE][(int)pixel_x / SIZE])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
 		return (1);
 	return (0);
 }
@@ -53,7 +41,7 @@ void	init_draw(t_cub3d *cub3d)
 		cub3d->draw->pixel_nbr = abs(cub3d->draw->dy);
 	cub3d->draw->increment_x = cub3d->draw->dx / (float)cub3d->draw->pixel_nbr;
 	cub3d->draw->increment_y = cub3d->draw->dy / (float)cub3d->draw->pixel_nbr;
-	cub3d->draw->ray_angle += (float)60 / WIDTH;
+	cub3d->draw->ray_angle += 60.0 / WIDTH;
 }
 
 void draw_wall(t_cub3d *cub3d)
@@ -93,13 +81,15 @@ void	cast_ray(t_cub3d *cub3d)
 			break ;
 		}
 	}
-	//double distance_to_player = (WIDTH / 2) / tan(FOV / 2);
-	//double wall_height = (SIZE / cub3d->draw->distance) * distance_to_player;
 	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
-	cub3d->draw->wall_height = (cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180)));
-	cub3d->draw->wall_height = (pow(cub3d->draw->wall_height, -1) * 9000);
-    cub3d->draw->draw_start = (HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
-    cub3d->draw->draw_end = (HEIGHT / 2.0 + cub3d->draw->wall_height / 2.0);
+	cub3d->draw->distance *= (cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180.0)));
+	double distance_to_player = (double)((WIDTH / 2.0) / tan(60.0 / 2.0 * PI / 180.0));
+	double wall_height = (double)((double)SIZE / cub3d->draw->distance ) * distance_to_player;
+	cub3d->draw->wall_height = wall_height;
+	//cub3d->draw->wall_height = (cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180)));
+	//cub3d->draw->wall_height = (pow(cub3d->draw->wall_height, -1) * 9000);
+    cub3d->draw->draw_start = (double)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
+    cub3d->draw->draw_end = (double)cub3d->draw->draw_start + (double)cub3d->draw->wall_height;
     if (cub3d->draw->draw_start < 0)
         cub3d->draw->draw_start = 0;
     if (cub3d->draw->draw_end >= HEIGHT)
@@ -120,19 +110,6 @@ void	render_player(t_cub3d *cub3d)
 	while (++i <= WIDTH)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img, 0, 0);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win_3d, cub3d->img->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img, 0, 0);
 }
-
-
-
-
-
-//float corrected_distance = cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180)) / 5;
-//float distanceProjectPlane = (WIDTH / 2) / tan(FOV / 2);
-//float wallStripHeight = (SIZE / corrected_distance) * distanceProjectPlane;
-//float start = (HEIGHT / 2) - (wallStripHeight / 2);
-//float end = (HEIGHT / 2) + (wallStripHeight / 2);
-//cub3d->draw->draw_start = start;
-//cub3d->draw->draw_end = end;
-//cub3d->draw->wall_height = start - end;

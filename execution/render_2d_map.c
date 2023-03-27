@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 14:13:33 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/26 22:02:13 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	render_map_2d(t_cub3d *cub3d)
 	x = 0;
 	mlx_clear_window(cub3d->mlx, cub3d->win);
 	mlx_clear_window(cub3d->mlx, cub3d->win_3d);
+
+	put_pixel_square(cub3d, 0, 0, 0xFF0000);
+
 	while (cub3d->map->square_map[i])
 	{
 		j = 0;

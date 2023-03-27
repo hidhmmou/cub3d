@@ -1,5 +1,5 @@
 NAME		=	cub3d
-CFLAGS		=	#-Wall -Wextra -Werror -fsanitize=address
+CFLAGS		=	#-fsanitize=address
 FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -28,7 +28,7 @@ HEADER		=	$(addprefix includes/, $(HEADERS))
 all			:	$(NAME)
 	
 $(NAME)		:	$(LIBFT) $(OBJ)
-				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS)
+				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS) $(CFLAGS)
 				@echo "$(BLUE)cub3d$(GREEN)\r\t\t\t compiled$(RESET)"
 
 $(LIBFT)	:
@@ -37,7 +37,7 @@ $(LIBFT)	:
 
 $(OBJDIR)/%.o	:	%.c $(HEADER)
 				@mkdir -p $(dir $@)
-				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) -c $< -o $@
 				@echo "$(BLUE)$<:$(RESET)\r\t\t\t $(GREEN)compiled$(RESET)"
 
 clean		:
