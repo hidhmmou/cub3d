@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 15:21:20 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:29:40 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,22 @@ void render_player_2d(t_cub3d *cub3d)
 	float	pixel_y;
 	float	tmp[2];
 
-	pixel_x = cub3d->map->player.x / SIZE * SIZE_2D;
-	pixel_y = cub3d->map->player.y / SIZE * SIZE_2D;
+	pixel_x = (float)cub3d->map->player.x / SIZE * SIZE_2D;
+	pixel_y = (float)cub3d->map->player.y / SIZE * SIZE_2D;
 	tmp[0] = pixel_x;
 	tmp[1] = pixel_y;
 	init_draw(cub3d);
-	while (1)
+	int i = 0;
+	while (i++ < 30)
 	{
 		my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0xFF0000);
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (check_hit_wall(cub3d, pixel_y, pixel_x))
-		{
-			check_direction(cub3d, pixel_y, pixel_x);
-			break ;
-		}
+		//if (check_hit_wall(cub3d, pixel_y, pixel_x))
+		//{
+		//	check_direction(cub3d, pixel_y, pixel_x);
+		//	break ;
+		//}
 	}
 	put_player(cub3d, tmp);
 }
