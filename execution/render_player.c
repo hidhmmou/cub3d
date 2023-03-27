@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 15:45:06 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:50:20 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ void	cast_ray(t_cub3d *cub3d)
 	tmp[1] = pixel_y;
 	init_draw(cub3d);
 	while (1)
-	{
-		my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0xFF0000);
+	{	
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
@@ -107,8 +106,6 @@ void	cast_ray(t_cub3d *cub3d)
         cub3d->draw->draw_end = HEIGHT - 1;
 	draw_wall(cub3d);
 	cub3d->draw->x--;
-	my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, pixel_x - 1, pixel_y - 1, 0x00FF00);
 }
 
 void	render_player(t_cub3d *cub3d)

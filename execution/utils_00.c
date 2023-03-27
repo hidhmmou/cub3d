@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 00:51:43 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:53:57 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	init_draw(cub3d);
 	while (1)
 	{
-		my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0x00FF00);
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x))
@@ -89,9 +88,6 @@ void	cast_mid_ray(t_cub3d *cub3d)
     if (cub3d->draw->draw_end >= HEIGHT)
         cub3d->draw->draw_end = HEIGHT - 1;
 	cub3d->draw->x++;
-	my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, pixel_x - 1, pixel_y - 1, 0x00FF00);
-	put_player(cub3d, tmp);
 }
 
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color)

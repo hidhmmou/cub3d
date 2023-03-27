@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 15:15:37 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:46:29 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_draw
 	int		dy;
 	int 	x;
 	double	ray_angle;
+	double	ray_angle_2d;
 	int		pixel_nbr;
 	double	increment_x;
 	double	increment_y;
