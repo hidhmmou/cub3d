@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 00:06:37 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 01:32:01 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	cast_ray(t_cub3d *cub3d)
 	double distance_to_player = (double)((WIDTH / 2.0) / tan(60.0 / 2.0 * PI / 180.0));
 	double wall_height = (double)((double)SIZE / cub3d->draw->distance ) * distance_to_player;
 	cub3d->draw->wall_height = wall_height;
-	//cub3d->draw->wall_height = (cub3d->draw->distance * cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180)));
-	//cub3d->draw->wall_height = (pow(cub3d->draw->wall_height, -1) * 9000);
     cub3d->draw->draw_start = (double)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
     cub3d->draw->draw_end = (double)cub3d->draw->draw_start + (double)cub3d->draw->wall_height;
     if (cub3d->draw->draw_start < 0)

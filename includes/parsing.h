@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 22:10:59 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 01:32:26 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
-# define WIDTH 1400
-# define HEIGHT 800
+# define WIDTH 1280
+# define HEIGHT 720
 # define FOV 60
-# define SIZE 16
+# define SIZE 100
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color

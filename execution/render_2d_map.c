@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 22:02:13 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 00:12:59 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ void	put_pixel_square(t_cub3d *cub3d, int x, int y, int color)
 	int		j;
 
 	i = 0;
+	while (i < 1)
+	{
+		j = -1;
+		while (++j < SIZE)
+			my_mlx_pixel_put_2d(cub3d, y + j, x + i, color);
+		i++;
+	}
 	while (i < SIZE)
 	{
 		j = -1;
