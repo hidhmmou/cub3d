@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 01:32:26 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:15:37 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define HEIGHT 720
 # define FOV 60
 # define SIZE 100
+# define SIZE_2D 16
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color

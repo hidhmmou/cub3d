@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 00:12:59 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:21:20 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,42 @@ void	put_pixel_square(t_cub3d *cub3d, int x, int y, int color)
 	while (i < 1)
 	{
 		j = -1;
-		while (++j < SIZE)
+		while (++j < SIZE_2D)
 			my_mlx_pixel_put_2d(cub3d, y + j, x + i, color);
 		i++;
 	}
-	while (i < SIZE)
+	while (i < SIZE_2D)
 	{
 		j = -1;
-		while (++j < SIZE)
+		while (++j < SIZE_2D)
 			my_mlx_pixel_put_2d(cub3d, y + j, x + i, color);
 		i++;
 	}
+}
+
+void render_player_2d(t_cub3d *cub3d)
+{
+	float	pixel_x;
+	float	pixel_y;
+	float	tmp[2];
+
+	pixel_x = cub3d->map->player.x / SIZE * SIZE_2D;
+	pixel_y = cub3d->map->player.y / SIZE * SIZE_2D;
+	tmp[0] = pixel_x;
+	tmp[1] = pixel_y;
+	init_draw(cub3d);
+	while (1)
+	{
+		my_mlx_pixel_put_2d(cub3d, pixel_x, pixel_y, 0xFF0000);
+		pixel_x += cub3d->draw->increment_x;
+		pixel_y += cub3d->draw->increment_y;
+		if (check_hit_wall(cub3d, pixel_y, pixel_x))
+		{
+			check_direction(cub3d, pixel_y, pixel_x);
+			break ;
+		}
+	}
+	put_player(cub3d, tmp);
 }
 
 void	render_map_2d(t_cub3d *cub3d)
@@ -54,9 +79,6 @@ void	render_map_2d(t_cub3d *cub3d)
 	x = 0;
 	mlx_clear_window(cub3d->mlx, cub3d->win);
 	mlx_clear_window(cub3d->mlx, cub3d->win_3d);
-
-	put_pixel_square(cub3d, 0, 0, 0xFF0000);
-
 	while (cub3d->map->square_map[i])
 	{
 		j = 0;
@@ -66,10 +88,11 @@ void	render_map_2d(t_cub3d *cub3d)
 			if (cub3d->map->square_map[i][j] != '0')
 				put_pixel_square(cub3d, x, y, get_color(cub3d->map->square_map[i][j]));
 			j++;
-			y += SIZE;
+			y += SIZE_2D;
 		}
 		i++;
-		x += SIZE;
+		x += SIZE_2D;
 	}
+	render_player_2d(cub3d);
 	render_player(cub3d);
 }
