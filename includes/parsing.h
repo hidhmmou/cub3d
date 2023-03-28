@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 23:39:41 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:04:57 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define HEIGHT 720
 # define FOV 60
 # define SIZE 100
-# define SIZE_2D 8
+# define SIZE_2D 10
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color
@@ -61,6 +61,7 @@ typedef struct s_draw
 	double	increment_x;
 	double	increment_y;
 	double	distance;
+	double	distance_to_player;
 	double	wall_height;
 	double	draw_start;
 	double	draw_end;

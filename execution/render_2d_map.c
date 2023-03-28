@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 00:08:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 02:54:40 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	render_background(t_cub3d *cub3d)
 
 	i = 0;
 	x = 0;
+	y = 0;
 	
 	while (cub3d->map->square_map[i])
 	{

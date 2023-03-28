@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 22:52:53 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:04:28 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,21 @@ void draw_wall(t_cub3d *cub3d)
 	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, 0);
 	while (i < HEIGHT)
 		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
+	cub3d->draw->x--;
+}
+
+void calc(t_cub3d *cub3d, double pixel_x, double pixel_y, double tmp[2])
+{
+	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
+	cub3d->draw->distance *= (cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180.0)));
+	cub3d->draw->distance_to_player = (double)((WIDTH / 2.0) / tan(60.0 / 2.0 * PI / 180.0));
+	cub3d->draw->wall_height = (double)((double)SIZE / cub3d->draw->distance ) * cub3d->draw->distance_to_player;
+    cub3d->draw->draw_start = (double)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
+    cub3d->draw->draw_end = (double)cub3d->draw->draw_start + (double)cub3d->draw->wall_height;
+    if (cub3d->draw->draw_start < 0)
+        cub3d->draw->draw_start = 0;
+    if (cub3d->draw->draw_end >= HEIGHT)
+        cub3d->draw->draw_end = HEIGHT - 1;
 }
 
 void	cast_ray(t_cub3d *cub3d)
@@ -93,19 +108,29 @@ void	cast_ray(t_cub3d *cub3d)
 			break ;
 		}
 	}
-	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
-	cub3d->draw->distance *= (cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180.0)));
-	double distance_to_player = (double)((WIDTH / 2.0) / tan(60.0 / 2.0 * PI / 180.0));
-	double wall_height = (double)((double)SIZE / cub3d->draw->distance ) * distance_to_player;
-	cub3d->draw->wall_height = wall_height;
-    cub3d->draw->draw_start = (double)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
-    cub3d->draw->draw_end = (double)cub3d->draw->draw_start + (double)cub3d->draw->wall_height;
-    if (cub3d->draw->draw_start < 0)
-        cub3d->draw->draw_start = 0;
-    if (cub3d->draw->draw_end >= HEIGHT)
-        cub3d->draw->draw_end = HEIGHT - 1;
+	calc(cub3d, pixel_x, pixel_y, tmp);
 	draw_wall(cub3d);
-	cub3d->draw->x--;
+}
+
+void cut_2d_map(t_cub3d *cub3d)
+{
+	int x;
+	int y;
+
+	x = 99 + cub3d->map->player.x / (float)SIZE * (float)SIZE_2D;
+	while (++x < WIDTH)
+	{
+		y = -1;
+		while (++y < HEIGHT)
+			my_mlx_pixel_put(cub3d->img_2d, x, y, 0xFFFF00FF);
+	}
+	x = -1;
+	while (++x < WIDTH)
+	{
+		y = 99 + cub3d->map->player.y / (float)SIZE * (float)SIZE_2D;
+		while (++y < HEIGHT)
+			my_mlx_pixel_put(cub3d->img_2d, x, y, 0xFFFF00FF);
+	}
 }
 
 void	render_player(t_cub3d *cub3d)
@@ -119,5 +144,6 @@ void	render_player(t_cub3d *cub3d)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img, 0, 0);
+	cut_2d_map(cub3d);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  100 - cub3d->map->player.x / (float)SIZE * (float)SIZE_2D,  100 - cub3d->map->player.y / (float)SIZE * (float)SIZE_2D);
 }
