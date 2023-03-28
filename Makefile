@@ -1,5 +1,5 @@
 NAME		=	cub3d
-CFLAGS		=	-fsanitize=address
+CFLAGS		=	#-fsanitize=address
 FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))

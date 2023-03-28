@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 17:03:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:54:16 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	press(int key, t_cub3d *cub3d)
 		move_up(cub3d);
 	else if (key == TAB)
 	{
+		img_transparent(cub3d, cub3d->img_2d);
 		cub3d->minimap *= -1;
 		if (cub3d->minimap > 0)
 			cub3d->map->minimap_size = SIZE_2D;

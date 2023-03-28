@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 17:18:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:20:34 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,6 @@ void	mini_map(t_cub3d *cub3d)
 void	render_map_2d(t_cub3d *cub3d)
 {
 	mlx_clear_window(cub3d->mlx, cub3d->win);
-	if (cub3d->minimap > 0)
-		mini_map(cub3d);
-	else
-		mini_map(cub3d);
+	mini_map(cub3d);
 	render_player(cub3d);
 }
