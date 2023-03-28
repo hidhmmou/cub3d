@@ -64,6 +64,9 @@ run2		:	$(NAME)
 large		:	$(NAME)
 				@./$(NAME) maps/large.cub
 
+big		:	$(NAME)
+				@./$(NAME) maps/big.cub
+
 push		:
 				@./push.sh
 

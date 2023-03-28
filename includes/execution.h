@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/28 16:54:27 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:01:32 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../includes/parsing.h"
 
 # define ROTATE_ANGLE 5
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
 # define P 3.14159265
 # define SPEED 50
 
