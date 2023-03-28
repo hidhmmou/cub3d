@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:42:19 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:01:35 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_map
 	int			empty_nbr;
 	size_t		max_len;
 	int			len;
+	int			minimap_size;
 }		t_map;
 
 typedef struct s_img

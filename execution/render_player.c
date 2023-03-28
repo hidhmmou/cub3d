@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:54:13 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:06:19 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void show_2d_map(t_cub3d *cub3d)
 	int x;
 	int y;
 
-	x = 99 + cub3d->map->player.x / (float)SIZE * (float)SIZE_2D;
+	x = 99 + cub3d->map->player.x / (float)SIZE * (float)cub3d->map->minimap_size;
 	while (++x < WIDTH)
 	{
 		y = -1;
@@ -114,11 +114,14 @@ void show_2d_map(t_cub3d *cub3d)
 	x = -1;
 	while (++x < WIDTH)
 	{
-		y = 99 + cub3d->map->player.y / (float)SIZE * (float)SIZE_2D;
+		y = 99 + cub3d->map->player.y / (float)SIZE * (float)cub3d->map->minimap_size;
 		while (++y < HEIGHT)
 			my_mlx_pixel_put(cub3d->img_2d, x, y, 0xFFFF00FF);
 	}
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  100 - cub3d->map->player.x / (float)SIZE * (float)SIZE_2D,  100 - cub3d->map->player.y / (float)SIZE * (float)SIZE_2D);
+	if (cub3d->minimap > 0)
+		mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  100 - cub3d->map->player.x / (float)SIZE * (float)cub3d->map->minimap_size,  100 - cub3d->map->player.y / (float)SIZE * (float)cub3d->map->minimap_size);
+	else
+		mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  0,  0);
 }
 
 void	render_player(t_cub3d *cub3d)
@@ -133,5 +136,7 @@ void	render_player(t_cub3d *cub3d)
 	cast_mid_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
 	if (cub3d->minimap > 0)
+		show_2d_map(cub3d);
+	else
 		show_2d_map(cub3d);
 }

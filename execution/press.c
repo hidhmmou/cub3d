@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:40:56 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:03:25 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	press(int key, t_cub3d *cub3d)
 	//mlx_destroy_image(cub3d->mlx, cub3d->img->img);
 	//mlx_destroy_image(cub3d->mlx, cub3d->img_2d->img);
 	//cub3d->img->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
-	//cub3d->img_2d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
+	//cub3d->img_2d->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	if (key == ESC)
 		close_window(cub3d);
 	else if (key == LEFT_ROW)
@@ -49,6 +49,10 @@ int	press(int key, t_cub3d *cub3d)
 	else if (key == TAB)
 	{
 		cub3d->minimap *= -1;
+		if (cub3d->minimap > 0)
+			cub3d->map->minimap_size = SIZE_2D;
+		else
+			cub3d->map->minimap_size = SIZE_BIG_2D;
 		render_map_2d(cub3d);
 	}
 	return (0);

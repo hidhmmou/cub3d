@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:54:07 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:18:44 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	put_pixel_square(t_cub3d *cub3d, int x, int y, int color)
 	int		j;
 
 	i = 0;
-	while (i < SIZE_2D)
+	while (i < cub3d->map->minimap_size)
 	{
 		j = -1;
-		while (++j < SIZE_2D)
+		while (++j < cub3d->map->minimap_size)
 		{	
 			my_mlx_pixel_put(cub3d->img_2d, y + j, x + i, color);
 		}
@@ -47,18 +47,18 @@ void	put_pixel_square(t_cub3d *cub3d, int x, int y, int color)
 }
 
 
-void render_view(t_cub3d *cub3d, int is_mid, int size_2d)
+void render_view(t_cub3d *cub3d, int is_mid)
 {
 	float	pixel_x;
 	float	pixel_y;
 	float	tmp[2];
 
-	pixel_x = (float)cub3d->map->player.x / SIZE * size_2d;
-	pixel_y = (float)cub3d->map->player.y / SIZE * size_2d;
+	pixel_x = (float)cub3d->map->player.x / SIZE * cub3d->map->minimap_size;
+	pixel_y = (float)cub3d->map->player.y / SIZE * cub3d->map->minimap_size;
 	tmp[0] = pixel_x;
 	tmp[1] = pixel_y;
 	init_draw(cub3d);
-	while (!check_hit_wall(cub3d, pixel_y, pixel_x, SIZE_2D))
+	while (!check_hit_wall(cub3d, pixel_y, pixel_x, cub3d->map->minimap_size))
 	{
 		if (!is_mid)
 			my_mlx_pixel_put(cub3d->img_2d, pixel_x, pixel_y, 0xFF0000);
@@ -72,7 +72,7 @@ void render_view(t_cub3d *cub3d, int is_mid, int size_2d)
 	my_mlx_pixel_put(cub3d->img_2d, pixel_x - 1, pixel_y - 1, 0x00FF00);
 }
 
-void	render_background(t_cub3d *cub3d, int size)
+void	render_background(t_cub3d *cub3d)
 {
 	int	i;
 	int	j;
@@ -82,7 +82,6 @@ void	render_background(t_cub3d *cub3d, int size)
 	i = 0;
 	x = 0;
 	y = 0;
-	
 	while (cub3d->map->square_map[i])
 	{
 		j = 0;
@@ -92,33 +91,33 @@ void	render_background(t_cub3d *cub3d, int size)
 			if (cub3d->map->square_map[i][j])
 				put_pixel_square(cub3d, x, y, get_color(cub3d->map->square_map[i][j]));
 			j++;
-			y += size;
+			y += cub3d->map->minimap_size;
 		}
 		i++;
-		x += size;
+		x += cub3d->map->minimap_size;
 	}
 }
 
-void	mini_map(t_cub3d *cub3d, int size)
+void	mini_map(t_cub3d *cub3d)
 {
 	int i;
 
 	i = 0;
 
-	render_background(cub3d, size);
+	render_background(cub3d);
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 	while (++i <= WIDTH)
-		render_view(cub3d, 0, size);
+		render_view(cub3d, 0);
 	cub3d->draw->ray_angle = cub3d->map->player.angle;
-	render_view(cub3d, 1, size);
+	render_view(cub3d, 1);
 }
 
 void	render_map_2d(t_cub3d *cub3d)
 {
 	mlx_clear_window(cub3d->mlx, cub3d->win);
 	if (cub3d->minimap > 0)
-		mini_map(cub3d, SIZE_2D);
+		mini_map(cub3d);
 	else
-		mini_map(cub3d, SIZE_BIG_2D);
+		mini_map(cub3d);
 	render_player(cub3d);
 }
