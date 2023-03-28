@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/27 22:10:37 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:53:44 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	init_movement(t_cub3d *cub3d, int to_add)
 
 int collusion_up_down(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 {
-	if (!check_hit_wall(cub3d, *pixel_y + 1, *pixel_x + 1)
-		|| !check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1))
+	if (!check_hit_wall(cub3d, *pixel_y + 1, *pixel_x + 1, SIZE)
+		|| !check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1, SIZE))
 		return (*pixel_y += cub3d->draw->increment_y, 1);
 	return (0);
 }
 
 int collusion_left_right(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 {
-	if (!check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1)
-		|| !check_hit_wall(cub3d, *pixel_y + 1, *pixel_x - 1))
+	if (!check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1, SIZE)
+		|| !check_hit_wall(cub3d, *pixel_y + 1, *pixel_x - 1, SIZE))
 		return (*pixel_x += cub3d->draw->increment_x, 1);
 	return (0);
 }
@@ -56,9 +56,9 @@ void	move_up(t_cub3d *cub3d)
 	{
 		pixel_x -= cub3d->draw->increment_x;
 		pixel_y -= cub3d->draw->increment_y;
-		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x))
+		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x, SIZE))
 			cub3d->map->player.x = pixel_x;
-		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x))
+		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
 	if (moves_nbr > 1)
@@ -81,9 +81,9 @@ void	move_down(t_cub3d *cub3d)
 	{
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x))
+		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x, SIZE))
 			cub3d->map->player.x = pixel_x;
-		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x))
+		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
 	if (moves_nbr > 1)
@@ -106,9 +106,9 @@ void	move_right(t_cub3d *cub3d)
 	{
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x))
+		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x, SIZE))
 			cub3d->map->player.x = pixel_x;
-		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x))
+		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
 	if (moves_nbr > 1)
@@ -130,9 +130,9 @@ void	move_left(t_cub3d *cub3d)
 	{
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x))
+		if (!check_hit_wall(cub3d, cub3d->map->player.y, pixel_x, SIZE))
 			cub3d->map->player.x = pixel_x;
-		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x))
+		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
 	if (moves_nbr > 1)

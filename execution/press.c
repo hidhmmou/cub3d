@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 22:45:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:40:56 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ int	press(int key, t_cub3d *cub3d)
 		move_down(cub3d);
 	else if (key == UP_MOVE)
 		move_up(cub3d);
+	else if (key == TAB)
+	{
+		cub3d->minimap *= -1;
+		render_map_2d(cub3d);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:04:28 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:54:13 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,15 @@ int is_wall(char c)
 	return (c == '1');
 }
 
-int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x)
+int	check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x, int size)
 {
-	if (is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][(int)pixel_x / SIZE]))
+	if (is_wall(cub3d->map->square_map[(int)pixel_y / size][(int)pixel_x / size]))
 		return (1);
-	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / SIZE][(int)pixel_x / SIZE])
-		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
+	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / size][(int)pixel_x / size])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / size][((int)pixel_x + 1) / size]))
 		return (1);
-	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE][(int)pixel_x / SIZE])
-		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE][((int)pixel_x + 1) / SIZE]))
-		return (1);
-	return (0);
-}
-
-int	check_hit_wall_2d(t_cub3d *cub3d, float pixel_y, float pixel_x)
-{
-	if (is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][(int)pixel_x / SIZE_2D]))
-		return (1);
-	if (is_wall(cub3d->map->square_map[((int)pixel_y + 1) / SIZE_2D][(int)pixel_x / SIZE_2D])
-		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][((int)pixel_x + 1) / SIZE_2D]))
-		return (1);
-	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / SIZE_2D][(int)pixel_x / SIZE_2D])
-		&& is_wall(cub3d->map->square_map[(int)pixel_y / SIZE_2D][((int)pixel_x + 1) / SIZE_2D]))
+	if (is_wall(cub3d->map->square_map[((int)pixel_y - 1) / size][(int)pixel_x / size])
+		&& is_wall(cub3d->map->square_map[(int)pixel_y / size][((int)pixel_x + 1) / size]))
 		return (1);
 	return (0);
 }
@@ -102,7 +89,7 @@ void	cast_ray(t_cub3d *cub3d)
 	{	
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (check_hit_wall(cub3d, pixel_y, pixel_x))
+		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
 		{
 			check_direction(cub3d, pixel_y, pixel_x);
 			break ;
@@ -112,7 +99,7 @@ void	cast_ray(t_cub3d *cub3d)
 	draw_wall(cub3d);
 }
 
-void cut_2d_map(t_cub3d *cub3d)
+void show_2d_map(t_cub3d *cub3d)
 {
 	int x;
 	int y;
@@ -131,6 +118,7 @@ void cut_2d_map(t_cub3d *cub3d)
 		while (++y < HEIGHT)
 			my_mlx_pixel_put(cub3d->img_2d, x, y, 0xFFFF00FF);
 	}
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  100 - cub3d->map->player.x / (float)SIZE * (float)SIZE_2D,  100 - cub3d->map->player.y / (float)SIZE * (float)SIZE_2D);
 }
 
 void	render_player(t_cub3d *cub3d)
@@ -144,6 +132,6 @@ void	render_player(t_cub3d *cub3d)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
-	cut_2d_map(cub3d);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img,  100 - cub3d->map->player.x / (float)SIZE * (float)SIZE_2D,  100 - cub3d->map->player.y / (float)SIZE * (float)SIZE_2D);
+	if (cub3d->minimap > 0)
+		show_2d_map(cub3d);
 }

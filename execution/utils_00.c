@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 03:59:49 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:52:55 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	{
 		pixel_x += cub3d->draw->increment_x;
 		pixel_y += cub3d->draw->increment_y;
-		if (check_hit_wall(cub3d, pixel_y, pixel_x))
+		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
 		{
 			check_direction(cub3d, pixel_y, pixel_x);
 			break ;

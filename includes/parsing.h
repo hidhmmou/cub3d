@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 15:04:57 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:42:19 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define UP_MOVE 13
 # define RIGHT_ROW 124
 # define LEFT_ROW 123
+# define TAB 48
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
@@ -39,6 +40,7 @@
 # define FOV 60
 # define SIZE 100
 # define SIZE_2D 10
+# define SIZE_BIG_2D 32
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color
@@ -116,6 +118,7 @@ typedef struct s_cub3d
 	void		*win;
 	int			win_width;
 	int			win_height;
+	int			minimap;
 }	t_cub3d;
 
 

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 22:56:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:36:46 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	executing(t_cub3d *cub3d)
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 	cub3d->win_height = --cub3d->map->len * SIZE;
 	cub3d->win_width = --cub3d->map->max_len * SIZE;
+	cub3d->minimap = 1;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, WIDTH, HEIGHT, "lo3ba w safi ;-;");
 	cub3d->img->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
