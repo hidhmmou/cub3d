@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 14:49:19 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:10:37 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_movement(t_cub3d *cub3d, int to_add)
 
 int collusion_up_down(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 {
-	//printf("collusion_up_down\n");
 	if (!check_hit_wall(cub3d, *pixel_y + 1, *pixel_x + 1)
 		|| !check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1))
 		return (*pixel_y += cub3d->draw->increment_y, 1);
@@ -36,7 +35,6 @@ int collusion_up_down(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 
 int collusion_left_right(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 {
-	//printf("collusion_left_right\n");
 	if (!check_hit_wall(cub3d, *pixel_y - 1, *pixel_x + 1)
 		|| !check_hit_wall(cub3d, *pixel_y + 1, *pixel_x - 1))
 		return (*pixel_x += cub3d->draw->increment_x, 1);

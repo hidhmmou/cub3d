@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/27 15:46:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:49:52 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_player(t_cub3d *cub3d);
 void    put_player(t_cub3d *cub3d, float *tmp);
 void	cast_mid_ray(t_cub3d *cub3d);
 int     check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x);
-int	check_hit_wall_2d(t_cub3d *cub3d, float pixel_y, float pixel_x);
+int     check_hit_wall_2d(t_cub3d *cub3d, float pixel_y, float pixel_x);
 void	init_draw(t_cub3d *cub3d);
 void	move_up(t_cub3d *cub3d);
 void	move_down(t_cub3d *cub3d);

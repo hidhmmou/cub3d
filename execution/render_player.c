@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 16:50:20 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:52:53 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void draw_wall(t_cub3d *cub3d)
 
 	i = -1;
 	while (++i < cub3d->draw->draw_start)
-		my_mlx_pixel_put(cub3d, cub3d->draw->x, i, rgb_to_int(*cub3d->map->ciel_color));
-	my_mlx_pixel_put(cub3d, cub3d->draw->x, i++, 0);
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, rgb_to_int(*cub3d->map->ciel_color));
+	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, 0);
 	while (i <= cub3d->draw->draw_end)
-		my_mlx_pixel_put(cub3d, cub3d->draw->x, i++, cub3d->draw->color);
-	my_mlx_pixel_put(cub3d, cub3d->draw->x, i++, 0);
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, cub3d->draw->color);
+	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, 0);
 	while (i < HEIGHT)
-		my_mlx_pixel_put(cub3d, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
 }
 
 void	cast_ray(t_cub3d *cub3d)
@@ -118,6 +118,6 @@ void	render_player(t_cub3d *cub3d)
 	while (++i <= WIDTH)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win_3d, cub3d->img->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 16:46:29 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:39:41 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define HEIGHT 720
 # define FOV 60
 # define SIZE 100
-# define SIZE_2D 16
+# define SIZE_2D 8
 # define ANGLE_SIZE FOV / WIDTH
 
 typedef struct s_color
@@ -113,8 +113,6 @@ typedef struct s_cub3d
 	t_img		*img;
 	void		*mlx;
 	void		*win;
-	void		*mlx_3d;
-	void		*win_3d;
 	int			win_width;
 	int			win_height;
 }	t_cub3d;
@@ -156,7 +154,6 @@ char	**splite_colors(char const *s);
 int		check_commas(char *floor, char *ciel);
 void	cub3d_init(t_cub3d **cub3d);
 int		is_wall(char c);
-void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
-void	my_mlx_pixel_put_2d(t_cub3d *cub3d, int x, int y, int color);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		rotate(int key, t_cub3d *cub3d);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/27 16:53:57 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:04:35 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void check_direction(t_cub3d *cub3d, float y, float x)
 
 void put_player(t_cub3d *cub3d, float *tmp)
 {
-	my_mlx_pixel_put_2d(cub3d, tmp[0] , tmp[1], 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] - 1, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] + 1, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] - 2, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0], tmp[1] + 2, 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0] - 1, tmp[1], 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0] + 1, tmp[1], 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0] - 2, tmp[1], 0x00FF00);
-	my_mlx_pixel_put_2d(cub3d, tmp[0] + 2, tmp[1], 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0] , tmp[1], 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0], tmp[1] - 1, 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0], tmp[1] + 1, 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0], tmp[1] - 2, 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0], tmp[1] + 2, 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0] - 1, tmp[1], 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0] + 1, tmp[1], 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0] - 2, tmp[1], 0x00FF00);
+	my_mlx_pixel_put(cub3d->img_2d, tmp[0] + 2, tmp[1], 0x00FF00);
 }
 
 void	cast_mid_ray(t_cub3d *cub3d)
@@ -90,18 +90,10 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	cub3d->draw->x++;
 }
 
-void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = cub3d->img->addr + (y * cub3d->img->line_length + x * (cub3d->img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	my_mlx_pixel_put_2d(t_cub3d *cub3d, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = cub3d->img_2d->addr + (y * cub3d->img_2d->line_length + x * (cub3d->img_2d->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
