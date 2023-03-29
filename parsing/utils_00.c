@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:03:01 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/13 11:21:05 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 03:24:22 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,22 @@ void	ft_error(char *message, t_cub3d *cub3d)
 int	rgb_to_int(t_color color)
 {
 	return ((color.r << 16) | (color.g << 8) | color.b);
+}
+
+int shader(int color, float percent)
+{
+	int r;
+	int g;
+	int b;
+	int shade;
+
+	shade = 255;
+	if (percent > 100)
+		percent = 100;
+	r = (color >> 16) & 0xFF;
+	g = (color >> 8) & 0xFF;
+	b = color & 0xFF;
+	shade -= shade * percent / 100;
+	
+	return(shade << 24 | r << 16 | g << 8 | b);
 }

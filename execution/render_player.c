@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 22:22:06 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 03:35:11 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,24 @@ void	init_draw(t_cub3d *cub3d)
 
 void draw_wall(t_cub3d *cub3d)
 {
-	int i;
+	int 	i;
 
 	i = -1;
 	while (++i < cub3d->draw->draw_start)
-		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, rgb_to_int(*cub3d->map->ciel_color));
-	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, 0);
-	while (i <= cub3d->draw->draw_end)
-		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, cub3d->draw->color);
-	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, 0);
-	while (i < HEIGHT)
-		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i++, rgb_to_int(*cub3d->map->floor_color));
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->ciel_color), ((HEIGHT / 2.0) - i) * 100.0 / (HEIGHT / 2.0)));
+	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
+	while (++i <= cub3d->draw->draw_end)
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(cub3d->draw->color, 100));
+	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
+	while (++i < HEIGHT)
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->floor_color), ((HEIGHT / 2.0) + i - HEIGHT) * 100.0 / (HEIGHT / 2.0)));
 	cub3d->draw->x--;
 }
-
+//360 / 1 * 1000 
 void calc(t_cub3d *cub3d, double pixel_x, double pixel_y, double tmp[2])
 {
-	cub3d->draw->distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
-	cub3d->draw->distance *= (cos(cub3d->draw->radiant - (cub3d->map->player.angle * P / 180.0)));
+	cub3d->draw->real_distance = sqrt(pow(pixel_x - tmp[0], 2) + pow(pixel_y - tmp[1], 2));
+	cub3d->draw->distance = cub3d->draw->real_distance * (cos(cub3d->draw->radiant - to_radian(cub3d->map->player.angle)));
 	cub3d->draw->distance_to_player = (double)((WIDTH / 2.0) / tan(60.0 / 2.0 * PI / 180.0));
 	cub3d->draw->wall_height = (double)((double)SIZE / cub3d->draw->distance ) * cub3d->draw->distance_to_player;
     cub3d->draw->draw_start = (double)(HEIGHT / 2.0 - cub3d->draw->wall_height / 2.0);
