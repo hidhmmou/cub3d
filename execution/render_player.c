@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 03:35:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 04:18:30 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void draw_wall(t_cub3d *cub3d)
 		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->ciel_color), ((HEIGHT / 2.0) - i) * 100.0 / (HEIGHT / 2.0)));
 	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
 	while (++i <= cub3d->draw->draw_end)
-		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(cub3d->draw->color, 100));
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(cub3d->draw->color, cub3d->draw->wall_height * 200 / HEIGHT));
 	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
 	while (++i < HEIGHT)
 		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->floor_color), ((HEIGHT / 2.0) + i - HEIGHT) * 100.0 / (HEIGHT / 2.0)));
