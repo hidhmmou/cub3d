@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 01:03:49 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:30:43 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 # define SIZE_2D 10
 # define SIZE_BIG_2D 20
 # define ANGLE_SIZE FOV / WIDTH
+# define ROTATE_ANGLE 5
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+# define P 3.14159265
+# define SPEED 100
 
 typedef struct s_color
 {
@@ -108,6 +112,8 @@ typedef struct s_img
 	int			line_length;
 	int			endian;
 	char		*addr;
+	int			width;
+	int			height;
 }	t_img;
 
 typedef struct s_cub3d

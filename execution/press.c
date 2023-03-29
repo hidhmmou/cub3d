@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 22:04:25 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:13:09 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	press(int key, t_cub3d *cub3d)
 			cub3d->map->minimap_size = MIN(WIDTH / cub3d->map->max_len, HEIGHT / cub3d->map->len);
 		render_map_2d(cub3d);
 	}
+	render_map_2d(cub3d);
 	return (0);
 }

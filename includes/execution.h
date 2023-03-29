@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/29 04:54:46 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:30:04 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "../includes/parsing.h"
-
-# define ROTATE_ANGLE 5
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-# define P 3.14159265
-# define SPEED 50
 
 int     press(int key, t_cub3d *cub3d);
 int     close_window(t_cub3d *cub3d);

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 21:50:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:27:24 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ int	main(int ac, char *av[])
 
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
-	render_map_2d(cub3d);
+	t_img img;
+	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/let's_play.xpm", &img.width, &img.height);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 0, 0);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
 	mlx_loop(cub3d->mlx);
