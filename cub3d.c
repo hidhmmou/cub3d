@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 23:24:01 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:44:03 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int mouse_move(int x, int y, t_cub3d *cub3d)
 			mlx_mouse_move(cub3d->win, WIDTH / 2, HEIGHT / 2);
 			cub3d->mouse->x = WIDTH / 2;
 		}
+		mlx_mouse_move(cub3d->win, cub3d->mouse->x, HEIGHT / 2);
 		cub3d->change = 1;
 	}
 	else
