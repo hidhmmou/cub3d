@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/29 23:52:43 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:36:10 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	move_right(t_cub3d *cub3d);
 void    check_direction(t_cub3d *cub3d, float y, float x);
 void    img_transparent(t_cub3d *cub3d, t_img *img);
 int     shader(int color, float distance);
+void    startup(t_cub3d *cub3d);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 01:02:30 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:41:16 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,12 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 float to_radian(float angle)
 {
 	return (angle * (M_PI / 180));
+}
+
+void startup(t_cub3d *cub3d)
+{
+	t_img img;
+	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/intro.xpm", &img.width, &img.height);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 0, 0);
+	mlx_destroy_image(cub3d->mlx, img.img);
 }

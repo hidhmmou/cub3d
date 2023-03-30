@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 00:17:34 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:47:09 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	press(int key, t_cub3d *cub3d)
 	//cub3d->img_2d->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	if (key == ESC)
 		close_window(cub3d);
+	if (!cub3d->start)
+		return (1);
 	else if (key == LEFT_ROW)
 	{
 		cub3d->map->player.angle += ROTATE_ANGLE;
@@ -52,6 +54,5 @@ int	press(int key, t_cub3d *cub3d)
 		cub3d->minimap *= -1;
 		render_map_2d(cub3d);
 	}
-	render_map_2d(cub3d);
 	return (0);
 }

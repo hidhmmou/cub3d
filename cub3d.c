@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 00:29:28 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:50:18 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 		cub3d->minimap *= -1;
 		render_map_2d(cub3d);
 	}
+	if (button == LEFT_CLICK && in_range(x, y, 506, 511, 813, 602) && !cub3d->start++)
+		render_map_2d(cub3d);
     return (0);
 }
 
@@ -84,9 +86,7 @@ int	main(int ac, char *av[])
 
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
-	t_img img;
-	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/let's_play.xpm", &img.width, &img.height);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 0, 0);
+	startup(cub3d);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_mouse_hook(cub3d->win, &mouse_press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
