@@ -70,4 +70,9 @@ big		:	$(NAME)
 push		:
 				@./push.sh
 
+backup		:
+				git add *
+				git commit -m "backup"
+				git push
+
 .PHONY		:	clean all fclean re
