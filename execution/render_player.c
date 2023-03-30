@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 15:23:28 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:35:11 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void draw_wall(t_cub3d *cub3d)
 		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->ciel_color), ((HEIGHT / 2.0) - i) * 100.0 / (HEIGHT / 2.0)));
 	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
 	while (++i <= cub3d->draw->draw_end)
-		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(cub3d->draw->color, cub3d->draw->wall_height * 200 / HEIGHT));
+		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(cub3d->draw->color, cub3d->draw->wall_height * 100 / HEIGHT));
 	my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i--, 0);
 	while (++i < HEIGHT)
 		my_mlx_pixel_put(cub3d->img, cub3d->draw->x, i, shader(rgb_to_int(*cub3d->map->floor_color), ((HEIGHT / 2.0) + i - HEIGHT) * 100.0 / (HEIGHT / 2.0)));
@@ -87,7 +87,7 @@ void	cast_ray(t_cub3d *cub3d)
 	tmp[0] = pixel_x;
 	tmp[1] = pixel_y;
 	init_draw(cub3d);
-	while (++i < 4000)
+	while (++i < 2000)
 	{
 		pixel_x += cub3d->draw->increment_x;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
