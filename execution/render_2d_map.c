@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 02:45:10 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:09:25 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	mini_map(t_cub3d *cub3d)
 
 	i = 0;
 
+	img_transparent(cub3d, cub3d->img_2d);
 	if (cub3d->minimap > 0)
 		cub3d->map->minimap_size = SIZE_2D;
 	else

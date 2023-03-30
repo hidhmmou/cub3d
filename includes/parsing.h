@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 02:45:50 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:57:17 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define SPACE 49
 # define ESC 53
 # define CLOSE 17
+# define HORIZONTAL 1
+# define VERTICAL 2
 # define PI 3.14159265358979323846264338327950288
 # define WIDTH 1280
 # define HEIGHT 720
@@ -122,12 +124,31 @@ typedef struct s_img
 	int			height;
 }	t_img;
 
+enum e_texture
+{
+	NO,
+	SO,
+	WE,
+	EA
+};
+
+enum e_key
+{
+	W,
+	A,
+	S,
+	D,
+	LEFT,
+	RIGHT,
+};
+
 typedef struct s_cub3d
 {
 	t_img		*img_2d;
 	t_map		*map;
 	t_draw		*draw;
 	t_img		*img;
+	int			*keys;
 	void		*mlx;
 	void		*win;
 	int			win_width;
@@ -178,4 +199,5 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		rotate(int key, t_cub3d *cub3d);
 float	to_radian(float angle);
 void	press_start(int button, int x, int y, t_cub3d *cub3d);
+void	get_wall_color(t_cub3d *cub3d, float y, float x);
 #endif

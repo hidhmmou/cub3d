@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 04:06:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:23:28 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,17 @@ void	cast_ray(t_cub3d *cub3d)
 	while (++i < 4000)
 	{
 		pixel_x += cub3d->draw->increment_x;
+		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
+		{
+			cub3d->map->player.direction = VERTICAL;
+			check_direction(cub3d, pixel_y, pixel_x, tmp);
+			break ;
+		}
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
 		{
-			check_direction(cub3d, pixel_y, pixel_x);
+			cub3d->map->player.direction = HORIZONTAL;
+			check_direction(cub3d, pixel_y, pixel_x, tmp);
 			break ;
 		}
 	}

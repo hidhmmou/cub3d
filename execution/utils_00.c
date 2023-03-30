@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 02:40:42 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:10:26 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,34 @@ void	get_wall_color(t_cub3d *cub3d, float y, float x)
 	int i;
 
 	i = 0;
-	if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 1) / SIZE]) && ++i)
-		cub3d->draw->color = 23211;
-	if (!is_wall(cub3d->map->square_map[(int)(y) / SIZE][(int)(x + 1) / SIZE]) && ++i)
+	if (cub3d->map->player.direction == NO)
+		cub3d->draw->color = 23212;
+	if (cub3d->map->player.direction == SO)
 		cub3d->draw->color = 54321;
-	if (!is_wall(cub3d->map->square_map[(int)(y + 1) / SIZE][(int)x / SIZE]) && ++i)
+	if (cub3d->map->player.direction == EA)
 		cub3d->draw->color = 3214;
-	if (!is_wall(cub3d->map->square_map[(int)(y - 1) / SIZE][(int)x / SIZE]) && ++i)
+	if (cub3d->map->player.direction == WE)
 		cub3d->draw->color = 34614;
-	if (i > 1)
-		cub3d->draw->color = 0;
 }
 
-void check_direction(t_cub3d *cub3d, float y, float x)
+void check_direction(t_cub3d *cub3d, float y, float x, double *tmp)
 {
-	if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 2) / SIZE]))
-		cub3d->map->player.direction = 2;
-	else if (!is_wall(cub3d->map->square_map[(int)(y) / SIZE][(int)(x + 2) / SIZE]))
-		cub3d->map->player.direction = 4;
-	else if (!is_wall(cub3d->map->square_map[(int)(y + 2) / SIZE][(int)x / SIZE]))
-		cub3d->map->player.direction = 1;
-	else if (!is_wall(cub3d->map->square_map[(int)(y - 2) / SIZE][(int)x / SIZE]))
-		cub3d->map->player.direction = 3;
+	if (cub3d->map->player.direction == VERTICAL && x - tmp[0] > 0)
+		cub3d->map->player.direction = EA;
+	if (cub3d->map->player.direction == VERTICAL && x - tmp[0] < 0)
+		cub3d->map->player.direction = WE;
+	if (cub3d->map->player.direction == HORIZONTAL && y - tmp[1] < 0)
+		cub3d->map->player.direction = NO;
+	if (cub3d->map->player.direction == HORIZONTAL && y - tmp[1] > 0)
+		cub3d->map->player.direction = SO;
+	//if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 2) / SIZE]))
+	//	cub3d->map->player.direction = 2;
+	//else if ()
+	//	cub3d->map->player.direction = 4;
+	//else if (!is_wall(cub3d->map->square_map[(int)(y + 2) / SIZE][(int)x / SIZE]))
+	//	cub3d->map->player.direction = 1;
+	//else if (!is_wall(cub3d->map->square_map[(int)(y - 2) / SIZE][(int)x / SIZE]))
+	//	cub3d->map->player.direction = 3;
 	get_wall_color(cub3d, y, x);
 }
 
@@ -60,7 +66,7 @@ void	cast_mid_ray(t_cub3d *cub3d)
 {
 	float	pixel_x;
 	float	pixel_y;
-	float	tmp[2];
+	double	tmp[2];
 
 	pixel_x = cub3d->map->player.x;
 	pixel_y = cub3d->map->player.y;
@@ -71,10 +77,17 @@ void	cast_mid_ray(t_cub3d *cub3d)
 	while (1)
 	{
 		pixel_x += cub3d->draw->increment_x;
+		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
+		{
+			cub3d->map->player.direction = VERTICAL;
+			check_direction(cub3d, pixel_y, pixel_x, tmp);
+			break ;
+		}
 		pixel_y += cub3d->draw->increment_y;
 		if (check_hit_wall(cub3d, pixel_y, pixel_x, SIZE))
 		{
-			check_direction(cub3d, pixel_y, pixel_x);
+			cub3d->map->player.direction = HORIZONTAL;
+			check_direction(cub3d, pixel_y, pixel_x, tmp);
 			break ;
 		}
 	}

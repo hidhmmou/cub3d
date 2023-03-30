@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 02:40:46 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:31:02 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	move_up(t_cub3d *cub3d);
 void	move_down(t_cub3d *cub3d);
 void	move_left(t_cub3d *cub3d);
 void	move_right(t_cub3d *cub3d);
-void    check_direction(t_cub3d *cub3d, float y, float x);
+void    check_direction(t_cub3d *cub3d, float y, float x, double *tmp);
 void    img_transparent(t_cub3d *cub3d, t_img *img);
 int     shader(int color, float distance);
 void    minimap(int button, int x, int y, t_cub3d *cub3d);
