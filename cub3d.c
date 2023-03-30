@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 18:49:24 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:24:01 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	executing(t_cub3d *cub3d)
 	cub3d->win_height = --cub3d->map->len * SIZE;
 	cub3d->win_width = --cub3d->map->max_len * SIZE;
 	cub3d->minimap = 1;
+	cub3d->mouse->shown = 1;
 	cub3d->map->minimap_size = SIZE_2D;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, WIDTH, HEIGHT, "Cub1337D");
@@ -57,23 +58,21 @@ void	executing(t_cub3d *cub3d)
 
 int mouse_move(int x, int y, t_cub3d *cub3d)
 {
-	static int i = 0;
-	//printf("x = %d, y = %d\n", x, y);
-	if (cub3d->mouse->x < 0 || cub3d->mouse->y < 0 || cub3d->mouse->x > WIDTH || cub3d->mouse->y > HEIGHT)
-		return(printf("out of window %d\n", i++));
-		//return (1);
+	if (!cub3d->start || cub3d->mouse->shown == 1)
+		return (1);
 	if (cub3d->mouse->x != x)
 	{
-		cub3d->map->player.angle += (x - cub3d->mouse->x) * 0.1;
+		cub3d->map->player.angle -= (x - cub3d->mouse->x) * 0.1;
 		cub3d->mouse->x = x;
+		if (cub3d->mouse->x >= WIDTH || cub3d->mouse->x <= 0)
+		{
+			mlx_mouse_move(cub3d->win, WIDTH / 2, HEIGHT / 2);
+			cub3d->mouse->x = WIDTH / 2;
+		}
+		cub3d->change = 1;
 	}
-	if (cub3d->mouse->y != y)
-	{
-		cub3d->map->player.angle += (y - cub3d->mouse->y) * 0.1;
-		cub3d->mouse->y = y;
-	}
-	
-	render_map_2d(cub3d);
+	else
+		cub3d->change = 0;
 	return (0);
 }
 

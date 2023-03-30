@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 18:44:12 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:20:32 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,36 @@ int release(int key, t_cub3d *cub3d)
 
 int	loop(t_cub3d *cub3d)
 {
-	int change;
-
-	change = 0;
-	if (cub3d->keys[LEFT] && ++change)
+	if (cub3d->keys[LEFT] && ++cub3d->change)
 		cub3d->map->player.angle += ROTATE_ANGLE;
-	if (cub3d->keys[RIGHT] && ++change)
+	if (cub3d->keys[RIGHT] && ++cub3d->change)
 		cub3d->map->player.angle -= ROTATE_ANGLE;
 	if (cub3d->keys[D])
-		change = move_right(cub3d);
+		cub3d->change = move_right(cub3d);
 	if (cub3d->keys[A])
-		change = move_left(cub3d);
+		cub3d->change = move_left(cub3d);
 	if (cub3d->keys[S])
-		change = move_down(cub3d);
+		cub3d->change = move_down(cub3d);
 	if (cub3d->keys[W])
-		change = move_up(cub3d);
-	if (change)
+		cub3d->change = move_up(cub3d);
+	if (cub3d->change)
+	{
+		cub3d->change = 0;
 		render_map_2d(cub3d);
+	}
 	return (1);
+}
+
+void	show_hide_mouse(t_cub3d *cub3d)
+{
+	cub3d->mouse->shown *= -1;
+	if (cub3d->mouse->shown == -1)
+	{
+		mlx_mouse_hide();
+		mlx_mouse_move(cub3d->win, WIDTH / 2, HEIGHT / 2);
+	}
+	else
+		mlx_mouse_show();
 }
 
 int	press(int key, t_cub3d *cub3d)
@@ -90,6 +102,8 @@ int	press(int key, t_cub3d *cub3d)
 		cub3d->minimap *= -1;
 		render_map_2d(cub3d);
 	}
+	else if (key == CTRL)
+		show_hide_mouse(cub3d);
 	return (0);
 }
 
@@ -106,4 +120,5 @@ int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 
 //put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
 //put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
+
 	

@@ -4,6 +4,7 @@ FLAGS       =   -lmlx -framework OpenGL -framework AppKit
 CC			=	cc
 OBJ			=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 OBJDIR		=	.objfiles
+MLX			=	mlx/libmlx.a
 LIBFT		=	libft/libft.a
 RED			=	\033[1;31m
 GREEN		=	\033[1;32m
@@ -28,7 +29,7 @@ HEADER		=	$(addprefix includes/, $(HEADERS))
 all			:	$(NAME)
 	
 $(NAME)		:	$(LIBFT) $(OBJ)
-				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS) $(CFLAGS)
+				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(MLX) $(FLAGS) $(CFLAGS) -I mlx/mlx.h
 				@echo "$(BLUE)cub3d$(GREEN)\r\t\t\t compiled$(RESET)"
 
 $(LIBFT)	:

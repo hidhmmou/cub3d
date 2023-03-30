@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 17:43:26 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:04:29 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,8 @@ int     mouse_press(int button, int x, int y, t_cub3d *cub3d);
 int     in_range(int x, int y, int x1, int y1, int x2, int y2);
 void    press_start(int button, int x, int y, t_cub3d *cub3d);
 void	put_xpm_file_to_window(t_cub3d *cub3d, char *path, int x, int y);
+int     mlx_mouse_hide();
+int     mlx_mouse_show();
+int     mlx_mouse_move();
+
 #endif

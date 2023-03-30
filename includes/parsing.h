@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 18:25:16 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:47:22 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define LEFT_ROW 123
 # define TAB 48
 # define SPACE 49
+# define CTRL 256
 # define ESC 53
 # define CLOSE 17
 # define HORIZONTAL 1
@@ -147,7 +148,7 @@ typedef struct t_mouse
 {
 	int		x;
 	int		y;
-	int		click;
+	int		shown;
 }	t_mouse;
 
 typedef struct s_cub3d
@@ -165,6 +166,7 @@ typedef struct s_cub3d
 	int			start;
 	int			minimap;
 	int 		shoot;
+	int 		change;
 }	t_cub3d;
 
 
@@ -211,4 +213,5 @@ void	press_start(int button, int x, int y, t_cub3d *cub3d);
 void	get_wall_color(t_cub3d *cub3d, float y, float x);
 int		release(int key, t_cub3d *cub3d);
 int		loop(t_cub3d *cub3d);
+int		mouse_move(int x, int y, t_cub3d *cub3d);
 #endif
