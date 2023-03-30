@@ -5,12 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 14:13:04 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/27 01:39:15 by ramhouch         ###   ########.fr       */
+/*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
+/*   Updated: 2023/03/30 04:14:19 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
+
+void	init(t_cub3d *cub3d)
+{
+	if (ON2D)
+	{
+		cub3d->mlx = mlx_init();
+		cub3d->win = mlx_new_window(cub3d->mlx, \
+		(ft_strlen(cub3d->map->square_map[0]) - 1) * SIZE, \
+		len_double(cub3d->map->square_map) * SIZE, "Cub3d");
+		cub3d->img.img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
+		cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, &cub3d->img.bits_per_pixel, &cub3d->img.line_length, &cub3d->img.endian);
+	}
+	if (ON3D)
+	{
+		cub3d->mlx3d = mlx_init();
+		cub3d->win3d = mlx_new_window(cub3d->mlx3d, WIDTH, HEIGHT, "Cub3d");
+		cub3d->img3d.img = mlx_new_image(cub3d->mlx3d, WIDTH, HEIGHT);
+		cub3d->img3d.addr = mlx_get_data_addr(cub3d->img3d.img, &cub3d->img3d.bits_per_pixel, &cub3d->img3d.line_length, &cub3d->img3d.endian);
+	}
+}
 
 int	get_color(char *text)
 {

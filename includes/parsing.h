@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 03:55:39 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:41:05 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_cub3d
 	void		*win3d;
 	t_data		img;
 	t_data		img3d;
-	int			inter;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
