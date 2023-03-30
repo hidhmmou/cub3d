@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 01:09:15 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:40:46 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	move_right(t_cub3d *cub3d);
 void    check_direction(t_cub3d *cub3d, float y, float x);
 void    img_transparent(t_cub3d *cub3d, t_img *img);
 int     shader(int color, float distance);
-void    startup(t_cub3d *cub3d);
 void    minimap(int button, int x, int y, t_cub3d *cub3d);
 int     mouse_press(int button, int x, int y, t_cub3d *cub3d);
 int     in_range(int x, int y, int x1, int y1, int x2, int y2);
 void    press_start(int button, int x, int y, t_cub3d *cub3d);
+void	put_xpm_file_to_window(t_cub3d *cub3d, char *path, int x, int y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:04:19 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:43:58 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int ac, char *av[])
 
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
-	startup(cub3d);
+	put_xpm_file_to_window(cub3d, "textures/intro.xpm", 0, 0);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_mouse_hook(cub3d->win, &mouse_press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);

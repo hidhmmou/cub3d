@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:22:35 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 04:07:06 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,16 @@ int	press(int key, t_cub3d *cub3d)
 int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 {
 	//printf("button = %d, x = %d, y = %d\n", button, x, y);
-	minimap(button, x, y, cub3d);
 	press_start(button, x, y, cub3d);
+	if (!cub3d->start)
+		return (1);
+	minimap(button, x, y, cub3d);
     return (0);
 }
+	
+	
+	
+	
+	//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
+	//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
+	

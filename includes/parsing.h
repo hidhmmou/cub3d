@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:19:27 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:45:50 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_cub3d
 	int			win_height;
 	int			start;
 	int			minimap;
+	int 		shoot;
 }	t_cub3d;
 
 

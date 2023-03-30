@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:09:24 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:40:42 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,18 @@ float to_radian(float angle)
 	return (angle * (M_PI / 180));
 }
 
-void startup(t_cub3d *cub3d)
-{
-	t_img img;
-	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/intro.xpm", &img.width, &img.height);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 0, 0);
-	mlx_destroy_image(cub3d->mlx, img.img);
-}
-
 int in_range(int x, int y, int x1, int y1, int x2, int y2)
 {
 	if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
 		return (1);
 	return (0);
+}
+
+void	put_xpm_file_to_window(t_cub3d *cub3d, char *path, int x, int y)
+{
+	t_img img;
+
+	img.img = mlx_xpm_file_to_image(cub3d->mlx, path, &img.width, &img.height);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, x, y);
+	mlx_destroy_image(cub3d->mlx, img.img);
 }
