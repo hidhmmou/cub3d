@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:42:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 16:10:26 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:21:35 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 void	get_wall_color(t_cub3d *cub3d, float y, float x)
 {
-	int i;
-
-	i = 0;
 	if (cub3d->map->player.direction == NO)
 		cub3d->draw->color = 23212;
 	if (cub3d->map->player.direction == SO)
@@ -38,14 +35,6 @@ void check_direction(t_cub3d *cub3d, float y, float x, double *tmp)
 		cub3d->map->player.direction = NO;
 	if (cub3d->map->player.direction == HORIZONTAL && y - tmp[1] > 0)
 		cub3d->map->player.direction = SO;
-	//if (!is_wall(cub3d->map->square_map[(int)y / SIZE][(int)(x - 2) / SIZE]))
-	//	cub3d->map->player.direction = 2;
-	//else if ()
-	//	cub3d->map->player.direction = 4;
-	//else if (!is_wall(cub3d->map->square_map[(int)(y + 2) / SIZE][(int)x / SIZE]))
-	//	cub3d->map->player.direction = 1;
-	//else if (!is_wall(cub3d->map->square_map[(int)(y - 2) / SIZE][(int)x / SIZE]))
-	//	cub3d->map->player.direction = 3;
 	get_wall_color(cub3d, y, x);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 17:43:43 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:19:30 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 	minimap(button, x, y, cub3d);
     return (0);
 }
-	
-	
-	
-	
-	//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
-	//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
+
+//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
+//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
 	

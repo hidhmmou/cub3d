@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 17:36:55 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:19:11 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_draw
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 	double 		angle;
 	double		direction;
 }	t_player;
