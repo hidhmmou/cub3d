@@ -17,7 +17,7 @@ PARSING		=	check_map.c get_next_line.c utils_00.c utils_01.c\
 				get_map.c splite_color.c utils_03.c
 
 EXEC		=	press.c render_2d_map.c render_player.c utils_00.c\
-				movements.c
+				movements.c hooks.c
 SRC 		=	cub3d.c $(EXEC_SRC) $(PARSE_SRC)
 HEADERS		=	parsing.h
 EXEC_SRC	=	$(addprefix execution/, $(EXEC))

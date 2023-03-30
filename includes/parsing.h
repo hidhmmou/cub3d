@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 00:33:49 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:09:49 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,4 +175,5 @@ int		is_wall(char c);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		rotate(int key, t_cub3d *cub3d);
 float	to_radian(float angle);
+void	press_start(int button, int x, int y, t_cub3d *cub3d);
 #endif
