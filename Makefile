@@ -71,6 +71,7 @@ push		:
 				@./push.sh
 
 backup		:
+				make fclean
 				git add *
 				git commit -m "backup"
 				git push
