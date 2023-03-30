@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 08:10:34 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:47:22 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
 # define NUM_RAYS WIDTH
-# define SPEED 10
+# define SPEED 30
 # define RET_ANGLE 5
-# define SIZE 32
-# define ON2D 1
-# define ON3D 0
+# define SIZE 100
+# define ON2D 0
+# define ON3D 1
 
 void    init(t_cub3d *cub3d);
 int     close_window3d(t_cub3d *cub3d);
@@ -36,5 +36,12 @@ void	up(t_cub3d *cub3d, int x, int y);
 void	down(t_cub3d *cub3d, int x, int y);
 void	left(t_cub3d *cub3d, int x, int y);
 void	right(t_cub3d *cub3d, int x, int y);
+int     inter(t_cub3d *cub3d);
+void	raycasting(t_cub3d *cub3d, int i);
+int     check_movements(t_cub3d *cub3d, int x, int y);
+void	up3d(t_cub3d *cub3d, int x, int y);
+void	down3d(t_cub3d *cub3d, int x, int y);
+void	left3d(t_cub3d *cub3d, int x, int y);
+void	right3d(t_cub3d *cub3d, int x, int y);
 
 #endif

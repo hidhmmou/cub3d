@@ -1,40 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render3d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 21:46:32 by ramhouch         ###   ########.fr       */
+/*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
+/*   Updated: 2023/03/30 22:56:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
 
-static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
-{
-	int	i;
-	int	j;
-	int	c;
-
-	i = 0;
-	while (i < SIZE && color)
-	{
-		j = 0;
-		if (i == SIZE - 1)
-			color = get_color("0,130,0");
-		while (j < SIZE)
-		{
-			c = color;
-			if (j == 0)
-				c = get_color("0,130,0");
-			my_mlx_pixel_put(&cub3d->img, x + i,  y + j, c);
-			j++;
-		}
-		i++;
-	}
-}
 static int	help_draw_line(t_cub3d *cub3d)
 {
 	if (cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
@@ -76,56 +53,57 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 	cub3d->draw.y = cub3d->map->player.y;
 	while (1)
 	{
-		my_mlx_pixel_put(&cub3d->img, cub3d->draw.x, cub3d->draw.y, 0xFF0000);
 		cub3d->draw.x -= cub3d->draw.increment_x;
 		cub3d->draw.y -= cub3d->draw.increment_y;
 		if (help_draw_line(cub3d))
 			break ;
 	}
+	cub3d->draw.distance = sqrt(pow(cub3d->draw.x - cub3d->map->player.x, 2) + pow(cub3d->draw.y - cub3d->map->player.y, 2)) * cos((angle - cub3d->map->player.angle) * PI / 180);
+}
+static int	right_color(t_cub3d *cub3d, int i)
+{
+	if (i == 1)
+		return (cub3d->colors.e);
+	if (i == 2)
+		return (cub3d->colors.w);
+	if (i == 3)
+		return (cub3d->colors.s);
+	if (i == 4)
+		return (cub3d->colors.n);
+	return (0);
+}
+void draw_wall(t_cub3d *cub3d, int i)
+{
+	int	y;
+
+	y = 0;
+	while (y < (HEIGHT - cub3d->draw.wall_height) / 2)
+		my_mlx_pixel_put(&cub3d->img3d, i, y++, rgb_to_int(*(cub3d->map->ciel_color)));
+	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
+		my_mlx_pixel_put(&cub3d->img3d, i, y++, cub3d->draw.color);
+	while (y < HEIGHT)
+		my_mlx_pixel_put(&cub3d->img3d, i, y++, rgb_to_int(*(cub3d->map->floor_color)));
 }
 
-static void	render_player(t_cub3d *cub3d)
+void	raycasting(t_cub3d *cub3d, int i)
 {
 	float	angel_size;
 	float	start;
-	int		i;
+	float	a;
+	float	b;
 
 	angel_size = 60.0 / WIDTH;
 	start = cub3d->map->player.angle - 30;
-	i = 0;
 	while (i <= WIDTH)
 	{
 		draw_line(cub3d, start);
+		a = ((float)SIZE / cub3d->draw.distance);
+		b = ((WIDTH / 2) / tan((VEW_ANGLE / 2) * PI / 180));
+		cub3d->draw.wall_height = a * b;
+		cub3d->draw.color = right_color(cub3d, inter(cub3d));
+		draw_wall(cub3d, i);
 		start += angel_size;
 		i++;
 	}
-}
-
-void	render_map(t_cub3d *cub3d, int x, int y, int i)
-{
-	int		j;
-	int		color;
-	char	**str;
-
-	str = cub3d->map->square_map;
-	mlx_clear_window(cub3d->mlx, cub3d->win);
-	while (str[i])
-	{
-		j = 0;
-		x = 0;
-		while (str[i][j])
-		{
-			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
-				color = 0;
-			else
-				color = get_color("210, 180, 222");
-			put_pixel(cub3d, x, y, color);
-			j++;
-			x += SIZE;
-		}
-		i++;
-		y += SIZE;
-	}
-	render_player(cub3d);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img3d.img, 0, 0);
 }
