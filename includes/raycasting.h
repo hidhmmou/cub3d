@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 04:54:30 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 05:25:02 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ int	    close_window2d(t_cub3d *cub3d);
 int     get_color(char *text);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_map(t_cub3d *cub3d, int x, int y, int i);
+void	up(t_cub3d *cub3d, int x, int y);
+void	down(t_cub3d *cub3d, int x, int y);
+void	left(t_cub3d *cub3d, int x, int y);
+void	right(t_cub3d *cub3d, int x, int y);
+
 #endif
