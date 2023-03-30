@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 03:41:05 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 05:00:57 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_draw
+{
+	int		dx;
+	int		dy;
+	float	increment_x;
+	float	increment_y;
+	float	x;
+	float	y;
+	float	distance;
+	float	wall_height;
+	int		color;
+	
+}	t_draw;
+
 typedef struct s_cub3d
 {
 	t_map		*map;
@@ -88,6 +102,7 @@ typedef struct s_cub3d
 	void		*win3d;
 	t_data		img;
 	t_data		img3d;
+	t_draw		draw;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 04:11:58 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 04:54:30 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # define NUM_RAYS WIDTH
 # define SPEED 10
 # define RET_ANGLE 5
-# define SIZE 32
-# define ON2D 0
-# define ON3D 1
+# define SIZE 64
+# define ON2D 1
+# define ON3D 0
 
 void    init(t_cub3d *cub3d);
 int     close_window3d(t_cub3d *cub3d);

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 04:14:19 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 04:53:58 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init(t_cub3d *cub3d)
 		cub3d->win = mlx_new_window(cub3d->mlx, \
 		(ft_strlen(cub3d->map->square_map[0]) - 1) * SIZE, \
 		len_double(cub3d->map->square_map) * SIZE, "Cub3d");
-		cub3d->img.img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
+		cub3d->img.img = mlx_new_image(cub3d->mlx, (ft_strlen(cub3d->map->square_map[0])) * SIZE, len_double(cub3d->map->square_map) * SIZE);
 		cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, &cub3d->img.bits_per_pixel, &cub3d->img.line_length, &cub3d->img.endian);
 	}
 	if (ON3D)
