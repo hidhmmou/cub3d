@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:13:33 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:22:35 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ int	close_window(t_cub3d *cub3d)
 
 int	press(int key, t_cub3d *cub3d)
 {
+	//printf("button = %d\n", key);
 	//mlx_destroy_image(cub3d->mlx, cub3d->img->img);
 	//mlx_destroy_image(cub3d->mlx, cub3d->img_2d->img);
 	//cub3d->img->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	//cub3d->img_2d->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	if (key == ESC)
 		close_window(cub3d);
+	if (key == SPACE)
+	{
+		cub3d->start++;
+		render_map_2d(cub3d);
+	}
 	if (!cub3d->start)
 		return (1);
 	else if (key == LEFT_ROW)

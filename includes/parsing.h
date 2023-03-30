@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 01:09:49 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:19:27 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define RIGHT_ROW 124
 # define LEFT_ROW 123
 # define TAB 48
+# define SPACE 49
 # define ESC 53
 # define CLOSE 17
 # define PI 3.14159265358979323846264338327950288
