@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 01:07:05 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:46:41 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,68 +16,70 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 {
 	int	i;
 	int	j;
+	int	c;
 
 	i = 0;
 	while (i < SIZE && color)
 	{
 		j = 0;
+		if (i == SIZE - 1)
+			color = get_color("0,130,0");
 		while (j < SIZE)
 		{
-			mlx_pixel_put(cub3d->mlx, cub3d->win, x + i, y + j, color);
+			c = color;
+			if (j == 0)
+				c = get_color("0,130,0");
+			my_mlx_pixel_put(&cub3d->img, x + i,  y + j, c);
 			j++;
 		}
 		i++;
 	}
 }
-
-static int	help_draw_line(t_cub3d *cub3d, float *increment2)
+static int	help_draw_line(t_cub3d *cub3d)
 {
-	if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
-			[(int)increment2[0] / SIZE] == '1')
+	if (cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+			[(int)cub3d->draw.x / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
-		[(int)increment2[0] / SIZE] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
-		[((int)increment2[0] + 1) / SIZE] == '1')
+	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == '1'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] + 1) / SIZE] \
-		[(int)increment2[0] / SIZE] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
-		[((int)increment2[0] + 1) / SIZE] == '1')
+	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == '1'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == '1')
 		return (1);
-	if (cub3d->map->square_map[((int)increment2[1] - 1) / SIZE] \
-		[(int)increment2[0] / SIZE] == '1'
-		&& cub3d->map->square_map[(int)increment2[1] / SIZE] \
-		[((int)increment2[0] + 1) / SIZE] == '1')
+	if (cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == '1'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == '1')
 		return (1);
 	return (0);
 }
 
-static void	draw_line(t_cub3d *cub3d, int dx, int dy, float angle)
+static void	draw_line(t_cub3d *cub3d, float angle)
 {
 	float	radians;
 	int		steps;
-	float	increment[2];
-	float	increment2[2];
 
 	radians = angle * PI / 180;
-	dx = 500 * cos(radians) * -1;
-	dy = 500 * sin(radians);
-	if (abs(dx) > abs(dy))
-		steps = abs(dx);
+	cub3d->draw.dx = 500 * cos(radians) * -1;
+	cub3d->draw.dy = 500 * sin(radians);
+	if (abs(cub3d->draw.dx) > abs(cub3d->draw.dy))
+		steps = abs(cub3d->draw.dx);
 	else
-		steps = abs(dy);
-	increment[0] = dx / (float)steps;
-	increment[1] = dy / (float)steps;
-	increment2[0] = cub3d->map->player.x;
-	increment2[1] = cub3d->map->player.y;
+		steps = abs(cub3d->draw.dy);
+	cub3d->draw.increment_x = cub3d->draw.dx / (float)steps;
+	cub3d->draw.increment_y = cub3d->draw.dy / (float)steps;
+	cub3d->draw.x = cub3d->map->player.x;
+	cub3d->draw.y = cub3d->map->player.y;
 	while (1)
 	{
-		mlx_pixel_put(cub3d->mlx, cub3d->win,
-			increment2[0], increment2[1], 0xFF0000);
-		increment2[0] -= increment[0];
-		increment2[1] -= increment[1];
-		if (help_draw_line(cub3d, increment2))
+		my_mlx_pixel_put(&cub3d->img, cub3d->draw.x, cub3d->draw.y, 0xFF0000);
+		cub3d->draw.x -= cub3d->draw.increment_x;
+		cub3d->draw.y -= cub3d->draw.increment_y;
+		if (help_draw_line(cub3d))
 			break ;
 	}
 }
@@ -93,7 +95,7 @@ static void	render_player(t_cub3d *cub3d)
 	i = 0;
 	while (i <= WIDTH)
 	{
-		draw_line(cub3d, 0, 0, start);
+		draw_line(cub3d, start);
 		start += angel_size;
 		i++;
 	}
@@ -113,7 +115,7 @@ void	render_map(t_cub3d *cub3d, int x, int y, int i)
 		x = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '1' || str[i][j] == ' ')
+			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
 				color = 0;
 			else
 				color = get_color("210, 180, 222");
@@ -125,4 +127,5 @@ void	render_map(t_cub3d *cub3d, int x, int y, int i)
 		y += SIZE;
 	}
 	render_player(cub3d);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
 }

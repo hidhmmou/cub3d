@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_surrounded.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:37:05 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/18 22:39:01 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:28:18 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	virus_floor(t_cub3d *cub3d, int x, int y)
 	map = cub3d->map->check_map;
 	if (map[x + 1] && in_set(map[x + 1][y], "0 "))
 		ft_func_helper(cub3d, x + 1, y);
-	if (x && map[x - 1] && in_set(map[x - 1][y], "0 "))
+	if (map[x - 1] && in_set(map[x - 1][y], "0 "))
 		ft_func_helper(cub3d, x - 1, y);
 	if (map[x] && in_set(map[x][y + 1], "0 "))
 		ft_func_helper(cub3d, x, y + 1);
-	if (map[x] && y && in_set(map[x][y - 1], "0 "))
+	if (map[x] && in_set(map[x][y - 1], "0 "))
 		ft_func_helper(cub3d, x, y - 1);
 	return ;
 }

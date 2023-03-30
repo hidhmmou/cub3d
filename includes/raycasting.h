@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 03:59:44 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 08:10:34 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "../includes/parsing.h"
 
 # define HEIGHT 720
-# define WIDTH 1080
+# define WIDTH 1280
 # define PI 3.14159265
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
@@ -23,21 +23,18 @@
 # define SPEED 10
 # define RET_ANGLE 5
 # define SIZE 32
-# define OFF 0
-# define COLLISIONS_SPEED 5
+# define ON2D 1
+# define ON3D 0
 
-int		close_window(t_cub3d *cub3d);
+void    init(t_cub3d *cub3d);
+int     close_window3d(t_cub3d *cub3d);
+int	    close_window2d(t_cub3d *cub3d);
+int     get_color(char *text);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_map(t_cub3d *cub3d, int x, int y, int i);
-int		get_color(char *text);
-void	up(t_cub3d *cub3d, int dx, int dy, int i);
-void	left(t_cub3d *cub3d, int dx, int dy, int i);
-void	right(t_cub3d *cub3d, int dx, int dy, int i);
-void	down(t_cub3d *cub3d, int dx, int dy, int i);
-void	wall_collisions(t_cub3d *cub3d, float *increment2);
-int		check_movements(t_cub3d *cub3d, int x, int y);
-int		no(t_cub3d *cub3d, int *i);
-void	render_fc(t_cub3d *cub3d);
-int		inter(t_cub3d *cub3d, float *increment2);
-void	raycasting(t_cub3d *cub3d);
-void	render(t_cub3d *cub3d);
+void	up(t_cub3d *cub3d, int x, int y);
+void	down(t_cub3d *cub3d, int x, int y);
+void	left(t_cub3d *cub3d, int x, int y);
+void	right(t_cub3d *cub3d, int x, int y);
+
 #endif

@@ -1,4 +1,5 @@
 #!/bin/bash
+make fclean
 echo "Enter commit message: "
 read commit_message
 echo "Are you sure you want to push your changes to GitHub? (y/n) "
