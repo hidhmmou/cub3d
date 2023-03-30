@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 18:27:24 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:29:28 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,29 @@ void	executing(t_cub3d *cub3d)
 	cub3d->img_2d->addr = mlx_get_data_addr(cub3d->img_2d->img, &cub3d->img_2d->bits_per_pixel, &cub3d->img_2d->line_length, &cub3d->img_2d->endian);
 }
 
+int in_range(int x, int y, int x1, int y1, int x2, int y2)
+{
+	if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
+		return (1);
+	return (0);
+}
+
+int mouse_press(int button, int x, int y, t_cub3d *cub3d)
+{
+	//printf("button = %d, x = %d, y = %d\n", button, x, y);
+	if (button == LEFT_CLICK && in_range(x, y, 0, 0, 200, 200) && cub3d->minimap > 0)
+	{
+		cub3d->minimap *= -1;
+		render_map_2d(cub3d);
+	}
+	else if (button == LEFT_CLICK && in_range(x, y, 37, 32, 106, 112) && cub3d->minimap < 0)
+	{
+		cub3d->minimap *= -1;
+		render_map_2d(cub3d);
+	}
+    return (0);
+}
+
 int	main(int ac, char *av[])
 {
 	t_cub3d	*cub3d;
@@ -65,6 +88,7 @@ int	main(int ac, char *av[])
 	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/let's_play.xpm", &img.width, &img.height);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 0, 0);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
+	mlx_mouse_hook(cub3d->win, &mouse_press, cub3d);
 	mlx_hook(cub3d->win, 17, 0, &close_window, cub3d);
 	mlx_loop(cub3d->mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 16:10:33 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:14:50 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	erase_minimap(t_cub3d *cub3d)
 
 void show_2d_map(t_cub3d *cub3d)
 {
+	t_img img;
 	int x;
 	int y;
 
@@ -138,6 +139,9 @@ void show_2d_map(t_cub3d *cub3d)
 	x = WIDTH / 2 - cub3d->map->minimap_size * cub3d->map->max_len / 2;
 	y = HEIGHT / 2 - cub3d->map->minimap_size * cub3d->map->len / 2;
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_2d->img, x, y);
+	img.img = mlx_xpm_file_to_image(cub3d->mlx, "textures/back.xpm", &img.width, &img.height);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, img.img, 32, 32);
+	mlx_destroy_image(cub3d->mlx, img.img);
 }
 
 void	render_player(t_cub3d *cub3d)
@@ -151,8 +155,5 @@ void	render_player(t_cub3d *cub3d)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
-	if (cub3d->minimap > 0)
-		show_2d_map(cub3d);
-	else
-		show_2d_map(cub3d);
+	show_2d_map(cub3d);
 }

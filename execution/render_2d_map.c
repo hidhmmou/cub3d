@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:42:34 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/28 17:20:34 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:17:48 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ void	mini_map(t_cub3d *cub3d)
 
 	i = 0;
 
+	if (cub3d->minimap > 0)
+		cub3d->map->minimap_size = SIZE_2D;
+	else
+		cub3d->map->minimap_size = MIN(WIDTH / cub3d->map->max_len, HEIGHT / cub3d->map->len);
 	render_background(cub3d);
 	cub3d->draw->ray_angle = cub3d->map->player.angle - 30;
 	while (++i <= WIDTH)

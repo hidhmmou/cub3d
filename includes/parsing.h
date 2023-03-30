@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/29 18:30:43 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:46:42 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@
 # define ROTATE_ANGLE 5
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 # define P 3.14159265
-# define SPEED 100
+# define SPEED 50
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 2
+# define MIDDLE_CLICK 3
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
 
 typedef struct s_color
 {
