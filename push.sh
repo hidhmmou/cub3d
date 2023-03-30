@@ -8,7 +8,7 @@ read confirm
 if [ "$confirm" == "y" ]; then
     git add .
     git commit -m "$commit_message"
-    git push
+    git push --set-upstream origin rachid
     echo "Changes pushed to GitHub."
 else
     echo "Push cancelled."
