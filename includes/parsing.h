@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 18:19:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:25:16 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,20 @@ enum e_key
 	TABB,
 };
 
+typedef struct t_mouse
+{
+	int		x;
+	int		y;
+	int		click;
+}	t_mouse;
+
 typedef struct s_cub3d
 {
 	t_img		*img_2d;
 	t_map		*map;
 	t_draw		*draw;
 	t_img		*img;
+	t_mouse		*mouse;
 	int			keys[7];
 	void		*mlx;
 	void		*win;
