@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 15:57:17 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:36:55 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ enum e_key
 	D,
 	LEFT,
 	RIGHT,
+	TABB,
 };
 
 typedef struct s_cub3d
@@ -148,7 +149,7 @@ typedef struct s_cub3d
 	t_map		*map;
 	t_draw		*draw;
 	t_img		*img;
-	int			*keys;
+	int			keys[7];
 	void		*mlx;
 	void		*win;
 	int			win_width;
@@ -200,4 +201,6 @@ int		rotate(int key, t_cub3d *cub3d);
 float	to_radian(float angle);
 void	press_start(int button, int x, int y, t_cub3d *cub3d);
 void	get_wall_color(t_cub3d *cub3d, float y, float x);
+int		release(int key, t_cub3d *cub3d);
+int		loop(t_cub3d *cub3d);
 #endif

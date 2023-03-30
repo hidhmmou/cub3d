@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 15:31:02 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:43:26 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void    put_player(t_cub3d *cub3d, float *tmp);
 void	cast_mid_ray(t_cub3d *cub3d);
 int     check_hit_wall(t_cub3d *cub3d, float pixel_y, float pixel_x, int size);
 void	init_draw(t_cub3d *cub3d);
-void	move_up(t_cub3d *cub3d);
-void	move_down(t_cub3d *cub3d);
-void	move_left(t_cub3d *cub3d);
-void	move_right(t_cub3d *cub3d);
+int 	move_up(t_cub3d *cub3d);
+int 	move_down(t_cub3d *cub3d);
+int 	move_left(t_cub3d *cub3d);
+int 	move_right(t_cub3d *cub3d);
 void    check_direction(t_cub3d *cub3d, float y, float x, double *tmp);
 void    img_transparent(t_cub3d *cub3d, t_img *img);
 int     shader(int color, float distance);

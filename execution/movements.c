@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/28 15:53:44 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:42:51 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int collusion_left_right(t_cub3d *cub3d, float *pixel_y, float *pixel_x)
 	return (0);
 }
 
-void	move_up(t_cub3d *cub3d)
+int		move_up(t_cub3d *cub3d)
 {
 	int		moves_nbr;
 	float	pixel_x;
@@ -61,12 +61,11 @@ void	move_up(t_cub3d *cub3d)
 		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
-	if (moves_nbr > 1)
-		render_map_2d(cub3d);
+	return (moves_nbr);
 }
 
 
-void	move_down(t_cub3d *cub3d)
+int		move_down(t_cub3d *cub3d)
 {
 	int		moves_nbr;
 	float	pixel_x;
@@ -86,12 +85,11 @@ void	move_down(t_cub3d *cub3d)
 		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
-	if (moves_nbr > 1)
-		render_map_2d(cub3d);
+	return (moves_nbr);
 }
 
 
-void	move_right(t_cub3d *cub3d)
+int	move_right(t_cub3d *cub3d)
 {
 	int		moves_nbr;
 	float	pixel_x;
@@ -111,11 +109,10 @@ void	move_right(t_cub3d *cub3d)
 		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
-	if (moves_nbr > 1)
-		render_map_2d(cub3d);
+	return (moves_nbr);
 }
 
-void	move_left(t_cub3d *cub3d)
+int		move_left(t_cub3d *cub3d)
 {
 	int		moves_nbr;
 	float	pixel_x;
@@ -135,6 +132,5 @@ void	move_left(t_cub3d *cub3d)
 		if (!check_hit_wall(cub3d, pixel_y, cub3d->map->player.x, SIZE))
 			cub3d->map->player.y = pixel_y;
 	}
-	if (moves_nbr > 1)
-		render_map_2d(cub3d);
+	return (moves_nbr);
 }
