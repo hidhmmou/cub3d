@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/29 04:06:16 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/29 07:03:12 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	help_movements(float angle, int *x, int *y)
 	return (steps);
 }
 
-void	up(t_cub3d *cub3d, int dx, int dy, int i)
+void	up3d(t_cub3d *cub3d, int dx, int dy, int i)
 {
 	int		steps;
 	float	increment[2];
@@ -61,10 +61,10 @@ void	up(t_cub3d *cub3d, int dx, int dy, int i)
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
-		render_map(cub3d, 0, 0, 0);
+		raycasting(cub3d, 0, 0);
 }
 
-void	down(t_cub3d *cub3d, int dx, int dy, int i)
+void	down3d(t_cub3d *cub3d, int dx, int dy, int i)
 {
 	int		steps;
 	float	increment[2];
@@ -94,10 +94,10 @@ void	down(t_cub3d *cub3d, int dx, int dy, int i)
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
-		render_map(cub3d, 0, 0, 0);
+		raycasting(cub3d, 0, 0);
 }
 
-void	left(t_cub3d *cub3d, int dx, int dy, int i)
+void	left3d(t_cub3d *cub3d, int dx, int dy, int i)
 {
 	int		steps;
 	float	increment[2];
@@ -127,10 +127,10 @@ void	left(t_cub3d *cub3d, int dx, int dy, int i)
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
-		render_map(cub3d, 0, 0, 0);
+		raycasting(cub3d, 0, 0);
 }
 
-void	right(t_cub3d *cub3d, int dx, int dy, int i)
+void	right3d(t_cub3d *cub3d, int dx, int dy, int i)
 {
 	int		steps;
 	float	increment[2];
@@ -160,5 +160,5 @@ void	right(t_cub3d *cub3d, int dx, int dy, int i)
 		cub3d->map->player.y = increment2[1];
 	}
 	if (i > 1)
-		render_map(cub3d, 0, 0, 0);
+		raycasting(cub3d, 0, 0);
 }

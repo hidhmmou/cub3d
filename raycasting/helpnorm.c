@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:53:07 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/25 20:57:31 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/29 02:35:21 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,4 @@ int	check_movements(t_cub3d *cub3d, int x, int y)
 	return (0);
 }
 
-int	no(t_cub3d *cub3d, int *i)
-{
-	*i = *i - 1;
-	cub3d->collisions = 0;
-	return (1);
-}
+

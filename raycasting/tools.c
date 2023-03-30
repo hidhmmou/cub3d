@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:13:04 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 01:05:10 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/27 01:39:15 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ int	get_color(char *text)
 	c = ft_atoi(rgb[2]);
 	color += c;
 	return (color);
+}
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }

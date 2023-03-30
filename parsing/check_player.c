@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/26 00:53:35 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:18:58 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	get_player(t_cub3d *cub3d, int x, int y, int *found)
 {
 	int	n;
 
-	cub3d->map->player.x = y * SIZE + SIZE / 2;
-	cub3d->map->player.y = x * SIZE + SIZE / 2;
+	cub3d->map->player.x = y * SIZE;
+	cub3d->map->player.y = x * SIZE;
 	if (cub3d->map->map[x][y] == 'N')
-		n = 270;
-	else if (cub3d->map->map[x][y] == 'S')
 		n = 90;
+	else if (cub3d->map->map[x][y] == 'S')
+		n = 270;
 	else if (cub3d->map->map[x][y] == 'E')
-		n = 180;
-	else
 		n = 0;
+	else
+		n = 180;
 	cub3d->map->player.angle = n;
 	(*found)++;
 }

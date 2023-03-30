@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/26 01:07:05 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:27:28 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 {
 	int	i;
 	int	j;
+	int	c;
 
 	i = 0;
 	while (i < SIZE && color)
 	{
 		j = 0;
+		if (i == SIZE - 1)
+			color = get_color("0,130,0");
 		while (j < SIZE)
 		{
-			mlx_pixel_put(cub3d->mlx, cub3d->win, x + i, y + j, color);
+			c = color;
+			if (j == 0)
+				c = get_color("0,130,0");
+			my_mlx_pixel_put(cub3d->img, x + i,  y + j, c);
 			j++;
 		}
 		i++;
 	}
 }
 
-static int	help_draw_line(t_cub3d *cub3d, float *increment2)
+int	help_draw_line(t_cub3d *cub3d, float *increment2)
 {
 	if (cub3d->map->square_map[(int)increment2[1] / SIZE] \
 			[(int)increment2[0] / SIZE] == '1')
@@ -73,8 +79,7 @@ static void	draw_line(t_cub3d *cub3d, int dx, int dy, float angle)
 	increment2[1] = cub3d->map->player.y;
 	while (1)
 	{
-		mlx_pixel_put(cub3d->mlx, cub3d->win,
-			increment2[0], increment2[1], 0xFF0000);
+		my_mlx_pixel_put(cub3d->img, increment2[0], increment2[1], 0xFF0000);
 		increment2[0] -= increment[0];
 		increment2[1] -= increment[1];
 		if (help_draw_line(cub3d, increment2))
@@ -91,7 +96,7 @@ static void	render_player(t_cub3d *cub3d)
 	angel_size = 60.0 / WIDTH;
 	start = cub3d->map->player.angle - 30;
 	i = 0;
-	while (i <= WIDTH)
+	while (i < WIDTH)
 	{
 		draw_line(cub3d, 0, 0, start);
 		start += angel_size;
@@ -125,4 +130,5 @@ void	render_map(t_cub3d *cub3d, int x, int y, int i)
 		y += SIZE;
 	}
 	render_player(cub3d);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img.img, 0, 0);
 }
