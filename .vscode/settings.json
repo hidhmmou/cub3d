@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "__mutex_base": "c",
-        "memory": "c"
+        "memory": "c",
+        "cmath": "c"
     }
 }

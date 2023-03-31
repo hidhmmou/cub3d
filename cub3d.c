@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/31 00:18:46 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 01:13:16 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	executing(t_cub3d *cub3d)
 	cub3d->img->addr = mlx_get_data_addr(cub3d->img->img, &cub3d->img->bits_per_pixel, &cub3d->img->line_length, &cub3d->img->endian);
 	cub3d->img_2d->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
 	cub3d->img_2d->addr = mlx_get_data_addr(cub3d->img_2d->img, &cub3d->img_2d->bits_per_pixel, &cub3d->img_2d->line_length, &cub3d->img_2d->endian);
+	cub3d->img_weapon->img = mlx_new_image(cub3d->mlx, WIDTH, HEIGHT);
+	cub3d->img_weapon->addr = mlx_get_data_addr(cub3d->img_weapon->img, &cub3d->img_weapon->bits_per_pixel, &cub3d->img_weapon->line_length, &cub3d->img_weapon->endian);
+	img_transparent(cub3d, cub3d->img_weapon);
 }
 
 int mouse_move(int x, int y, t_cub3d *cub3d)
@@ -85,7 +88,7 @@ int	main(int ac, char *av[])
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
 	put_xpm_file_to_window(cub3d, "textures/intro.xpm", 0, 0);
-	//put_xpm_file_to_window(cub3d, "00.xpm", WIDTH / 2 - 200, HEIGHT - 487);
+	//put_xpm_file_to_window(cub3d, "0.xpm", WIDTH / 2 - 200, HEIGHT - 487);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_hook(cub3d->win, 3, 0, &release, cub3d);
 	mlx_hook(cub3d->win, 6, 0, &mouse_move, cub3d);

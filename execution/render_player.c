@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:36:04 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 23:35:11 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 02:46:48 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,7 @@ void	render_player(t_cub3d *cub3d)
 		cast_ray(cub3d);
 	cast_mid_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
+	if (cub3d->weapon == 1)
+		mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img_weapon->img, WIDTH / 2 - WEAPON_W / 2, HEIGHT - WEAPON_H);
 	show_2d_map(cub3d);
 }

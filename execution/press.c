@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/31 00:31:29 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 02:39:58 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ void	show_hide_mouse(t_cub3d *cub3d)
 		mlx_mouse_show();
 }
 
+void	weapon(t_cub3d *cub3d)
+{
+	cub3d->weapon *= -1;
+	if (cub3d->weapon == 1)
+		cub3d->img_weapon->img = mlx_xpm_file_to_image(cub3d->mlx, "textures/gun/0.xpm", &cub3d->img_weapon->width, &cub3d->img_weapon->height);
+	else
+		mlx_destroy_image(cub3d->mlx, cub3d->img_weapon->img);
+	render_map_2d(cub3d);
+}
+
 int	press(int key, t_cub3d *cub3d)
 {
 	//printf("button = %d\n", key);
@@ -116,9 +126,51 @@ int	press(int key, t_cub3d *cub3d)
 		cub3d->map->player.angle += 180;
 		render_map_2d(cub3d);
 	}
+	else if (key == NUM_1)
+		weapon(cub3d);
 	return (0);
 }
 
+void animate(void *param)
+{
+	int i = 0;
+	char *tmp;
+	char *path;
+	t_cub3d *cub3d;
+	
+	cub3d = (t_cub3d *)param;
+	while (i <= 2)
+	{
+		++cub3d->change;
+		tmp = ft_strjoin("textures/gun/", ft_itoa(i));
+		path = ft_strjoin(tmp, ".xpm");
+		cub3d->img_weapon->img = mlx_xpm_file_to_image(cub3d->mlx, path, &cub3d->img_weapon->width, &cub3d->img_weapon->height);
+		i++;
+		usleep(50000);
+		free(tmp);
+		free(path);
+	}
+	while (i <= 5)
+	{
+		++cub3d->change;
+		tmp = ft_strjoin("textures/gun/", ft_itoa(i));
+		path = ft_strjoin(tmp, ".xpm");
+		cub3d->img_weapon->img = mlx_xpm_file_to_image(cub3d->mlx, path, &cub3d->img_weapon->width, &cub3d->img_weapon->height);
+		i++;
+		usleep(200000);
+		free(tmp);
+		free(path);
+	}
+	cub3d->img_weapon->img = mlx_xpm_file_to_image(cub3d->mlx, "textures/gun/0.xpm", &cub3d->img_weapon->width, &cub3d->img_weapon->height);
+	++cub3d->change;
+}
+
+void shoot(int button, int x, int y, t_cub3d *cub3d)
+{
+	pthread_t	thread;
+	if (button == LEFT_CLICK && cub3d->weapon == 1 && cub3d->mouse->shown == -1)
+		pthread_create(&thread, NULL, animate, cub3d);
+}
 
 int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 {
@@ -127,5 +179,6 @@ int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 	if (!cub3d->start)
 		return (1);
 	minimap(button, x, y, cub3d);
+	shoot(button, x, y, cub3d);
     return (0);
 }

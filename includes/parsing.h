@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/31 00:30:03 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 01:51:30 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -33,6 +34,7 @@
 # define LEFT_ROW 123
 # define TAB 48
 # define SPACE 49
+# define NUM_1 18
 # define CTRL 256
 # define SHIFT 257
 # define ESC 53
@@ -157,9 +159,10 @@ typedef struct t_mouse
 typedef struct s_cub3d
 {
 	t_img		*img_2d;
+	t_img		*img;
+	t_img		*img_weapon;
 	t_map		*map;
 	t_draw		*draw;
-	t_img		*img;
 	t_mouse		*mouse;
 	int			keys[10];
 	void		*mlx;
