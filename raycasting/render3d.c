@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 03:13:07 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 05:03:08 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,25 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 void draw_wall(t_cub3d *cub3d, int i)
 {
 	int	y;
+	int	m;
 
 	y = 0;
+	m = 0;
 	while (y < (HEIGHT - cub3d->draw.wall_height) / 2)
-		my_mlx_pixel_put(&cub3d->img3d, i, y++, rgb_to_int(*(cub3d->map->ciel_color)));
+	{
+		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, rgb_to_int(*(cub3d->map->ciel_color)), m++, 0));
+		y++;
+	}
 	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
-		my_mlx_pixel_put(&cub3d->img3d, i, y++, cub3d->draw.color);
+	{
+		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, 0, 0, 1));
+		y++;
+	}
 	while (y < HEIGHT)
-		my_mlx_pixel_put(&cub3d->img3d, i, y++, rgb_to_int(*(cub3d->map->floor_color)));
+	{
+		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, rgb_to_int(*(cub3d->map->floor_color)), m--, 0));
+		y++;
+	}
 }
 
 void	raycasting(t_cub3d *cub3d, int i)
@@ -91,6 +102,7 @@ void	raycasting(t_cub3d *cub3d, int i)
 	float	a;
 	float	b;
 
+	mlx_clear_window(cub3d->mlx3d, cub3d->win3d);
 	angel_size = 60.0 / WIDTH;
 	start = cub3d->map->player.angle - 30;
 	while (i <= WIDTH)

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:56:14 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 01:15:30 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 05:42:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,13 @@ void	up3d(t_cub3d *cub3d, int x, int y)
 		if (check_movements(cub3d, cub3d->draw.y, cub3d->draw.x))
 		{
 			if (!check_movements(cub3d, cub3d->draw.y, x))
+			{
 				cub3d->draw.x = x;
+			}
 			else if (!check_movements(cub3d, y, cub3d->draw.x))
+			{
 				cub3d->draw.y = y;
+			}
 			else
 				break ;
 		}
