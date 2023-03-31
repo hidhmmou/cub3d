@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 23:00:28 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 03:12:02 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void	init(t_cub3d *cub3d)
 		cub3d->colors.n = get_color("52, 152, 219");
 		cub3d->colors.s = get_color("192, 57, 43");
 		cub3d->colors.w = get_color("244, 208, 63");
+		cub3d->events.down_move = 0;
+		cub3d->events.esc = 0;
+		cub3d->events.left_move = 0;
+		cub3d->events.left_row = 0;
+		cub3d->events.right_move = 0;
+		cub3d->events.right_row = 0;
+		cub3d->events.up_move = 0;
+		cub3d->draw.old_color = 0;
 	}
 }
 

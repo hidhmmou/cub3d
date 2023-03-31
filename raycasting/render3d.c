@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/30 22:56:53 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 03:13:07 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static int	help_draw_line(t_cub3d *cub3d)
 		return (1);
 	return (0);
 }
+static int	is_wall(t_cub3d *cub3d ,int x, int y)
+{
+	if (cub3d->map->square_map[y / SIZE][x / SIZE] == '1')
+		return (1);
+	return (0);
+}
 
 static void	draw_line(t_cub3d *cub3d, float angle)
 {
@@ -53,6 +59,10 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 	cub3d->draw.y = cub3d->map->player.y;
 	while (1)
 	{
+		if (is_wall(cub3d, cub3d->draw.x - cub3d->draw.increment_x, cub3d->draw.y))
+			cub3d->draw.color = 1;
+		if (is_wall(cub3d, cub3d->draw.x, cub3d->draw.y - cub3d->draw.increment_y))
+			cub3d->draw.color = 3;
 		cub3d->draw.x -= cub3d->draw.increment_x;
 		cub3d->draw.y -= cub3d->draw.increment_y;
 		if (help_draw_line(cub3d))
@@ -60,18 +70,7 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 	}
 	cub3d->draw.distance = sqrt(pow(cub3d->draw.x - cub3d->map->player.x, 2) + pow(cub3d->draw.y - cub3d->map->player.y, 2)) * cos((angle - cub3d->map->player.angle) * PI / 180);
 }
-static int	right_color(t_cub3d *cub3d, int i)
-{
-	if (i == 1)
-		return (cub3d->colors.e);
-	if (i == 2)
-		return (cub3d->colors.w);
-	if (i == 3)
-		return (cub3d->colors.s);
-	if (i == 4)
-		return (cub3d->colors.n);
-	return (0);
-}
+
 void draw_wall(t_cub3d *cub3d, int i)
 {
 	int	y;
@@ -100,7 +99,10 @@ void	raycasting(t_cub3d *cub3d, int i)
 		a = ((float)SIZE / cub3d->draw.distance);
 		b = ((WIDTH / 2) / tan((VEW_ANGLE / 2) * PI / 180));
 		cub3d->draw.wall_height = a * b;
-		cub3d->draw.color = right_color(cub3d, inter(cub3d));
+		cub3d->draw.old_color = cub3d->draw.color;
+		cub3d->draw.color = inter(cub3d);
+		if (!cub3d->draw.color)
+			cub3d->draw.color = cub3d->draw.old_color;
 		draw_wall(cub3d, i);
 		start += angel_size;
 		i++;

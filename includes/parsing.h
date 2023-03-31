@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 21:23:30 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 03:11:47 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,24 @@
 # define ESC 53
 # define CLOSE 17
 
+
 typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_events
+{
+	int	right_move;
+	int	left_move;
+	int	down_move;
+	int	up_move;
+	int	right_row;
+	int	left_row;
+	int	esc;
+}	t_events;
 
 typedef struct s_player
 {
@@ -88,16 +100,16 @@ typedef struct	s_data {
 
 typedef struct s_draw
 {
-	int		dx;
-	int		dy;
-	float	increment_x;
-	float	increment_y;
-	float	x;
-	float	y;
-	float	distance;
-	float	wall_height;
-	int		color;
-	
+	int			dx;
+	int			dy;
+	float		increment_x;
+	float		increment_y;
+	float		x;
+	float		y;
+	float		distance;
+	float		wall_height;
+	int			color;
+	int			old_color;
 }	t_draw;
 
 typedef struct s_cub3d
@@ -111,6 +123,7 @@ typedef struct s_cub3d
 	t_data		img3d;
 	t_draw		draw;
 	t_colors	colors;
+	t_events	events;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
