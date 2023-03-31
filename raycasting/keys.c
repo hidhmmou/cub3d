@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 04:19:32 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 07:20:08 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,26 @@ int	action(t_cub3d *cub3d)
 		close_window3d(cub3d);
 	if (i > 1)
 		raycasting(cub3d, 0);
+	return (0);
+}
+int	mousemove(int x, int y, t_cub3d *cub3d)
+{
+	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
+	{
+		if (cub3d->last_m_p == -1)
+			cub3d->last_m_p = x;
+		if (cub3d->last_m_p - x < 0)
+		{
+			cub3d->map->player.angle += RET_ANGLE;
+			raycasting(cub3d, 0);
+			cub3d->last_m_p = x;
+		}
+		else if (cub3d->last_m_p - x > 0)
+		{
+			cub3d->map->player.angle -= RET_ANGLE;
+			raycasting(cub3d, 0);
+			cub3d->last_m_p = x;
+		}
+	}
 	return (0);
 }

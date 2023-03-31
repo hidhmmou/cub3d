@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 06:06:34 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 06:57:12 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int     action(t_cub3d *cub3d);
 int     plus_transp(t_cub3d *cub3d, int color, int y, int i);
 int     shader(int color, float percent);
 int     check_movements2(t_cub3d *cub3d, int x, int y);
+int     mousemove(int x, int y, t_cub3d *cub3d);
 
 #endif
