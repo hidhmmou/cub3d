@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 22:47:22 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:30:03 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define TAB 48
 # define SPACE 49
 # define CTRL 256
+# define SHIFT 257
 # define ESC 53
 # define CLOSE 17
 # define HORIZONTAL 1
@@ -55,7 +56,8 @@
 # define MIDDLE_CLICK 3
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-
+# define WEAPON_H 487
+# define WEAPON_W 450
 typedef struct s_color
 {
 	int	r;
@@ -142,6 +144,7 @@ enum e_key
 	LEFT,
 	RIGHT,
 	TABB,
+	SHIFTT,
 };
 
 typedef struct t_mouse
@@ -158,7 +161,7 @@ typedef struct s_cub3d
 	t_draw		*draw;
 	t_img		*img;
 	t_mouse		*mouse;
-	int			keys[7];
+	int			keys[10];
 	void		*mlx;
 	void		*win;
 	int			win_width;
@@ -167,6 +170,7 @@ typedef struct s_cub3d
 	int			minimap;
 	int 		shoot;
 	int 		change;
+	int 		weapon;
 }	t_cub3d;
 
 

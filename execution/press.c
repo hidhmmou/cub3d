@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:26:22 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 23:20:32 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:31:29 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	close_window(t_cub3d *cub3d)
 
 int release(int key, t_cub3d *cub3d)
 {
+	if (!cub3d->start)
+		return (0);
 	if (key == LEFT_ROW)
 		cub3d->keys[LEFT] = 0;
 	else if (key == RIGHT_ROW)
@@ -35,6 +37,11 @@ int release(int key, t_cub3d *cub3d)
 		cub3d->keys[S] = 0;
 	else if (key == UP_MOVE)
 		cub3d->keys[W] = 0;
+	else if (key == SHIFT)
+	{
+		cub3d->map->player.angle -= 180;
+		render_map_2d(cub3d);
+	}
 	return (1);
 }
 
@@ -104,6 +111,11 @@ int	press(int key, t_cub3d *cub3d)
 	}
 	else if (key == CTRL)
 		show_hide_mouse(cub3d);
+	else if (key == SHIFT)
+	{
+		cub3d->map->player.angle += 180;
+		render_map_2d(cub3d);
+	}
 	return (0);
 }
 
@@ -117,8 +129,3 @@ int mouse_press(int button, int x, int y, t_cub3d *cub3d)
 	minimap(button, x, y, cub3d);
     return (0);
 }
-
-//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
-//put_xpm_file_to_window(cub3d, "textures/gun.xpm", WIDTH / 2 - 150, HEIGHT - 303);
-
-	

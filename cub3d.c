@@ -6,7 +6,7 @@
 /*   By: hidhmmou <hidhmmou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 23:44:03 by hidhmmou         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:18:46 by hidhmmou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	executing(t_cub3d *cub3d)
 	cub3d->win_width = --cub3d->map->max_len * SIZE;
 	cub3d->minimap = 1;
 	cub3d->mouse->shown = 1;
+	cub3d->weapon = -1;
 	cub3d->map->minimap_size = SIZE_2D;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, WIDTH, HEIGHT, "Cub1337D");
@@ -84,6 +85,7 @@ int	main(int ac, char *av[])
 	parsing(&cub3d, av, ac);
 	executing(cub3d);
 	put_xpm_file_to_window(cub3d, "textures/intro.xpm", 0, 0);
+	//put_xpm_file_to_window(cub3d, "00.xpm", WIDTH / 2 - 200, HEIGHT - 487);
 	mlx_hook(cub3d->win, 2, 0, &press, cub3d);
 	mlx_hook(cub3d->win, 3, 0, &release, cub3d);
 	mlx_hook(cub3d->win, 6, 0, &mouse_move, cub3d);
