@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 18:44:35 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:07:51 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	init(t_cub3d *cub3d)
 {
+	int	a;
+	int	b;
+
 	if (ON2D)
 	{
 		cub3d->mlx = mlx_init();
@@ -42,8 +45,19 @@ void	init(t_cub3d *cub3d)
 		cub3d->events.right_move = 0;
 		cub3d->events.right_row = 0;
 		cub3d->events.up_move = 0;
+		cub3d->events.map = 0;
+		cub3d->mmap = 0;
 		cub3d->draw.old_color = 0;
 		cub3d->last_m_p = -1;
+		cub3d->imgs.minimap = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/minimap.xpm", &a, &b);
+		cub3d->bigmap.s = (float)WIDTH / (ft_strlen(cub3d->map->square_map[0]) * SIZE);
+		if (cub3d->bigmap.s > (float)HEIGHT / (len_double(cub3d->map->square_map) * SIZE))
+			cub3d->bigmap.s = (float)HEIGHT / (len_double(cub3d->map->square_map) * SIZE);
+		cub3d->bigmap.size = (float)SIZE * cub3d->bigmap.s;
+		cub3d->bigmap.with = (ft_strlen(cub3d->map->square_map[0]) - 1) * cub3d->bigmap.size - 10;
+		cub3d->bigmap.hight = len_double(cub3d->map->square_map) * cub3d->bigmap.size;
+		cub3d->bigmap.img.img = mlx_new_image(cub3d->mlx3d, cub3d->bigmap.with , cub3d->bigmap.hight);
+		cub3d->bigmap.img.addr = mlx_get_data_addr(cub3d->bigmap.img.img, &cub3d->bigmap.img.bits_per_pixel, &cub3d->bigmap.img.line_length, &cub3d->bigmap.img.endian);
 	}
 }
 
@@ -87,6 +101,15 @@ void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+void	my_mlx_pixel_put3(t_data *data, int *xy, int color, int	*limits)
+{
+	char	*dst;
+	if (xy[0] > limits[0] || xy[0] < 0 || xy[1] > limits[1] || xy[1] < 0)
+		return ;
+	dst = data->addr + (xy[1] * data->line_length + xy[0] * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 
 int	plus_transp(t_cub3d *cub3d, int color, int y, int i)
 {

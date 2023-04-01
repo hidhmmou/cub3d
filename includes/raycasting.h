@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 21:05:26 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 08:32:33 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
 # define NUM_RAYS WIDTH
-# define SPEED 20
-# define RET_ANGLE 4
+# define SPEED 30
+# define RET_ANGLE 5
 # define SIZE 100
 # define MINI_MAP_SIZE (SIZE / 5)
-# define MINI_MAP_SPEED ((MINI_MAP_SIZE / SIZE) * SPEED)
 # define ON2D 0
 # define ON3D 1
 
@@ -57,5 +56,7 @@ int     check_movements2(t_cub3d *cub3d, int x, int y);
 int     mousemove(int x, int y, t_cub3d *cub3d);
 void	my_mlx_pixel_put2(t_data *data, int x, int y, int color);
 void	render_mini_map(t_cub3d *cub3d, int x, int y, int i);
+void	my_mlx_pixel_put3(t_data *data, int *xy, int color, int	*limits);
+void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i);
 
 #endif

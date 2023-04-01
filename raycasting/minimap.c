@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:28:03 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/01 02:28:13 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 08:16:41 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	clear_img(t_cub3d *cub3d)
 		y = 0;
 		while (y < MINI_MAP_HEIGHT)
 		{
-			my_mlx_pixel_put2(&cub3d->img, i,  y, 0x0AFFFFFF);
+			my_mlx_pixel_put2(&cub3d->img, i,  y, get_color("229, 152, 102"));
 			y++;
 		}
 		i++;
@@ -95,6 +95,27 @@ void	make_it_circular(t_cub3d *cub3d)
 	
 }
 
+static void player(t_cub3d *cub3d, int x, int y, int radius)
+{
+	int	i;
+	int	j;
+
+	i = x - radius;
+    while (i < x + radius)
+	{
+		j = y - radius;
+        while (j < y + radius)
+		{
+            if ((i - x) * (i - x) + (j - y) * (j - y) <= radius * radius)
+			{
+				my_mlx_pixel_put2(&cub3d->img, i, j, 0xFF0000);
+            }
+			j++;
+        }
+		i++;
+    }
+}
+
 void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 {
 	int		j;
@@ -116,7 +137,7 @@ void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
 				color = get_color("100,100,100");
 			else
-				color = 0;
+				color = get_color("229, 152, 102");
 			put_pixel(cub3d, x, y, color, &first, &fx, &fy);
 			j++;
 			x += MINI_MAP_SIZE;
@@ -126,10 +147,8 @@ void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 	}
 	j = cub3d->map->player.x * (((float)MINI_MAP_SIZE / (float)SIZE));
 	color = cub3d->map->player.y * (((float)MINI_MAP_SIZE / (float)SIZE));
-	my_mlx_pixel_put2(&cub3d->img, j - fx,  color - fy, 0xFF0000);
-	my_mlx_pixel_put2(&cub3d->img, j - fx,  color - fy + 1, 0xFF0000);
-	my_mlx_pixel_put2(&cub3d->img, j - fx + 1,  color - fy, 0xFF0000);
-	my_mlx_pixel_put2(&cub3d->img, j - fx + 1,  color - fy + 1, 0xFF0000);
+	player(cub3d, j - fx, color - fy, 5);
 	make_it_circular(cub3d);
-	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img.img, WIDTH - MINI_MAP_WIDTH - 20, HEIGHT - MINI_MAP_HEIGHT - 20);
+	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->imgs.minimap, WIDTH - MINI_MAP_WIDTH - 57, HEIGHT - MINI_MAP_HEIGHT - 59);
+	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img.img, WIDTH - MINI_MAP_WIDTH - 30, HEIGHT - MINI_MAP_HEIGHT - 30);
 }

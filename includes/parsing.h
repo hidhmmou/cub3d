@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/31 07:02:18 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:03:48 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define LEFT_ROW 123
 # define ESC 53
 # define CLOSE 17
+# define MAP 46
 
 
 typedef struct s_color
@@ -51,6 +52,7 @@ typedef struct s_events
 	int	right_row;
 	int	left_row;
 	int	esc;
+	int	map;
 }	t_events;
 
 typedef struct s_player
@@ -98,6 +100,21 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_imgs
+{
+	void	*minimap;
+}	t_imgs;
+
+typedef struct s_bigmap
+{
+	float		s;
+	int			with;
+	int			hight;
+	int			size;
+	t_data		img;
+}	t_bigmap;
+
+
 typedef struct s_draw
 {
 	int			dx;
@@ -125,6 +142,9 @@ typedef struct s_cub3d
 	t_colors	colors;
 	t_events	events;
 	int			last_m_p;
+	t_imgs		imgs;
+	t_bigmap	bigmap;
+	int			mmap;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);

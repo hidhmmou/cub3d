@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 18:43:07 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:09:05 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ int	depress(int keycode, t_cub3d *cub3d)
 		cub3d->events.up_move = 0;
 	if (keycode == ESC)
 		cub3d->events.esc = 0;
+	if (keycode == MAP)
+	{
+		if (!cub3d->mmap)
+			cub3d->mmap = 1;
+		else
+			cub3d->mmap = 0;
+		cub3d->events.map = 1;
+	}
 	return (0);
 }
 int	action(t_cub3d *cub3d)
@@ -90,6 +98,8 @@ int	action(t_cub3d *cub3d)
 		cub3d->map->player.angle += RET_ANGLE;
 	if (cub3d->events.left_row && !cub3d->events.right_row && i++)
 		cub3d->map->player.angle -= RET_ANGLE;
+	if (cub3d->events.map && i++)
+		cub3d->events.map = 0;
 	if (cub3d->events.esc)
 		close_window3d(cub3d);
 	if (i > 1)
