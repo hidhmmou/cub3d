@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 06:57:12 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:05:26 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # define HEIGHT 720
 # define WIDTH 1280
+# define MINI_MAP_HEIGHT 200
+# define MINI_MAP_WIDTH 200
 # define PI 3.14159265
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
@@ -23,6 +25,8 @@
 # define SPEED 20
 # define RET_ANGLE 4
 # define SIZE 100
+# define MINI_MAP_SIZE (SIZE / 5)
+# define MINI_MAP_SPEED ((MINI_MAP_SIZE / SIZE) * SPEED)
 # define ON2D 0
 # define ON3D 1
 
@@ -51,5 +55,7 @@ int     plus_transp(t_cub3d *cub3d, int color, int y, int i);
 int     shader(int color, float percent);
 int     check_movements2(t_cub3d *cub3d, int x, int y);
 int     mousemove(int x, int y, t_cub3d *cub3d);
+void	my_mlx_pixel_put2(t_data *data, int x, int y, int color);
+void	render_mini_map(t_cub3d *cub3d, int x, int y, int i);
 
 #endif

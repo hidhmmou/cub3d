@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 07:03:19 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:44:35 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	init(t_cub3d *cub3d)
 		cub3d->mlx3d = mlx_init();
 		cub3d->img3d.img = mlx_new_image(cub3d->mlx3d, WIDTH, HEIGHT + 1);
 		cub3d->img3d.addr = mlx_get_data_addr(cub3d->img3d.img, &cub3d->img3d.bits_per_pixel, &cub3d->img3d.line_length, &cub3d->img3d.endian);
+		cub3d->img.img = mlx_new_image(cub3d->mlx3d, MINI_MAP_WIDTH, MINI_MAP_HEIGHT);
+		cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, &cub3d->img.bits_per_pixel, &cub3d->img.line_length, &cub3d->img.endian);
 		cub3d->win3d = mlx_new_window(cub3d->mlx3d, WIDTH, HEIGHT, "Cub3d");
 		cub3d->colors.e = get_color("46, 204, 113");
 		cub3d->colors.n = get_color("52, 152, 219");
@@ -71,6 +73,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	if (x > WIDTH || x < 0 || y > HEIGHT || y < 0)
+		return ;
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	my_mlx_pixel_put2(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x > MINI_MAP_WIDTH || x < 0 || y > MINI_MAP_HEIGHT || y < 0)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;

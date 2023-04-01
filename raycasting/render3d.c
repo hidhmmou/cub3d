@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 05:03:08 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:20:18 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void	raycasting(t_cub3d *cub3d, int i)
 		i++;
 	}
 	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img3d.img, 0, 0);
+	render_mini_map(cub3d, 0, 0, 0);
 }
