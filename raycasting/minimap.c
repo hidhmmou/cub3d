@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:28:03 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/01 02:00:03 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/01 02:28:13 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,36 @@ void	clear_img(t_cub3d *cub3d)
 		y = 0;
 		while (y < MINI_MAP_HEIGHT)
 		{
-			my_mlx_pixel_put2(&cub3d->img, i,  y, 0xA0FFFFFF);
+			my_mlx_pixel_put2(&cub3d->img, i,  y, 0x0AFFFFFF);
 			y++;
 		}
 		i++;
 	}
 }
+void	make_it_circular(t_cub3d *cub3d)
+{
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+
+	x = MINI_MAP_HEIGHT / 2;
+	y = MINI_MAP_HEIGHT / 2;
+	i = 0;
+	while (i < MINI_MAP_WIDTH)
+	{
+		j = 0;
+		while (j < MINI_MAP_HEIGHT)
+		{
+			if (sqrt(pow(x - i, 2) + pow(y - j, 2)) > (MINI_MAP_HEIGHT / 2))
+				my_mlx_pixel_put2(&cub3d->img, i,  j, 0xFFFFFFFF);
+			j++;
+		}
+		i++;
+	}
+	
+}
+
 void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 {
 	int		j;
@@ -106,5 +130,6 @@ void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 	my_mlx_pixel_put2(&cub3d->img, j - fx,  color - fy + 1, 0xFF0000);
 	my_mlx_pixel_put2(&cub3d->img, j - fx + 1,  color - fy, 0xFF0000);
 	my_mlx_pixel_put2(&cub3d->img, j - fx + 1,  color - fy + 1, 0xFF0000);
-	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img.img, 0, 0);
+	make_it_circular(cub3d);
+	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img.img, WIDTH - MINI_MAP_WIDTH - 20, HEIGHT - MINI_MAP_HEIGHT - 20);
 }
