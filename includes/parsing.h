@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/02 02:26:24 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:29:50 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define ESC 53
 # define CLOSE 17
 # define MAP 46
-
 
 typedef struct s_color
 {
@@ -92,7 +91,7 @@ typedef struct s_colors
 	int	w;
 }	t_colors;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -117,7 +116,6 @@ typedef struct s_bigmap
 	int			size;
 	t_data		img;
 }	t_bigmap;
-
 
 typedef struct s_draw
 {
