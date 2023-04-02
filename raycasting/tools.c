@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/01 09:07:51 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:45:51 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	init(t_cub3d *cub3d)
 		cub3d->draw.old_color = 0;
 		cub3d->last_m_p = -1;
 		cub3d->imgs.minimap = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/minimap.xpm", &a, &b);
+		cub3d->imgs.EA.img = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/EA.xpm", &a, &b);
+		cub3d->imgs.EA.addr = mlx_get_data_addr(cub3d->imgs.EA.img, &cub3d->imgs.EA.bits_per_pixel, &cub3d->imgs.EA.line_length, &cub3d->imgs.EA.endian);
+		cub3d->imgs.NO.img = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/NO.xpm", &a, &b);
+		cub3d->imgs.NO.addr = mlx_get_data_addr(cub3d->imgs.NO.img, &cub3d->imgs.NO.bits_per_pixel, &cub3d->imgs.NO.line_length, &cub3d->imgs.NO.endian);
+		cub3d->imgs.SO.img = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/SO.xpm", &a, &b);
+		cub3d->imgs.SO.addr = mlx_get_data_addr(cub3d->imgs.SO.img, &cub3d->imgs.SO.bits_per_pixel, &cub3d->imgs.SO.line_length, &cub3d->imgs.SO.endian);
+		cub3d->imgs.WE.img = mlx_xpm_file_to_image(cub3d->mlx3d, "textures/WE.xpm", &a, &b);
+		cub3d->imgs.WE.addr = mlx_get_data_addr(cub3d->imgs.WE.img, &cub3d->imgs.WE.bits_per_pixel, &cub3d->imgs.WE.line_length, &cub3d->imgs.WE.endian);
 		cub3d->bigmap.s = (float)WIDTH / (ft_strlen(cub3d->map->square_map[0]) * SIZE);
 		if (cub3d->bigmap.s > (float)HEIGHT / (len_double(cub3d->map->square_map) * SIZE))
 			cub3d->bigmap.s = (float)HEIGHT / (len_double(cub3d->map->square_map) * SIZE);
@@ -131,3 +139,12 @@ int	plus_transp(t_cub3d *cub3d, int color, int y, int i)
 	return (plus + color);
 }
 
+int	get_pexel_from_img(t_data *data, int x, int y)
+{
+	char	*dst;
+
+	if (x > SIZE || x < 0 || y > SIZE || y < 0)
+		return (-1);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	return (*(unsigned int*)dst);
+}

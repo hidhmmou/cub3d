@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/01 09:03:48 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 02:26:24 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ typedef struct	s_data {
 typedef struct s_imgs
 {
 	void	*minimap;
+	t_data	WE;
+	t_data	SO;
+	t_data	NO;
+	t_data	EA;
 }	t_imgs;
 
 typedef struct s_bigmap
@@ -127,6 +131,7 @@ typedef struct s_draw
 	float		wall_height;
 	int			color;
 	int			old_color;
+	int			d;
 }	t_draw;
 
 typedef struct s_cub3d

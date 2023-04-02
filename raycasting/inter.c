@@ -6,49 +6,32 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 03:09:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 02:58:50 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:45:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
 
-// static int	wall_collisions_x(t_cub3d *cub3d)
-// {
-// 	if (cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
-// 		[((int)cub3d->draw.x) / SIZE] != '1' && \
-// 		cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
-// 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
-// 	{
-// 		return (cub3d->colors.w);
-// 	}
-// 	else if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
-// 		[((int)cub3d->draw.x) / SIZE] != '1' && \
-// 		cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
-// 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
-// 	{
-// 		return (cub3d->colors.n);
-// 	}
-// 	return (0);
-// }
+int	get_y(t_cub3d *cub3d, int i, int y)
+{
+	float size;
+	int	m;
+	float	start;
+	float	end;
 
-// static int	wall_collisions_y(t_cub3d *cub3d)
-// {
-// 	if (cub3d->map->square_map[((int)cub3d->draw.y) / SIZE] \
-// 		[((int)cub3d->draw.x + 1) / SIZE] != '1' && \
-// 		cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
-// 		[((int)cub3d->draw.x - 1) / SIZE] == '1')
-// 	{
-// 		return (cub3d->colors.s);
-// 	}
-// 	else if (cub3d->map->square_map[((int)cub3d->draw.y) / SIZE] \
-// 		[((int)cub3d->draw.x - 1) / SIZE] != '1' && \
-// 		cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
-// 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
-// 	{
-// 		return (cub3d->colors.e);
-// 	}
-// 	return (0);
-// }
+	size = cub3d->draw.wall_height / SIZE;
+	start = 0;
+	end = size;
+	while (1)
+	{
+		if ((i >= start && i < end )|| end > cub3d->draw.wall_height)
+			break ;
+		y++;
+		start = end;
+		end += size;
+	}
+	return (y);
+}
 
 int	inter(t_cub3d *cub3d)
 {
@@ -65,7 +48,29 @@ int	inter(t_cub3d *cub3d)
 		return (cub3d->colors.e);
 	}
 	return (0);
-	// if (wall_collisions_y(cub3d))
-	// 	return (wall_collisions_y(cub3d));
-	// return (wall_collisions_x(cub3d));
 }
+
+int	get_pexel(t_cub3d *cub3d, int i)
+{
+	int	x;
+	int	y;
+
+	if (cub3d->draw.d == 1)
+	{
+		x = (int)cub3d->draw.y % SIZE;
+		y = get_y(cub3d, i, 0);
+		if (cub3d->map->player.x - cub3d->draw.x > 0)
+			return (get_pexel_from_img(&cub3d->imgs.EA, x, y));
+		return (get_pexel_from_img(&cub3d->imgs.NO, x, y));
+	}
+	if (cub3d->draw.d == 3)
+	{
+		x = (int)cub3d->draw.x % SIZE;
+		y = get_y(cub3d, i, 0);
+		if (cub3d->map->player.y - cub3d->draw.y > 0)
+			return (get_pexel_from_img(&cub3d->imgs.SO, x, y));
+		return (get_pexel_from_img(&cub3d->imgs.WE, x, y));
+	}
+	return (0);
+}
+
