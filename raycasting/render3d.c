@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 06:27:07 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:03:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,59 +34,48 @@ static int	help_draw_line(t_cub3d *cub3d)
 		return (1);
 	return (0);
 }
-static int	is_wall(t_cub3d *cub3d ,int x, int y)
-{
-	if (cub3d->map->square_map[y / SIZE][x / SIZE] == '1')
-		return (1);
-	return (0);
-}
 
 static void	draw_line(t_cub3d *cub3d, float angle)
 {
-	float	radians;
-	int		steps;
-
-	radians = angle * PI / 180;
-	cub3d->draw.dx = 500 * cos(radians) * -1;
-	cub3d->draw.dy = 500 * sin(radians);
-	if (abs(cub3d->draw.dx) > abs(cub3d->draw.dy))
-		steps = abs(cub3d->draw.dx);
-	else
-		steps = abs(cub3d->draw.dy);
-	cub3d->draw.increment_x = cub3d->draw.dx / (float)steps;
-	cub3d->draw.increment_y = cub3d->draw.dy / (float)steps;
-	cub3d->draw.x = cub3d->map->player.x;
-	cub3d->draw.y = cub3d->map->player.y;
+	help_draw_line2(cub3d, angle);
 	while (1)
 	{
-		if (is_wall(cub3d, cub3d->draw.x - cub3d->draw.increment_x, cub3d->draw.y))
+		if (is_wall(cub3d, cub3d->draw.x - \
+			cub3d->draw.increment_x, cub3d->draw.y))
 			cub3d->draw.d = 1;
-		if (is_wall(cub3d, cub3d->draw.x, cub3d->draw.y - cub3d->draw.increment_y))
+		if (is_wall(cub3d, cub3d->draw.x, cub3d->draw.y - \
+			cub3d->draw.increment_y))
 			cub3d->draw.d = 3;
 		cub3d->draw.x -= cub3d->draw.increment_x;
 		cub3d->draw.y -= cub3d->draw.increment_y;
 		if (help_draw_line(cub3d))
 			break ;
 	}
-	cub3d->draw.distance = sqrt(pow(cub3d->draw.x - cub3d->map->player.x, 2) + pow(cub3d->draw.y - cub3d->map->player.y, 2)) * cos((angle - cub3d->map->player.angle) * PI / 180);
+	cub3d->draw.distance = sqrt(pow(cub3d->draw.x - cub3d->map->player.x, 2) \
+		+ pow(cub3d->draw.y - cub3d->map->player.y, 2)) * \
+		cos((angle - cub3d->map->player.angle) * PI / 180);
 }
 
-void draw_wall(t_cub3d *cub3d, int i)
+void	help_draw_wall(t_cub3d *cub3d, int *m, int *n, int *my)
 {
-	int	y;
+	*m = 0;
+	*n = 0;
+	*my = 0;
+	if (cub3d->draw.wall_height > HEIGHT)
+		*my = (cub3d->draw.wall_height - HEIGHT) / 2;
+}
+
+void	draw_wall(t_cub3d *cub3d, int i, int y)
+{
 	int	m;
 	int	n;
 	int	my;
 
-	y = 0;
-	m = 0;
-	n = 0;
-	my = 0;
-	if (cub3d->draw.wall_height > HEIGHT)
-		my = (cub3d->draw.wall_height - HEIGHT) / 2;
+	help_draw_wall(cub3d, &m, &n, &my);
 	while (y < (HEIGHT - cub3d->draw.wall_height) / 2)
 	{
-		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, rgb_to_int(*(cub3d->map->ciel_color)), m++, 0));
+		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, \
+			rgb_to_int(*(cub3d->map->ciel_color)), m++, 0));
 		y++;
 	}
 	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
@@ -98,7 +87,8 @@ void draw_wall(t_cub3d *cub3d, int i)
 	}
 	while (y < HEIGHT)
 	{
-		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, rgb_to_int(*(cub3d->map->floor_color)), m--, 0));
+		my_mlx_pixel_put(&cub3d->img3d, i, y, \
+			plus_transp(cub3d, rgb_to_int(*(cub3d->map->floor_color)), m--, 0));
 		y++;
 	}
 }
@@ -120,7 +110,7 @@ void	raycasting(t_cub3d *cub3d, int i)
 		b = ((WIDTH / 2) / tan((VEW_ANGLE / 2) * PI / 180));
 		cub3d->draw.wall_height = a * b;
 		cub3d->draw.old_color = cub3d->draw.color;
-		draw_wall(cub3d, i);
+		draw_wall(cub3d, i, 0);
 		start += angel_size;
 		i++;
 	}
