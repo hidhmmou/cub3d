@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 08:01:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 07:26:59 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 20:37:03 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
 				color = 0x9F666666;
 			else
-				color = get_color("229, 152, 102");
+				color = 100 << 24 | get_color("229, 152, 102");
 			put_pixel(cub3d, x, y, color);
 			j++;
 			x += cub3d->bigmap.size;
