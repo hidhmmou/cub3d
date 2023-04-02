@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 08:01:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 06:52:56 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 07:26:59 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 	}
 }
 
-static void	player(t_cub3d *cub3d, int x, int y, int radius)
+static void	playerr(t_cub3d *cub3d, int x, int y, int radius)
 {
 	int	i;
 	int	j;
@@ -70,7 +70,7 @@ static void	help_render_mbigmap(t_cub3d *cub3d)
 
 	xp = cub3d->map->player.x * (((float)cub3d->bigmap.size / (float)SIZE));
 	yp = cub3d->map->player.y * (((float)cub3d->bigmap.size / (float)SIZE));
-	player(cub3d, xp, yp, 5);
+	playerr(cub3d, xp, yp, 5);
 	xp = (WIDTH - cub3d->bigmap.with) / 2;
 	yp = (HEIGHT - cub3d->bigmap.hight) / 2;
 	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, \
