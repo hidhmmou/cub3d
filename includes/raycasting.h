@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 05:42:13 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 05:58:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define TWO_PI 6.2831853
 # define VEW_ANGLE 60
 # define NUM_RAYS WIDTH
-# define SPEED 30
+# define SPEED 50
 # define RET_ANGLE 5
 # define SIZE 64
 # define MINI_MAP_SIZE (SIZE / 5)

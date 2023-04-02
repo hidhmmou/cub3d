@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 03:09:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 05:43:18 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:04:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_y(t_cub3d *cub3d, int i, int y, int my)
 	end = size;
 	while (1)
 	{
-		if (((i + my) >= start && (i + my) < end ) || end > cub3d->draw.wall_height)
+		if (((i + my) >= start && (i + my) < end ) || end > HEIGHT)
 			break ;
 		y++;
 		start = end;

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 05:54:38 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:27:07 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void draw_wall(t_cub3d *cub3d, int i)
 	}
 	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
 	{
-		my_mlx_pixel_put(&cub3d->img3d, i, y, get_pexel(cub3d, n, my));
+		cub3d->draw.color = get_pexel(cub3d, n, my);
+		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, 0, 0, 1));
 		y++;
 		n++;
 	}
