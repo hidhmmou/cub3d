@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 03:09:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 06:53:51 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:33:10 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ int	get_pexel(t_cub3d *cub3d, int i, int my)
 		x = (int)cub3d->draw.y % SIZE;
 		y = get_y(cub3d, i, 0, my);
 		if (cub3d->map->player.x - cub3d->draw.x > 0)
-			return (get_pexel_from_img(&cub3d->imgs.EA, x, y));
-		return (get_pexel_from_img(&cub3d->imgs.NO, x, y));
+			return (get_pexel_from_img(&cub3d->imgs.ea, x, y));
+		return (get_pexel_from_img(&cub3d->imgs.no, x, y));
 	}
 	if (cub3d->draw.d == 3)
 	{
 		x = (int)cub3d->draw.x % SIZE;
 		y = get_y(cub3d, i, 0, my);
 		if (cub3d->map->player.y - cub3d->draw.y > 0)
-			return (get_pexel_from_img(&cub3d->imgs.SO, x, y));
-		return (get_pexel_from_img(&cub3d->imgs.WE, x, y));
+			return (get_pexel_from_img(&cub3d->imgs.so, x, y));
+		return (get_pexel_from_img(&cub3d->imgs.we, x, y));
 	}
 	return (0);
 }

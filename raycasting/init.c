@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 08:25:39 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:32:36 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ static void	help_int2(t_cub3d *cub3d)
 	cub3d->last_m_p = -1;
 	cub3d->imgs.minimap = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/minimap.xpm", &a, &b);
-	cub3d->imgs.EA.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
+	cub3d->imgs.ea.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/EA.xpm", &a, &b);
-	cub3d->imgs.EA.addr = mlx_get_data_addr(cub3d->imgs.EA.img, \
-		&cub3d->imgs.EA.bits_per_pixel, &cub3d->imgs.EA.line_length, \
-		&cub3d->imgs.EA.endian);
-	cub3d->imgs.NO.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
+	cub3d->imgs.ea.addr = mlx_get_data_addr(cub3d->imgs.ea.img, \
+		&cub3d->imgs.ea.bits_per_pixel, &cub3d->imgs.ea.line_length, \
+		&cub3d->imgs.ea.endian);
+	cub3d->imgs.no.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/NO.xpm", &a, &b);
-	cub3d->imgs.NO.addr = mlx_get_data_addr(cub3d->imgs.NO.img, \
-		&cub3d->imgs.NO.bits_per_pixel, &cub3d->imgs.NO.line_length, \
-		&cub3d->imgs.NO.endian);
-	cub3d->imgs.SO.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
+	cub3d->imgs.no.addr = mlx_get_data_addr(cub3d->imgs.no.img, \
+		&cub3d->imgs.no.bits_per_pixel, &cub3d->imgs.no.line_length, \
+		&cub3d->imgs.no.endian);
+	cub3d->imgs.so.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/SO.xpm", &a, &b);
-	cub3d->imgs.SO.addr = mlx_get_data_addr(cub3d->imgs.SO.img, \
-		&cub3d->imgs.SO.bits_per_pixel, &cub3d->imgs.SO.line_length, \
-		&cub3d->imgs.SO.endian);
-	cub3d->imgs.WE.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
+	cub3d->imgs.so.addr = mlx_get_data_addr(cub3d->imgs.so.img, \
+		&cub3d->imgs.so.bits_per_pixel, &cub3d->imgs.so.line_length, \
+		&cub3d->imgs.so.endian);
+	cub3d->imgs.we.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/WE.xpm", &a, &b);
 }
 
@@ -72,9 +72,9 @@ static void	help_int3(t_cub3d *cub3d)
 {
 	help_int1(cub3d);
 	help_int2(cub3d);
-	cub3d->imgs.WE.addr = mlx_get_data_addr(cub3d->imgs.WE.img, \
-		&cub3d->imgs.WE.bits_per_pixel, &cub3d->imgs.WE.line_length, \
-		&cub3d->imgs.WE.endian);
+	cub3d->imgs.we.addr = mlx_get_data_addr(cub3d->imgs.we.img, \
+		&cub3d->imgs.we.bits_per_pixel, &cub3d->imgs.we.line_length, \
+		&cub3d->imgs.we.endian);
 	cub3d->bigmap.s = (float)WIDTH / \
 		(ft_strlen(cub3d->map->square_map[0]) * SIZE);
 	if (cub3d->bigmap.s > (float)HEIGHT / \

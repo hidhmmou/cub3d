@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/31 06:57:28 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:34:17 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	fill_content(av[1], *cub3d);
 	check_content(*cub3d);
 }
-
-
 
 int	main(int ac, char *av[])
 {

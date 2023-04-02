@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/02 08:29:50 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:30:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ typedef struct s_data {
 typedef struct s_imgs
 {
 	void	*minimap;
-	t_data	WE;
-	t_data	SO;
-	t_data	NO;
-	t_data	EA;
+	t_data	we;
+	t_data	so;
+	t_data	no;
+	t_data	ea;
 }	t_imgs;
 
 typedef struct s_bigmap
