@@ -15,7 +15,7 @@ PARSING		=	check_map.c get_next_line.c utils_00.c utils_01.c\
 				check_content.c check_texts_colors.c utils_02.c\
 				check_player.c check_surrounded.c check_floor_outside.c\
 				get_map.c
-RAY			=	tools.c press.c moves.c render.c render3d.c inter.c moves3d.c keys.c minimap.c bigmap.c helpminimap.c helpmoves.c
+RAY			=	tools.c press.c moves.c render.c render3d.c inter.c moves3d.c keys.c minimap.c bigmap.c helpminimap.c helpmoves.c init.c my_mlx_pixel.c
 SRC 		=	cub3d.c $(EXEC_SRC) $(PARSE_SRC)
 HEADERS		=	parsing.h
 EXEC_SRC	=	$(addprefix raycasting/, $(RAY))
