@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/01 09:09:05 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:54:47 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	key_hook(int keycode, t_cub3d *cub3d)
 		close_window2d(cub3d);
 	return (0);
 }
+
 int	press(int keycode, t_cub3d *cub3d)
 {
 	if (keycode == RIGHT_ROW)
@@ -81,6 +82,7 @@ int	depress(int keycode, t_cub3d *cub3d)
 	}
 	return (0);
 }
+
 int	action(t_cub3d *cub3d)
 {
 	int	i;
@@ -92,7 +94,7 @@ int	action(t_cub3d *cub3d)
 		up3d(cub3d, 0, 0);
 	if (cub3d->events.left_move && !cub3d->events.right_move && i++)
 		left3d(cub3d, 0, 0);
-	if (cub3d->events.right_move && !cub3d->events.left_move  && i++)
+	if (cub3d->events.right_move && !cub3d->events.left_move && i++)
 		right3d(cub3d, 0, 0);
 	if (cub3d->events.right_row && !cub3d->events.left_row && i++)
 		cub3d->map->player.angle += RET_ANGLE;
@@ -106,6 +108,7 @@ int	action(t_cub3d *cub3d)
 		raycasting(cub3d, 0);
 	return (0);
 }
+
 int	mousemove(int x, int y, t_cub3d *cub3d)
 {
 	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 08:01:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/01 08:40:21 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 06:52:56 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 		i++;
 	}
 }
-static void player(t_cub3d *cub3d, int x, int y, int radius)
+
+static void	player(t_cub3d *cub3d, int x, int y, int radius)
 {
 	int	i;
 	int	j;
@@ -45,21 +46,35 @@ static void player(t_cub3d *cub3d, int x, int y, int radius)
 	limits[0] = cub3d->bigmap.with;
 	limits[1] = cub3d->bigmap.hight;
 	i = x - radius;
-    while (i < x + radius)
+	while (i < x + radius)
 	{
 		j = y - radius;
-        while (j < y + radius)
+		while (j < y + radius)
 		{
-            if ((i - x) * (i - x) + (j - y) * (j - y) <= radius * radius)
+			if ((i - x) * (i - x) + (j - y) * (j - y) <= radius * radius)
 			{
 				xy[0] = i;
 				xy[1] = j;
 				my_mlx_pixel_put3(&cub3d->bigmap.img, xy, 0xFF0000, limits);
-            }
+			}
 			j++;
-        }
+		}
 		i++;
-    }
+	}
+}
+
+static void	help_render_mbigmap(t_cub3d *cub3d)
+{
+	int	xp;
+	int	yp;
+
+	xp = cub3d->map->player.x * (((float)cub3d->bigmap.size / (float)SIZE));
+	yp = cub3d->map->player.y * (((float)cub3d->bigmap.size / (float)SIZE));
+	player(cub3d, xp, yp, 5);
+	xp = (WIDTH - cub3d->bigmap.with) / 2;
+	yp = (HEIGHT - cub3d->bigmap.hight) / 2;
+	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, \
+		cub3d->bigmap.img.img, xp, yp);
 }
 
 void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
@@ -79,7 +94,7 @@ void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 		{
 			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
 				color = 0x9F666666;
-			else  
+			else
 				color = get_color("229, 152, 102");
 			put_pixel(cub3d, x, y, color);
 			j++;
@@ -88,10 +103,5 @@ void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 		i++;
 		y += cub3d->bigmap.size;
 	}
-	xp = cub3d->map->player.x * (((float)cub3d->bigmap.size / (float)SIZE));
-	yp = cub3d->map->player.y * (((float)cub3d->bigmap.size / (float)SIZE));
-	player(cub3d, xp, yp, 5);
-	xp = (WIDTH - cub3d->bigmap.with) / 2;
-	yp = (HEIGHT - cub3d->bigmap.hight) / 2;
-	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->bigmap.img.img, xp, yp);
+	help_render_mbigmap(cub3d);
 }
