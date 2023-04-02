@@ -6,12 +6,11 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:56:14 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/03/31 06:07:32 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/02 07:28:51 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
-
 
 static void	help_movements(float angle, t_cub3d *cub3d)
 {
@@ -22,7 +21,7 @@ static void	help_movements(float angle, t_cub3d *cub3d)
 	cub3d->draw.dx = 500 * cos(radians) * -1;
 	cub3d->draw.dy = 500 * sin(radians);
 	if (abs(cub3d->draw.dx) > abs(cub3d->draw.dy))
-		steps = abs(cub3d->draw.dx );
+		steps = abs(cub3d->draw.dx);
 	else
 		steps = abs(cub3d->draw.dy);
 	cub3d->draw.increment_x = cub3d->draw.dx / (float)steps;
