@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 05:48:42 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 07:08:16 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,12 @@ int	action(t_cub3d *cub3d)
 		cub3d->events.shoot2 = 0;
 	if (cub3d->events.closed && i++)
 		cub3d->events.closed = 0;
-	if (i > 1)
+	if (cub3d->events.start == 1)
+	{
+		cub3d->events.start = 2;
+		raycasting(cub3d, 0);
+	}
+	if (i > 1 && cub3d->events.start == 2)
 		raycasting(cub3d, 0);
 	return (0);
 }
@@ -153,13 +158,13 @@ int	mousemove(int x, int y, t_cub3d *cub3d)
 	{
 		if (cub3d->last_m_p == -1)
 			cub3d->last_m_p = x;
-		if (cub3d->last_m_p - x < 0)
+		if (cub3d->last_m_p - x < 0 && cub3d->events.start)
 		{
 			cub3d->map->player.angle += RET_ANGLE + RET_ANGLE;
 			raycasting(cub3d, 0);
 			cub3d->last_m_p = x;
 		}
-		else if (cub3d->last_m_p - x > 0)
+		else if (cub3d->last_m_p - x > 0 && cub3d->events.start)
 		{
 			cub3d->map->player.angle -= RET_ANGLE + RET_ANGLE;
 			raycasting(cub3d, 0);
@@ -170,6 +175,11 @@ int	mousemove(int x, int y, t_cub3d *cub3d)
 }
 int	mouseclick(int	butt, int x, int y, t_cub3d *cub3d)
 {
+	if (x >= 460 && x <= 811 && y >= 445 && y <= 592)
+	{
+		system("afplay sounds/click.mp3&");
+		cub3d->events.start = 1;
+	}
 	if (butt == 3)
 	{
 		system("afplay sounds/popup.mp3&");

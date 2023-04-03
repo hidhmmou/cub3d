@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 05:19:24 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 06:52:11 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_events
 	int		shoot2;
 	void*	old_img;
 	int		closed;
+	int		start;
 }	t_events;
 
 typedef struct s_player
@@ -107,6 +108,7 @@ typedef struct s_data {
 typedef struct s_imgs
 {
 	void	*minimap;
+	void	*start;
 	t_data	we;
 	t_data	so;
 	t_data	no;
