@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 20:29:50 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:47:36 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,17 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 		cos((angle - cub3d->map->player.angle) * PI / 180);
 }
 
-void	help_draw_wall(t_cub3d *cub3d, int *m, int *n, int *my)
+float	help_draw_wall(t_cub3d *cub3d, int *m, int *n, int *my)
 {
+	float	size;
+
+	size = cub3d->draw.wall_height / SIZE;
 	*m = 0;
 	*n = 0;
 	*my = 0;
 	if (cub3d->draw.wall_height > HEIGHT)
 		*my = (cub3d->draw.wall_height - HEIGHT) / 2;
+	return (size);
 }
 
 void	draw_wall(t_cub3d *cub3d, int i, int y)
@@ -119,8 +123,9 @@ void	draw_wall(t_cub3d *cub3d, int i, int y)
 	int	m;
 	int	n;
 	int	my;
+	float size;
 
-	help_draw_wall(cub3d, &m, &n, &my);
+	size = help_draw_wall(cub3d, &m, &n, &my);
 	while (y < (HEIGHT - cub3d->draw.wall_height) / 2)
 	{
 		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, \
@@ -129,8 +134,7 @@ void	draw_wall(t_cub3d *cub3d, int i, int y)
 	}
 	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
 	{
-		cub3d->draw.color = get_pexel(cub3d, n, my);
-		my_mlx_pixel_put(&cub3d->img3d, i, y, cub3d->draw.color);
+		my_mlx_pixel_put(&cub3d->img3d, i, y, get_pexel(cub3d, n, my, size));
 		y++;
 		n++;
 	}

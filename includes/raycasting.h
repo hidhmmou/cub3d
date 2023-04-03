@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 06:58:08 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:47:54 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_mini_map(t_cub3d *cub3d, int x, int y, int i);
 void	my_mlx_pixel_put3(t_data *data, int *xy, int color, int	*limits);
 void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i);
 int		get_pexel_from_img(t_data *data, int x, int y);
-int		get_pexel(t_cub3d *cub3d, int i, int my);
+int		get_pexel(t_cub3d *cub3d, int i, int my, float size);
 void	player(t_cub3d *cub3d, int x, int y, int radius);
 void	make_it_circular(t_cub3d *cub3d);
 void	help_render_mini_map(t_cub3d *cub3d, int *t, int j);
