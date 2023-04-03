@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 03:16:09 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:19:42 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ void	init(t_cub3d *cub3d)
 		cub3d->imgs.door.addr = mlx_get_data_addr(cub3d->imgs.door.img, \
 			&cub3d->imgs.door.bits_per_pixel, &cub3d->imgs.door.line_length, \
 			&cub3d->imgs.door.endian);
+		cub3d->events.closed = 0;
 	}
 }

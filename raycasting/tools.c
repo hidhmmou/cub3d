@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 08:16:00 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:38:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	plus_transp(t_cub3d *cub3d, int color, int y, int i)
 		percent = cub3d->draw.wall_height * 100 / HEIGHT;
 		if (percent > 100)
 			percent = 100;
-		if (percent < 30)
-			percent = 30;
+		if (percent < 10)
+			percent = 10;
 		plus -= plus * percent / 100;
 		plus = plus << 24;
 		return (plus + cub3d->draw.color);

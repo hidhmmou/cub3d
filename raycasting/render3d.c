@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 02:47:07 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:38:54 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	draw_wall(t_cub3d *cub3d, int i, int y)
 	while (y < HEIGHT - ((HEIGHT - cub3d->draw.wall_height) / 2))
 	{
 		cub3d->draw.color = get_pexel(cub3d, n, my);
-		my_mlx_pixel_put(&cub3d->img3d, i, y, plus_transp(cub3d, 0, 0, 1));
+		my_mlx_pixel_put(&cub3d->img3d, i, y, cub3d->draw.color);
 		y++;
 		n++;
 	}
@@ -155,6 +155,8 @@ void *closedoor(void *ptr)
 	{
 	}
 	cub3d->map->square_map[x / SIZE][y / SIZE] = 'D';
+	cub3d->events.closed = 1;
+	system("afplay sounds/door.mp3&");
 	return (0);
 }
 
@@ -171,8 +173,9 @@ void	raycasting(t_cub3d *cub3d, int i)
 	while (i <= WIDTH)
 	{
 		draw_line(cub3d, start);
-		if (i == WIDTH / 2 && cub3d->draw.type == 'D' && cub3d->draw.distance < 200)
+		if (i == WIDTH / 2 && cub3d->draw.type == 'D' && cub3d->draw.distance < 150)
 		{
+			system("afplay sounds/door.mp3&");
 			cub3d->map->square_map[(int)cub3d->draw.y / SIZE][(int)cub3d->draw.x / SIZE] = 'd';
 			start = cub3d->map->player.angle - 30;
 			i = 0;

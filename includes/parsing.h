@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 03:14:20 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:19:24 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_events
 	int		shoot;
 	int		shoot2;
 	void*	old_img;
+	int		closed;
 }	t_events;
 
 typedef struct s_player

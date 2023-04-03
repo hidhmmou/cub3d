@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 00:49:02 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:55:16 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int ac, char *av[])
 	}
 	if (ON3D)
 	{
+		system("afplay sounds/gamemusic.mp3&");
 		raycasting(cub3d, 0);
 		mlx_hook(cub3d->win3d, 2, 0, press, cub3d);
 		mlx_hook(cub3d->win3d, 3, 0, depress, cub3d);
