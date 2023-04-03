@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/02 08:30:25 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:05:43 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,17 @@ typedef struct s_color
 
 typedef struct s_events
 {
-	int	right_move;
-	int	left_move;
-	int	down_move;
-	int	up_move;
-	int	right_row;
-	int	left_row;
-	int	esc;
-	int	map;
+	int		right_move;
+	int		left_move;
+	int		down_move;
+	int		up_move;
+	int		right_row;
+	int		left_row;
+	int		esc;
+	int		map;
+	int		shoot;
+	int		shoot2;
+	void*	old_img;
 }	t_events;
 
 typedef struct s_player
@@ -108,6 +111,18 @@ typedef struct s_imgs
 	t_data	ea;
 }	t_imgs;
 
+typedef struct s_gun
+{
+	void	*g0;
+	void	*g1;
+	void	*g2;
+	void	*g3;
+	void	*g4;
+	void	*g5;
+	void	*gun;
+	void	*gunshoot;
+	void	*img;
+}	t_gun;
 typedef struct s_bigmap
 {
 	float		s;
@@ -148,6 +163,7 @@ typedef struct s_cub3d
 	t_imgs		imgs;
 	t_bigmap	bigmap;
 	int			mmap;
+	t_gun		gun;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);

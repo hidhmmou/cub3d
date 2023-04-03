@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 08:32:36 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:07:31 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	help_int2(t_cub3d *cub3d)
 	int	a;
 	int	b;
 
+	cub3d->events.shoot = 0;
+	cub3d->events.shoot2 = 0;
 	cub3d->last_m_p = -1;
 	cub3d->imgs.minimap = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/minimap.xpm", &a, &b);
@@ -95,6 +97,9 @@ static void	help_int3(t_cub3d *cub3d)
 
 void	init(t_cub3d *cub3d)
 {
+	int	a;
+	int	b;
+
 	if (ON2D)
 	{
 		cub3d->mlx = mlx_init();
@@ -109,5 +114,25 @@ void	init(t_cub3d *cub3d)
 			&cub3d->img.line_length, &cub3d->img.endian);
 	}
 	if (ON3D)
+	{
 		help_int3(cub3d);
+		cub3d->gun.g0 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/0.xpm", &a, &b);
+		cub3d->gun.g1 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/1.xpm", &a, &b);
+		cub3d->gun.g2 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/2.xpm", &a, &b);
+		cub3d->gun.g3 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/3.xpm", &a, &b);
+		cub3d->gun.g4 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/4.xpm", &a, &b);
+		cub3d->gun.g5 = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/5.xpm", &a, &b);
+		cub3d->gun.gun = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/gun.xpm", &a, &b);
+		cub3d->gun.gunshoot = mlx_xpm_file_to_image(cub3d->mlx3d, \
+		"textures/gun/gunshoot.xpm", &a, &b);
+		cub3d->gun.img = cub3d->gun.g0;
+		cub3d->events.old_img = cub3d->gun.img;
+	}
 }

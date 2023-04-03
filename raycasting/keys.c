@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 06:54:47 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:15:39 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,39 @@ int	depress(int keycode, t_cub3d *cub3d)
 	return (0);
 }
 
+void *animate(void *ptr)
+{
+	t_cub3d *cub3d;
+
+	cub3d = (t_cub3d *)ptr;
+
+	cub3d->gun.img = cub3d->gun.g0;
+	usleep(50000);
+	cub3d->gun.img = cub3d->gun.g1;
+	usleep(50000);
+	cub3d->gun.img = cub3d->gun.g2;
+	usleep(100000);
+	cub3d->gun.img = cub3d->gun.g3;
+	usleep(50000);
+	cub3d->gun.img = cub3d->gun.g4;
+	usleep(100000);
+	cub3d->gun.img = cub3d->gun.g5;
+	usleep(100000);
+	cub3d->gun.img = cub3d->gun.g0;
+	return (0);
+}
+
+#include <pthread.h>
+
+void	shoot(t_cub3d *cub3d)
+{
+	pthread_t th;
+
+	pthread_create(&th, NULL, animate, cub3d);
+}
+
+
+
 int	action(t_cub3d *cub3d)
 {
 	int	i;
@@ -104,6 +137,10 @@ int	action(t_cub3d *cub3d)
 		cub3d->events.map = 0;
 	if (cub3d->events.esc)
 		close_window3d(cub3d);
+	if (cub3d->events.old_img != cub3d->gun.img && i++)
+		cub3d->events.old_img = cub3d->gun.img;
+	if (cub3d->events.shoot2 && i++)
+		cub3d->events.shoot2 = 0;
 	if (i > 1)
 		raycasting(cub3d, 0);
 	return (0);
@@ -117,16 +154,38 @@ int	mousemove(int x, int y, t_cub3d *cub3d)
 			cub3d->last_m_p = x;
 		if (cub3d->last_m_p - x < 0)
 		{
-			cub3d->map->player.angle += RET_ANGLE;
+			cub3d->map->player.angle += RET_ANGLE + RET_ANGLE;
 			raycasting(cub3d, 0);
 			cub3d->last_m_p = x;
 		}
 		else if (cub3d->last_m_p - x > 0)
 		{
-			cub3d->map->player.angle -= RET_ANGLE;
+			cub3d->map->player.angle -= RET_ANGLE + RET_ANGLE;
 			raycasting(cub3d, 0);
 			cub3d->last_m_p = x;
 		}
+	}
+	return (0);
+}
+int	mouseclick(int	butt, int x, int y, t_cub3d *cub3d)
+{
+	if (butt == 3)
+	{
+		if (!cub3d->mmap)
+			cub3d->mmap = 1;
+		else
+			cub3d->mmap = 0;
+		cub3d->events.map = 1;
+	}
+	if (butt == 1  && cub3d->events.shoot == 1)
+		shoot(cub3d);
+	if (butt == 2)
+	{
+		cub3d->events.shoot2 = 1;
+		if (cub3d->events.shoot)
+			cub3d->events.shoot = 0;
+		else
+			cub3d->events.shoot = 1;
 	}
 	return (0);
 }

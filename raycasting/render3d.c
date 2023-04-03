@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 08:03:53 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:02:50 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void	raycasting(t_cub3d *cub3d, int i)
 		i++;
 	}
 	mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->img3d.img, 0, 0);
+	if (cub3d->events.shoot)
+		mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->gun.img, WIDTH / 2 - 190, HEIGHT / 2 - 40);
 	if (!cub3d->mmap)
 		render_mini_map(cub3d, 0, 0, 0);
 	else
