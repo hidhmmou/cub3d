@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 01:15:39 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 02:36:31 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,12 @@ void *animate(void *ptr)
 	return (0);
 }
 
-#include <pthread.h>
-
 void	shoot(t_cub3d *cub3d)
 {
 	pthread_t th;
 
 	pthread_create(&th, NULL, animate, cub3d);
 }
-
 
 
 int	action(t_cub3d *cub3d)

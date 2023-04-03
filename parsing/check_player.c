@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:31:24 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 23:40:54 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 02:02:19 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_player(t_cub3d *cub3d)
 		{
 			if (in_set(cub3d->map->map[i][j], "ENSW"))
 				get_player(cub3d, i, j, &found);
-			else if (!in_set(cub3d->map->map[i][j], "1 0\n"))
+			else if (!in_set(cub3d->map->map[i][j], "1 0D\n"))
 				bad_character++;
 			if (cub3d->map->map[i][j++] == ' ')
 				cub3d->map->empty_nbr++;

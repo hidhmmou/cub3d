@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:28:03 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 07:20:07 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 02:59:43 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	render_mini_map(t_cub3d *cub3d, int x, int y, int i)
 		{
 			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
 				t[0] = get_color("100,100,100");
+			else if (str[i][j] == 'D')
+				t[0] = 0x00FF00;
 			else
 				t[0] = get_color("229, 152, 102");
 			put_pixel(cub3d, x, y, t);

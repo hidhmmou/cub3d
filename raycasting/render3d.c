@@ -6,34 +6,83 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 01:02:50 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 02:47:07 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
 
-static int	help_draw_line(t_cub3d *cub3d)
+static int	help_draw_lineD(t_cub3d *cub3d)
+{
+if (cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+			[(int)cub3d->draw.x / SIZE] == 'D')
+	{
+		cub3d->draw.type = 'D';
+		return (1);
+	}
+	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == 'D'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == 'D')
+	{
+		cub3d->draw.type = 'D';
+		return (1);
+	}
+	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == 'D'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == 'D')
+	{
+		cub3d->draw.type = 'D';
+		return (1);
+	}
+	if (cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
+		[(int)cub3d->draw.x / SIZE] == 'D'
+		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
+		[((int)cub3d->draw.x + 1) / SIZE] == 'D')
+	{
+		cub3d->draw.type = 'D';
+		return (1);
+	}
+	return(0);
+}
+
+static int	help_draw_line1(t_cub3d *cub3d)
 {
 	if (cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
 			[(int)cub3d->draw.x / SIZE] == '1')
+	{
+		cub3d->draw.type = '1';
 		return (1);
+	}
 	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
 		[(int)cub3d->draw.x / SIZE] == '1'
 		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
+	{
+		cub3d->draw.type = '1';
 		return (1);
+	}
 	if (cub3d->map->square_map[((int)cub3d->draw.y + 1) / SIZE] \
 		[(int)cub3d->draw.x / SIZE] == '1'
 		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
+	{
+		cub3d->draw.type = '1';
 		return (1);
+	}
 	if (cub3d->map->square_map[((int)cub3d->draw.y - 1) / SIZE] \
 		[(int)cub3d->draw.x / SIZE] == '1'
 		&& cub3d->map->square_map[(int)cub3d->draw.y / SIZE] \
 		[((int)cub3d->draw.x + 1) / SIZE] == '1')
+	{
+		cub3d->draw.type = '1';
 		return (1);
-	return (0);
+	}
+	return (help_draw_lineD(cub3d));
 }
+
+
 
 static void	draw_line(t_cub3d *cub3d, float angle)
 {
@@ -48,7 +97,7 @@ static void	draw_line(t_cub3d *cub3d, float angle)
 			cub3d->draw.d = 3;
 		cub3d->draw.x -= cub3d->draw.increment_x;
 		cub3d->draw.y -= cub3d->draw.increment_y;
-		if (help_draw_line(cub3d))
+		if (help_draw_line1(cub3d))
 			break ;
 	}
 	cub3d->draw.distance = sqrt(pow(cub3d->draw.x - cub3d->map->player.x, 2) \
@@ -92,6 +141,22 @@ void	draw_wall(t_cub3d *cub3d, int i, int y)
 		y++;
 	}
 }
+void *closedoor(void *ptr)
+{
+	t_cub3d *cub3d;
+	int	x;
+	int	y;
+
+	cub3d = (t_cub3d *)ptr;
+	x = cub3d->draw.y;
+	y = cub3d->draw.x;
+	sleep(2);
+	while (cub3d->map->square_map[cub3d->map->player.y / SIZE][cub3d->map->player.x / SIZE] == 'd')
+	{
+	}
+	cub3d->map->square_map[x / SIZE][y / SIZE] = 'D';
+	return (0);
+}
 
 void	raycasting(t_cub3d *cub3d, int i)
 {
@@ -106,6 +171,14 @@ void	raycasting(t_cub3d *cub3d, int i)
 	while (i <= WIDTH)
 	{
 		draw_line(cub3d, start);
+		if (i == WIDTH / 2 && cub3d->draw.type == 'D' && cub3d->draw.distance < 200)
+		{
+			cub3d->map->square_map[(int)cub3d->draw.y / SIZE][(int)cub3d->draw.x / SIZE] = 'd';
+			start = cub3d->map->player.angle - 30;
+			i = 0;
+			pthread_create(&cub3d->th, NULL, closedoor, cub3d);
+			usleep(50);
+		}
 		a = ((float)SIZE / cub3d->draw.distance);
 		b = ((WIDTH / 2) / tan((VEW_ANGLE / 2) * PI / 180));
 		cub3d->draw.wall_height = a * b;

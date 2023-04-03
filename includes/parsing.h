@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 01:16:45 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 03:14:20 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -109,6 +110,7 @@ typedef struct s_imgs
 	t_data	so;
 	t_data	no;
 	t_data	ea;
+	t_data	door;
 }	t_imgs;
 
 typedef struct s_gun
@@ -143,6 +145,7 @@ typedef struct s_draw
 	int			color;
 	int			old_color;
 	int			d;
+	int			type;
 }	t_draw;
 
 typedef struct s_cub3d
@@ -162,6 +165,7 @@ typedef struct s_cub3d
 	t_bigmap	bigmap;
 	int			mmap;
 	t_gun		gun;
+	pthread_t	th;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
