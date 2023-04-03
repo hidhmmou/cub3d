@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 07:24:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 20:32:48 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:37:22 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ int	check_movements(t_cub3d *cub3d, int x, int y)
 		return (2);
 	return (0);
 }
+int	check_movements3(t_cub3d *cub3d, int x, int y)
+{
+	if (cub3d->map->square_map[(x - 1) / SIZE][y / SIZE] == 'D' &&
+		cub3d->map->square_map[x / SIZE][(y + 1) / SIZE] == 'D')
+		return (1);
+	if (cub3d->map->square_map[(x - 1) / SIZE][y / SIZE] == 'D' &&
+		cub3d->map->square_map[x / SIZE][(y - 1) / SIZE] == 'D')
+		return (1);
+	if (cub3d->map->square_map[(x + 1) / SIZE][y / SIZE] == 'D' &&
+		cub3d->map->square_map[x / SIZE][(y - 1) / SIZE] == 'D')
+		return (1);
+	if (cub3d->map->square_map[(x + 1) / SIZE][y / SIZE] == 'D' &&
+		cub3d->map->square_map[x / SIZE][(y + 1) / SIZE] == 'D')
+		return (1);
+	if (cub3d->map->square_map[(x + 10) / SIZE][(y + 10) / SIZE] == 'D')
+		return (2);
+	if (cub3d->map->square_map[(x - 10) / SIZE][(y - 10) / SIZE] == 'D')
+		return (2);
+	return (0);
+}
 
 int	check_movements2(t_cub3d *cub3d, int x, int y)
 {
@@ -49,7 +69,7 @@ int	check_movements2(t_cub3d *cub3d, int x, int y)
 		return (2);
 	if (cub3d->map->square_map[(x - 10) / SIZE][(y - 10) / SIZE] == '1')
 		return (2);
-	return (0);
+	return (check_movements3(cub3d, x, y));
 }
 
 int	is_wall(t_cub3d *cub3d, int x, int y)

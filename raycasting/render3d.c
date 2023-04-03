@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:17:05 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 05:38:54 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:29:50 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void *closedoor(void *ptr)
 	cub3d = (t_cub3d *)ptr;
 	x = cub3d->draw.y;
 	y = cub3d->draw.x;
-	sleep(2);
+	sleep(4);
 	while (cub3d->map->square_map[cub3d->map->player.y / SIZE][cub3d->map->player.x / SIZE] == 'd')
 	{
 	}

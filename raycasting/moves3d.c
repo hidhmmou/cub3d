@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:56:14 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 07:28:51 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:17:33 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	up3d(t_cub3d *cub3d, int x, int y)
 		cub3d->map->player.x = cub3d->draw.x;
 		cub3d->map->player.y = cub3d->draw.y;
 	}
+	if (i > 1)
+		system("afplay sounds/step.mp3&");
 }
 
 void	down3d(t_cub3d *cub3d, int x, int y)
@@ -82,6 +84,8 @@ void	down3d(t_cub3d *cub3d, int x, int y)
 		cub3d->map->player.x = cub3d->draw.x;
 		cub3d->map->player.y = cub3d->draw.y;
 	}
+	if (i > 1)
+		system("afplay sounds/step.mp3&");
 }
 
 void	left3d(t_cub3d *cub3d, int x, int y)
@@ -109,6 +113,8 @@ void	left3d(t_cub3d *cub3d, int x, int y)
 		cub3d->map->player.x = cub3d->draw.x;
 		cub3d->map->player.y = cub3d->draw.y;
 	}
+	if (i > 1)
+		system("afplay sounds/step.mp3&");
 }
 
 void	right3d(t_cub3d *cub3d, int x, int y)
@@ -136,4 +142,6 @@ void	right3d(t_cub3d *cub3d, int x, int y)
 		cub3d->map->player.x = cub3d->draw.x;
 		cub3d->map->player.y = cub3d->draw.y;
 	}
+	if (i > 1)
+		system("afplay sounds/step.mp3&");
 }

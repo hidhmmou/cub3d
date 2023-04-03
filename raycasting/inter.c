@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 03:09:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 03:18:32 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:38:22 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,6 @@ int	get_y(t_cub3d *cub3d, int i, int y, int my)
 		end += size;
 	}
 	return (y);
-}
-
-int	inter(t_cub3d *cub3d)
-{
-	if (cub3d->draw.color == 1)
-	{
-		if (cub3d->map->player.x - cub3d->draw.x > 0)
-			return (cub3d->colors.n);
-		return (cub3d->colors.s);
-	}
-	if (cub3d->draw.color == 3)
-	{
-		if (cub3d->map->player.y - cub3d->draw.y > 0)
-			return (cub3d->colors.w);
-		return (cub3d->colors.e);
-	}
-	return (0);
 }
 
 int	get_pexel(t_cub3d *cub3d, int i, int my)
