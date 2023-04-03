@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 01:07:31 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:16:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,6 @@ void	init(t_cub3d *cub3d)
 		"textures/gun/4.xpm", &a, &b);
 		cub3d->gun.g5 = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/gun/5.xpm", &a, &b);
-		cub3d->gun.gun = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/gun.xpm", &a, &b);
-		cub3d->gun.gunshoot = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/gunshoot.xpm", &a, &b);
 		cub3d->gun.img = cub3d->gun.g0;
 		cub3d->events.old_img = cub3d->gun.img;
 	}

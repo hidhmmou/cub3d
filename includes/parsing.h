@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 01:05:43 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/03 01:16:45 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,6 @@ typedef struct s_gun
 	void	*g3;
 	void	*g4;
 	void	*g5;
-	void	*gun;
-	void	*gunshoot;
 	void	*img;
 }	t_gun;
 typedef struct s_bigmap
