@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 03:09:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:56:47 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:58:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	get_pexel(t_cub3d *cub3d, int i, int my, float size)
 	}
 	return (0);
 }
+
 int	help(char n)
 {
 	int	color;
-	if (n == '1' || n == ' ' || n== 'K')
+
+	if (n == '1' || n == ' ' || n == 'K')
 		color = get_color("100,100,100");
 	else if (n == 'D')
 		color = 0x00FF00;

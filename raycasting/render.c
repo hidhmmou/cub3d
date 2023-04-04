@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:06:15 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:19:34 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:00:10 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 				c = get_color("0,130,0");
 			xy[0] = x + i;
 			xy[1] = y + j;
-			my_mlx_pixel_put4(cub3d ,&cub3d->img, xy, c);
+			my_mlx_pixel_put4(cub3d, &cub3d->img, xy, c);
 			j++;
 		}
 		i++;

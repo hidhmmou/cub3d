@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:05:32 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/03 06:58:16 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:01:11 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ void	parsing(t_cub3d **cub3d, char **av, int ac)
 	fill_content(av[1], *cub3d);
 	check_content(*cub3d);
 }
-int	start(t_cub3d *cub3d)
-{
 
-	return (0);
-}
 int	main(int ac, char *av[])
 {
 	t_cub3d	*cub3d;
@@ -45,7 +41,8 @@ int	main(int ac, char *av[])
 	}
 	if (ON3D)
 	{
-		mlx_put_image_to_window(cub3d->mlx3d, cub3d->win3d, cub3d->imgs.start, 0, 0);
+		mlx_put_image_to_window(cub3d->mlx3d, \
+			cub3d->win3d, cub3d->imgs.start, 0, 0);
 		mlx_hook(cub3d->win3d, 2, 0, press, cub3d);
 		mlx_hook(cub3d->win3d, 3, 0, depress, cub3d);
 		mlx_hook(cub3d->win3d, 6, 0, mousemove, cub3d);

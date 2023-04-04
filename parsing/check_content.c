@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:16:58 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/03/30 08:04:59 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:03:39 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_map(t_cub3d *cub3d)
 {
-	// if (!check_surrounded(cub3d))
-	// 	ft_error("map not surrounded by walls !", NULL);
 	if (!check_outsider_floor(cub3d))
 		ft_error("floor outside !", NULL);
 }
