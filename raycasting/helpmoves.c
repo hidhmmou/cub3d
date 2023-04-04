@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 07:24:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 20:37:22 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:32:18 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	check_movements(t_cub3d *cub3d, int x, int y)
 		return (2);
 	return (0);
 }
+
 int	check_movements3(t_cub3d *cub3d, int x, int y)
 {
 	if (cub3d->map->square_map[(x - 1) / SIZE][y / SIZE] == 'D' &&

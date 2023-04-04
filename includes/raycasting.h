@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:22:40 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:56:56 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,11 @@ int		is_wall(t_cub3d *cub3d, int x, int y);
 void	help_draw_line2(t_cub3d *cub3d, float angle);
 int		mouseclick(int	butt, int x, int y, t_cub3d *cub3d);
 void	my_mlx_pixel_put4(t_cub3d *cub3d ,t_data *data, int *xy, int color);
+void	help_int4(t_cub3d *cub3d);
+void	help_int5(t_cub3d *cub3d);
+void	peint_error(void);
+void	help_action(t_cub3d *cub3d, int i);
+void	help_mouseclick(int butt, int x, int y, t_cub3d *cub3d);
+void	shoot(t_cub3d *cub3d);
+int     help(char n);
 #endif

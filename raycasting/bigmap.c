@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 08:01:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 02:59:18 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:32:00 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,19 @@ static void	help_render_mbigmap(t_cub3d *cub3d)
 		cub3d->bigmap.img.img, xp, yp);
 }
 
+int	help_render_mbigmap2(char n)
+{
+	int	color;
+
+	if (n == '1' || n == ' ' || n == 'K')
+		color = 0x9F666666;
+	else if (n == 'D')
+		color = 0x00FF00;
+	else
+		color = 100 << 24 | get_color("229, 152, 102");
+	return (color);
+}
+
 void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 {
 	int		j;
@@ -92,12 +105,7 @@ void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 		x = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '1' || str[i][j] == ' ' || str[i][j] == 'K')
-				color = 0x9F666666;
-			else if (str[i][j] == 'D')
-				color = 0x00FF00;
-			else
-				color = 100 << 24 | get_color("229, 152, 102");
+			color = help_render_mbigmap2(str[i][j]);
 			put_pixel(cub3d, x, y, color);
 			j++;
 			x += cub3d->bigmap.size;

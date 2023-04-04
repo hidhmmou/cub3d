@@ -6,16 +6,16 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:20:48 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:39:53 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
 
-static void	peint_error()
+void	peint_error(void)
 {
 	printf("Bad textures\n");
-	exit(0);
+	exit(1);
 }
 
 static void	help_int1(t_cub3d *cub3d)
@@ -66,22 +66,7 @@ static void	help_int2(t_cub3d *cub3d)
 		&cub3d->imgs.ea.endian);
 	cub3d->imgs.no.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/NO.xpm", &cub3d->imgs.no.width, &cub3d->imgs.no.hight);
-	if (!cub3d->imgs.no.img)
-		peint_error();
-	cub3d->imgs.no.addr = mlx_get_data_addr(cub3d->imgs.no.img, \
-		&cub3d->imgs.no.bits_per_pixel, &cub3d->imgs.no.line_length, \
-		&cub3d->imgs.no.endian);
-	cub3d->imgs.so.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/SO.xpm", &cub3d->imgs.so.width, &cub3d->imgs.so.hight);
-	if (!cub3d->imgs.so.img)
-		peint_error();
-	cub3d->imgs.so.addr = mlx_get_data_addr(cub3d->imgs.so.img, \
-		&cub3d->imgs.so.bits_per_pixel, &cub3d->imgs.so.line_length, \
-		&cub3d->imgs.so.endian);
-	cub3d->imgs.we.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/WE.xpm", &cub3d->imgs.we.width, &cub3d->imgs.we.hight);
-	if (!cub3d->imgs.we.img)
-		peint_error();
+	help_int4(cub3d);
 }
 
 static void	help_int3(t_cub3d *cub3d)
@@ -119,7 +104,8 @@ void	init(t_cub3d *cub3d)
 		cub3d->mlx = mlx_init();
 		cub3d->width = (ft_strlen(cub3d->map->square_map[0])) * SIZE;
 		cub3d->hight = len_double(cub3d->map->square_map) * SIZE;
-		cub3d->win = mlx_new_window(cub3d->mlx, cub3d->width - SIZE, cub3d->hight, "Cub3d");
+		cub3d->win = mlx_new_window(cub3d->mlx, cub3d->width - \
+			SIZE, cub3d->hight, "Cub3d");
 		cub3d->img.img = mlx_new_image(cub3d->mlx, cub3d->width, cub3d->hight);
 		cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, \
 			&cub3d->img.bits_per_pixel, \
@@ -132,24 +118,6 @@ void	init(t_cub3d *cub3d)
 		"textures/gun/0.xpm", &a, &b);
 		cub3d->gun.g1 = mlx_xpm_file_to_image(cub3d->mlx3d, \
 		"textures/gun/1.xpm", &a, &b);
-		cub3d->gun.g2 = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/2.xpm", &a, &b);
-		cub3d->gun.g3 = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/3.xpm", &a, &b);
-		cub3d->gun.g4 = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/4.xpm", &a, &b);
-		cub3d->gun.g5 = mlx_xpm_file_to_image(cub3d->mlx3d, \
-		"textures/gun/5.xpm", &a, &b);
-		cub3d->gun.img = cub3d->gun.g0;
-		cub3d->events.old_img = cub3d->gun.img;
-		cub3d->imgs.door.img = mlx_xpm_file_to_image(cub3d->mlx3d, \
-			"textures/door.xpm", &cub3d->imgs.door.width, &cub3d->imgs.door.hight);
-		cub3d->imgs.start = mlx_xpm_file_to_image(cub3d->mlx3d, \
-			"textures/cub3d.xpm", &a, &b);
-		cub3d->imgs.door.addr = mlx_get_data_addr(cub3d->imgs.door.img, \
-			&cub3d->imgs.door.bits_per_pixel, &cub3d->imgs.door.line_length, \
-			&cub3d->imgs.door.endian);
-		cub3d->events.closed = 0;
-		cub3d->events.start = 0;
+		help_int5(cub3d);
 	}
 }
