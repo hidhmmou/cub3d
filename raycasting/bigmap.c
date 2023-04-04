@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 08:01:37 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:32:00 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:36:25 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	render_mbigmap(t_cub3d *cub3d, int x, int y, int i)
 	int		j;
 	int		color;
 	char	**str;
-	int		xp;
-	int		yp;
 
 	str = cub3d->map->square_map;
 	while (str[i])

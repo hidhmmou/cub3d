@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:49:49 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 01:50:34 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:37:14 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	mousemove(int x, int y, t_cub3d *cub3d)
 
 void	help_mouseclick(int butt, int x, int y, t_cub3d *cub3d)
 {
+	(void)x;
+	(void)y;
 	if (butt == 1 && cub3d->events.shoot == 1)
 		shoot(cub3d);
 	if (butt == 2)

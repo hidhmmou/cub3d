@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:16:13 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/02 07:25:17 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:35:24 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	help_movements(float angle, t_cub3d *cub3d)
 
 void	up(t_cub3d *cub3d, int x, int y)
 {
-	int		steps;
 	int		i;
 
 	i = 0;
@@ -61,7 +60,6 @@ void	up(t_cub3d *cub3d, int x, int y)
 
 void	down(t_cub3d *cub3d, int x, int y)
 {
-	int		steps;
 	int		i;
 
 	i = 0;
@@ -90,7 +88,6 @@ void	down(t_cub3d *cub3d, int x, int y)
 
 void	left(t_cub3d *cub3d, int x, int y)
 {
-	int		steps;
 	int		i;
 
 	i = 0;
@@ -119,7 +116,6 @@ void	left(t_cub3d *cub3d, int x, int y)
 
 void	right(t_cub3d *cub3d, int x, int y)
 {
-	int		steps;
 	int		i;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:34:46 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 02:03:03 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 02:50:47 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,8 @@ void	help_action(t_cub3d *cub3d, int i);
 void	help_mouseclick(int butt, int x, int y, t_cub3d *cub3d);
 void	shoot(t_cub3d *cub3d);
 int		help(char n);
+void	*closedoor(void *ptr);
+void	help_raycasting(t_cub3d *cub3d, int *i, float *start);
+float	help_draw_wall(t_cub3d *cub3d, int *m, int *n, int *my);
+int		help_draw_lined(t_cub3d *cub3d);
 #endif
