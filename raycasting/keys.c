@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 00:33:10 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 07:08:16 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:31:02 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int	mousemove(int x, int y, t_cub3d *cub3d)
 }
 int	mouseclick(int	butt, int x, int y, t_cub3d *cub3d)
 {
-	if (x >= 460 && x <= 811 && y >= 445 && y <= 592)
+	if (x >= 460 && x <= 811 && y >= 445 && y <= 592 && !cub3d->events.start)
 	{
 		system("afplay sounds/click.mp3&");
 		cub3d->events.start = 1;

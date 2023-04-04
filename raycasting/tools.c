@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 03:37:48 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/03 05:38:25 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 00:26:55 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	get_pexel_from_img(t_data *data, int x, int y)
 {
 	char	*dst;
 
-	if (x > SIZE || x < 0 || y > SIZE || y < 0)
+	if (x > data->width || x < 0 || y > data->hight || y < 0)
 		return (-1);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);

@@ -26,7 +26,7 @@ HEADER		=	$(addprefix includes/, $(HEADERS))
 all			:	$(NAME)
 	
 $(NAME)		:	$(LIBFT) $(OBJ)
-				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS) -fsanitize=address
+				@$(CC) $(OBJ) -o $(NAME) $(LIBFT) $(FLAGS) #-fsanitize=address
 				@echo "$(BLUE)cub3d$(GREEN)\r\t\t\t compiled$(RESET)"
 
 $(LIBFT)	:
