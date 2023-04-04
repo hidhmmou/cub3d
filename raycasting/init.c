@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:14:06 by ramhouch          #+#    #+#             */
-/*   Updated: 2023/04/04 00:56:43 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:20:48 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,10 @@ void	init(t_cub3d *cub3d)
 	if (ON2D)
 	{
 		cub3d->mlx = mlx_init();
-		cub3d->win = mlx_new_window(cub3d->mlx, \
-		(ft_strlen(cub3d->map->square_map[0]) - 1) * SIZE, \
-		len_double(cub3d->map->square_map) * SIZE, "Cub3d");
-		cub3d->img.img = mlx_new_image(cub3d->mlx, \
-			(ft_strlen(cub3d->map->square_map[0])) * SIZE, \
-			len_double(cub3d->map->square_map) * SIZE);
+		cub3d->width = (ft_strlen(cub3d->map->square_map[0])) * SIZE;
+		cub3d->hight = len_double(cub3d->map->square_map) * SIZE;
+		cub3d->win = mlx_new_window(cub3d->mlx, cub3d->width - SIZE, cub3d->hight, "Cub3d");
+		cub3d->img.img = mlx_new_image(cub3d->mlx, cub3d->width, cub3d->hight);
 		cub3d->img.addr = mlx_get_data_addr(cub3d->img.img, \
 			&cub3d->img.bits_per_pixel, \
 			&cub3d->img.line_length, &cub3d->img.endian);

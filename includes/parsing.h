@@ -6,7 +6,7 @@
 /*   By: ramhouch <ramhouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:11:07 by hidhmmou          #+#    #+#             */
-/*   Updated: 2023/04/04 00:18:51 by ramhouch         ###   ########.fr       */
+/*   Updated: 2023/04/04 01:07:47 by ramhouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ typedef struct s_cub3d
 	int			mmap;
 	t_gun		gun;
 	pthread_t	th;
+	int			hight;
+	int			width;
 }	t_cub3d;
 
 void	ft_error(char *message, t_cub3d *cub3d);
